@@ -1,8 +1,10 @@
 # Car Data Analyzer 
 ![](https://img.shields.io/badge/License-MIT-green.svg)
-This is a data tracking application that records the maintnance status of your vehicle, tracks the weather and gauges the range of 
-## Table of Contents
 
+## Description
+This is a data tracking application that records the maintnance status of your vehicle, tracks the weather and gauges the range of gas consumption when traveling.  
+## Table of Contents
+- [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
