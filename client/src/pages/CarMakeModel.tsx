@@ -1,5 +1,6 @@
-
-// Your CarMakeModel component code here
+import 'antd/dist/antd.css';
+import './input.css';
+import { Form } from "antd"
 
 const CarMakeModel = () => {
 
@@ -7,7 +8,7 @@ const CarMakeModel = () => {
   
       <div>
   
-        {/* Component content */}
+        <Form></Form>
   
       </div>
   
