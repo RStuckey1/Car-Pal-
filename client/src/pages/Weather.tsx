@@ -1,5 +1,4 @@
 
-// Ensure this file exports a module
 
 const Weather = () => {
 
@@ -18,4 +17,3 @@ const Weather = () => {
   
   
   export default Weather;
-  

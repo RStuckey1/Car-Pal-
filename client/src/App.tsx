@@ -1,11 +1,13 @@
 import { Outlet, BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './input.css'
+import 'antd/dist/antd.css';
 import ErrorPage from "./pages/ErrorPage";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./pages/Footer";
 import Login from "./pages/Login";
 import Users from "./components/Users";
-import Weather from "./pages/weather";
+import Weather from "./pages/Weather";
 import Landing from "./pages/Landing";
 import CarMakeModel from "./pages/CarMakeModel";
 
