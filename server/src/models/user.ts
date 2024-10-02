@@ -6,6 +6,7 @@ interface UserAttributes {
   username: string;
   email: string;
   password: string;
+  location?: string;
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
