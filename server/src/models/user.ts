@@ -19,6 +19,7 @@ export class User
   public username!: string;
   public email!: string;
   public password!: string;
+  public location!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -50,6 +51,11 @@ export function UserFactory(sequelize: Sequelize): typeof User {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      location: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      
     },
     {
       tableName: "users",
