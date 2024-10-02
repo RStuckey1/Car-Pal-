@@ -1,5 +1,9 @@
 import type { Request, Response } from "express";
-import { User } from "../models/index.js";
+import { User, Vehicle } from "../models/index.js";
+
+// How do i fix the issue with the import of Vehicle and User and it corresponding with vin for vehicle models
+ 
+
 
 // GET /users - Get all users
 export const getUsers = async (_req: Request, res: Response) => {
@@ -45,20 +49,28 @@ export const getUsersByLocation = async (req: Request, res: Response) => {
   }
 };
 
-// // Get /users/:vin - Get all users by vin
-
+// // GET /users/vin/:vin - Get all users by vehicle VIN
 // export const getUsersByVin = async (req: Request, res: Response) => {
 //   const { vin } = req.params;
 //   try {
-//     const users = await User.findAll({
+//     const vehicles = await Vehicle.findAll({
 //       where: { vin },
-//       attributes: { exclude: ["password"] },
+//       include: [{ model: User, attributes: { exclude: ["password"] } }],
 //     });
-//     res.json(users);
+
+//     const users = vehicles.map(vehicle => vehicle.User);
+
+//     if (users.length > 0) {
+//       res.json(users);
+//     } else {
+//       res.status(404).json({ message: "No users found for this VIN" });
+//     }
 //   } catch (error: any) {
 //     res.status(500).json({ message: error.message });
 //   }
 // };
+
+// how do i fix issue with vin 
 
 // POST /users - Create a new user
 export const createUser = async (req: Request, res: Response) => {
