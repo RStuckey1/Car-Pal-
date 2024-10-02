@@ -10,19 +10,23 @@ year: number;
 mileage: number;
 color: string;
 price: number;
+tires?: string | number;
+tiresCondition?: string;
 }
 
 interface VehicleCreationAttributes extends Optional<Vehicle, "id"> { }
 
 export class Vehicle extends Model<IVehicle, VehicleCreationAttributes> implements IVehicle {
     public id!: number
-    public vin!: number;
+    public vin!: number | string;
     public make!: string;
     public model!: string;
     public year!: number;
     public mileage!: number;
     public color!: string;
     public price!: number;
+    public tires!: number | string;
+    public tiresCondition!: string;
 
     public readonly assignedUser?: User;
 }
@@ -63,6 +67,14 @@ export function VehicleFactory(sequelize: Sequelize): typeof Vehicle {
             price: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+            },
+            tires: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            tiresCondition: {
+                type: DataTypes.STRING,
+                allowNull: true,
             },
         },
         {
