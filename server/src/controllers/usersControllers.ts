@@ -30,6 +30,36 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
+// Get /users/:location - Get all users by location
+
+export const getUsersByLocation = async (req: Request, res: Response) => {
+  const { location } = req.params;
+  try {
+    const users = await User.findAll({
+      where: { location },
+      attributes: { exclude: ["password"] },
+    });
+    res.json(users);
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// // Get /users/:vin - Get all users by vin
+
+// export const getUsersByVin = async (req: Request, res: Response) => {
+//   const { vin } = req.params;
+//   try {
+//     const users = await User.findAll({
+//       where: { vin },
+//       attributes: { exclude: ["password"] },
+//     });
+//     res.json(users);
+//   } catch (error: any) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
 // POST /users - Create a new user
 export const createUser = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
@@ -75,3 +105,6 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+
