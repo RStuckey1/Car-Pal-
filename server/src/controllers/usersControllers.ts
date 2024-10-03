@@ -3,8 +3,6 @@ import { User, Vehicle } from "../models/index.js";
 
 // How do i fix the issue with the import of Vehicle and User and it corresponding with vin for vehicle models
  
-
-
 // GET /users - Get all users
 export const getUsers = async (_req: Request, res: Response) => {
   try {
