@@ -1,6 +1,5 @@
 import { Outlet, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './input.css'
-import 'antd/dist/antd.css';
 import ErrorPage from "./pages/ErrorPage";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -9,7 +8,7 @@ import Login from "./pages/Login";
 import Users from "./components/Users";
 import Weather from "./pages/Weather";
 import Landing from "./pages/Landing";
-import CarMakeModel from "./pages/CarMakeModel";
+import Vin from "./pages/VIN";
 
 function App() {
 
@@ -18,7 +17,7 @@ function App() {
      <Router>
         <Routes>
             <Route path='/' element={<Landing/>}/> 
-            <Route path='/CarMakeModel' element={<CarMakeModel/>}/>
+            <Route path='/Vin' element={<Vin/>}/>
             <Route path='/Weather' element={<Weather/>}/>
             <Route path='/Users' element={<Users users={null}/>}/>
             <Route path='/Login' element={<Login/>}/>
