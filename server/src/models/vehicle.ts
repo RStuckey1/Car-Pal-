@@ -16,7 +16,7 @@ interface IVehicle {
   tiresCondition?: string;
 }
 
-interface VehicleCreationAttributes extends Optional<Vehicle, "id"> { }
+interface VehicleCreationAttributes extends Optional<IVehicle, "id"> { }
 
 export class Vehicle extends Model<IVehicle, VehicleCreationAttributes> implements IVehicle {
 
