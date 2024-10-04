@@ -3,7 +3,7 @@ import { User } from "./user.js";
 
 interface IVehicle {
   id: number;
-  vin: number | string;
+  vin: string;
   make: string;
   model: string;
   year: number;
@@ -16,24 +16,22 @@ interface IVehicle {
   tiresCondition?: string;
 }
 
-interface VehicleCreationAttributes extends Optional<IVehicle, "id"> {}
+interface VehicleCreationAttributes extends Optional<Vehicle, "id"> { }
 
-export class Vehicle
-  extends Model<IVehicle, VehicleCreationAttributes>
-  implements IVehicle
-{
-  public id!: number;
-  public vin!: number | string;
-  public make!: string;
-  public model!: string;
-  public year!: number;
-  public gallonsOfGas!: number;
-  public distance!: number;
-  public mileage!: number;
-  public color!: string;
-  public price!: number;
-  public tires!: number | string;
-  public tiresCondition!: string;
+export class Vehicle extends Model<IVehicle, VehicleCreationAttributes> implements IVehicle {
+
+    public id!: number
+    public vin!: string;
+    public make!: string;
+    public model!: string;
+    public year!: number;
+    public gallonsOfGas!: number;
+    public distance!: number;
+    public mileage!: number;
+    public color!: string;
+    public price!: number;
+    public tires!: number | string;
+    public tiresCondition!: string;
 
   public readonly assignedUser?: User;
 }

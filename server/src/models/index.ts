@@ -5,5 +5,4 @@ import { VehicleFactory } from './vehicle.js';
 const User = UserFactory(sequelize);
 const Vehicle = VehicleFactory(sequelize);
 
-export { Vehicle}; 
-export { User };
+export { User, Vehicle };
