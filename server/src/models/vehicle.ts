@@ -2,7 +2,7 @@ import { DataTypes, Sequelize, Model, Optional } from "sequelize";
 import { User } from "./user.js";
 
 interface IVehicle {
-  id: number;;
+  id: number;
   vin: string;
   make: string;
   model: string;
@@ -21,7 +21,7 @@ interface VehicleCreationAttributes extends Optional<Vehicle, "id"> { }
 export class Vehicle extends Model<IVehicle, VehicleCreationAttributes> implements IVehicle {
 
     public id!: number
-    public vin!: number | string;
+    public vin!: string;
     public make!: string;
     public model!: string;
     public year!: number;
