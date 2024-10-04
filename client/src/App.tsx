@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Users from "./components/Users";
 import Weather from "./pages/Weather";
 import Landing from "./pages/Landing";
-import VIN from "./pages/VIN";
+import VIN from "./pages/Vin";
 import './landing.css';
 
 function App() {

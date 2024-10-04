@@ -1,5 +1,9 @@
 body {
-    background-color: RGB(161,204,165);
-    background-image: https://github.com/DC-DavidChamberlain/Project-2/blob/ricks/client/Images/CarBackground.jpg
+    background-color: RGB(161,204,165)
+}
+
+.landing body {
+    background-color: RGB(65,93,67)
+    
 
 }

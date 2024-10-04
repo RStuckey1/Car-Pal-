@@ -1,9 +1,12 @@
 import { useState, useEffect, useLayoutEffect } from "react";
+// import { Link } from "react-router-dom";
 import { retrieveUsers } from "../api/userAPI";
+import Navbar from '../components/Navbar';
 import type { UserData } from "../interfaces/UserData";
 import ErrorPage from "./ErrorPage";
 import UserList from '../components/Users';
 import auth from '../utils/auth';
+
 
 const Home = () => {
 
@@ -43,6 +46,7 @@ const Home = () => {
 
     return (
         <>
+        <Navbar />
             {
                 !loginCheck ? (
                     <div className='login-notice'>

@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
 
+import Login from '../pages/Login';
 
+
+
+<Login />
 const Navbar = () => {
   const [loginCheck, setLoginCheck] = useState(false);
 
@@ -18,12 +22,13 @@ const Navbar = () => {
   }, [loginCheck]);
 
   return (
+    
     <div className='display-flex justify-space-between align-center py-2 px-5 mint-green'>
-      <h1>Authentication Review</h1>
+      <h1>Click the Button to login</h1>
       <div>
         {!loginCheck ? (
           <button className='btn' type='button'>
-            <Link to='./login'>Login</Link>
+            <Link to='/Login'>Login</Link>
           </button>
         ) : (
           <button
