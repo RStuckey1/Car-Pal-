@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
 
+
 const Navbar = () => {
   const [loginCheck, setLoginCheck] = useState(false);
 
@@ -22,7 +23,7 @@ const Navbar = () => {
       <div>
         {!loginCheck ? (
           <button className='btn' type='button'>
-            <Link to='/login'>Login</Link>
+            <Link to='./login'>Login</Link>
           </button>
         ) : (
           <button

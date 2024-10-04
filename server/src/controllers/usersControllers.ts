@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
-import { User, Vehicle } from "../models/index.js";
+import { User } from "../models/index.js";
+// import { Vehicle } from "../models/index.js";
 
 // How do i fix the issue with the import of Vehicle and User and it corresponding with vin for vehicle models
  
