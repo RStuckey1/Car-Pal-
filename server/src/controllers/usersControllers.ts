@@ -1,8 +1,8 @@
 import type { Request, Response } from "express";
-import { User, Vehicle } from "../models/index.js";
+import { User } from "../models/index.js";
 
 // How do i fix the issue with the import of Vehicle and User and it corresponding with vin for vehicle models
- 
+
 // GET /users - Get all users
 export const getUsers = async (_req: Request, res: Response) => {
   try {
@@ -68,7 +68,7 @@ export const getUsersByVin = async (req: Request, res: Response) => {
   // }
 };
 
-// how do i fix issue with vin 
+// how do i fix issue with vin
 
 // POST /users - Create a new user
 export const createUser = async (req: Request, res: Response) => {
@@ -115,6 +115,3 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-
-
