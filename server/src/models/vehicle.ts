@@ -2,8 +2,8 @@ import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
 import { User } from './user.js';
 
 interface IVehicle {
-id: number
-vin: number | string;
+id: number;
+vin: string;
 make: string;
 model: string;
 year: number;
@@ -16,12 +16,12 @@ tires?: string | number;
 tiresCondition?: string;
 }
 
-interface VehicleCreationAttributes extends Optional<Vehicle, "id"> { }
+interface VehicleCreationAttributes extends Optional<IVehicle, "id"> { }
 
 export class Vehicle extends Model<IVehicle, VehicleCreationAttributes> implements IVehicle {
 
-    public id!: number
-    public vin!: number | string;
+    public id!: number;
+    public vin!: string;
     public make!: string;
     public model!: string;
     public year!: number;
@@ -45,7 +45,7 @@ export function VehicleFactory(sequelize: Sequelize): typeof Vehicle {
                 primaryKey: true,
             },
             vin: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 autoIncrement: true,
                 primaryKey: true,
             },

@@ -47,26 +47,26 @@ export const getUsersByLocation = async (req: Request, res: Response) => {
   }
 };
 
-// // GET /users/vin/:vin - Get all users by vehicle VIN
-// export const getUsersByVin = async (req: Request, res: Response) => {
-//   const { vin } = req.params;
-//   try {
-//     const vehicles = await Vehicle.findAll({
-//       where: { vin },
-//       include: [{ model: User, attributes: { exclude: ["password"] } }],
-//     });
-
-//     const users = vehicles.map(vehicle => vehicle.User);
-
-//     if (users.length > 0) {
-//       res.json(users);
-//     } else {
-//       res.status(404).json({ message: "No users found for this VIN" });
-//     }
-//   } catch (error: any) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+// GET /users/vin/:vin - Get all users by vehicle VIN
+export const getUsersByVin = async (req: Request, res: Response) => {
+  const { vin } = req.params;
+  try {
+    const vehicles = await Vehicle.findAll({
+      where: { vin },
+      include: [{ model: User, attributes: { exclude: ["password"] } }],
+    });
+    console.log(vehicles);
+    // const users = vehicles.map(vehicle => vehicle.user);
+    res.json({});
+  //   if (users.length > 0) {
+  //     res.json(users);
+  //   } else {
+  //     res.status(404).json({ message: "No users found for this VIN" });
+  //   }
+  // } catch (error: any) {
+  //   res.status(500).json({ message: error.message });
+  // }
+};
 
 // how do i fix issue with vin 
 
