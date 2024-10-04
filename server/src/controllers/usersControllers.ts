@@ -48,14 +48,14 @@ export const getUsersByLocation = async (req: Request, res: Response) => {
 };
 
 // GET /users/vin/:vin - Get all users by vehicle VIN
-export const getUsersByVin = async (req: Request, res: Response) => {
-  const { vin } = req.params;
-  try {
-    const vehicles = await Vehicle.findAll({
-      where: { vin },
-      include: [{ model: User, attributes: { exclude: ["password"] } }],
-    });
-    console.log(vehicles);
+export const getUsersByVin = async (_req: Request, res: Response) => {
+  // const { vin } = req.params;
+  // try {
+  //   const vehicles = await Vehicle.findAll({
+  //     where: { vin },
+  //     include: [{ model: User, attributes: { exclude: ["password"] } }],
+  //   });
+  //   console.log(vehicles);
     // const users = vehicles.map(vehicle => vehicle.user);
     res.json({});
   //   if (users.length > 0) {
