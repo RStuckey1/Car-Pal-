@@ -16,6 +16,7 @@ function Landing() {
     <Link to="/Home">Home</Link>
     <Link to="/Login">Login</Link>
     <Link to="/VIN">VIN</Link>
+    <Link to="/MpgCalculator">MpgCalculator</Link>
     </div>
 </body>
 

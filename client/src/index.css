@@ -1,1 +1,30 @@
+h1 {
+    color: #618B4A;
+    font-size: 7rem;
+    font-weight: 700;
+    margin: 10%;
 
+}
+input {
+    background-color: #7AA095;
+    border: 1px solid #618B4A;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    }
+
+p {
+    color: #FF5A5F;
+    position: relative;
+    font-size: 4rem;
+    font-weight: 500;
+    margin: 10%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10%;
+}
