@@ -3,7 +3,6 @@ import { useState, type FormEvent, type ChangeEvent } from 'react';
 import Auth from '../utils/auth';
 import { login } from '../api/authAPI';
 import type { UserLogin } from '../interfaces/UserLogin';
-import Footer from './Footer';
 import "../index.css";
 
  
@@ -34,10 +33,10 @@ const Login = () => {
     };
   
     return (
-      <div className='form-container'>
+      <div className='form-container1'>
         <form className='form login-form' onSubmit={handleSubmit}>
-          <h1>Welcome to the World of</h1>
-          <h1>Car Maintenance Logbook</h1>
+          <h2>Welcome to the World of Car</h2>
+          <h2>Maintenance Logbook</h2>
           <h1>Please Login</h1>
           <div className='form-group'>
             <label>Username</label>
@@ -68,8 +67,6 @@ const Login = () => {
       </div>
     );
   };
-
-  <Footer />
   
   export default Login;
 
