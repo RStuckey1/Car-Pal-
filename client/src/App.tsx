@@ -9,6 +9,7 @@ import Users from "./components/Users";
 import Weather from "./pages/Weather";
 import Landing from "./pages/Landing";
 import VIN from "./pages/Vin";
+import MpgCalculator from "./pages/MpgCalculator";
 import './landing.css';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path='/ErrorPage' element={<ErrorPage/>}/>
             <Route path='/Home' element={<Home/>}/>
             <Route path='/Navbar' element={<Navbar/>}/>
+            <Route path='/MpgCalculator' element={<MpgCalculator/>}/>
         </Routes>
       </Router>  
       <div>
