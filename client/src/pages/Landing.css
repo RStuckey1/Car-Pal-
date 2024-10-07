@@ -2,15 +2,27 @@ body {
     background-color: #D7F9F1;
 }
 
-.landing body {
+.landing-body {
     color: rgb(17,29,19);
     font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+
 }
 
 h1 {
-    position: sticky;
-    flex-wrap: wrap;
+    position: relative;
+    text-align: center;
+
+    
     font-size: 3rem;
     font-weight: 700;
-    margin: 10%;
+    margin: 1%;
+}
+
+.landing-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin: 3%;
 }
