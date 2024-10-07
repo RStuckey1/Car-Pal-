@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import { handleErrors } from "../utils/errorHandler";
+//import { handleErrors } from "../utils/errorHandler";
 
 const prisma = new PrismaClient();
 
@@ -12,7 +12,7 @@ export const getUserVehicles = async (req: Request, res: Response) => {
     });
     res.json(vehicles);
   } catch (error) {
-    handleErrors(res, error);
+   // handleErrors(res, error);
   }
 };
 
@@ -31,7 +31,7 @@ export const createUserVehicle = async (req: Request, res: Response) => {
     });
     res.status(201).json(newVehicle);
   } catch (error) {
-    handleErrors(res, error);
+   // handleErrors(res, error);
   }
 };
 
@@ -45,7 +45,7 @@ export const updateUserVehicle = async (req: Request, res: Response) => {
     });
     res.json(updatedVehicle);
   } catch (error) {
-    handleErrors(res, error);
+    // handleErrors(res, error);
   }
 };
 
@@ -57,6 +57,6 @@ export const deleteUserVehicle = async (req: Request, res: Response) => {
     });
     res.status(204).send();
   } catch (error) {
-    handleErrors(res, error);
+    // handleErrors(res, error);
   }
 };
