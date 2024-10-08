@@ -6,13 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import type { UserLogin } from '../interfaces/UserLogin';
 import "../index.css";
 
-function LoginPage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const Login = () => {
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState<UserLogin>({
     username: '',
     password: '',
   });
-  const navigate = useNavigate();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -29,19 +28,12 @@ function LoginPage() {
     try {
       const data = await login(loginData);
       Auth.login(data.token);
-      setIsLoggedIn(true);
-
-
+      if (true) navigate('/Landing');
     } catch (err) {
       console.error('Failed to login', err);
     }
-
   };
-  
-  if (isLoggedIn) {
-    navigate('/Landing');
-    return;
-  }
+
 
   return (
     <div className='form-container1'>
@@ -79,6 +71,6 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Login;
 
 

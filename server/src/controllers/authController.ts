@@ -14,15 +14,18 @@ export const login = async (req: Request, res: Response) => {
     return res.status(401).json({ message: "Authentication failed" });
   }
 
-  const passwordIsValid = await bcrypt.compare(password, user.password);
-  if (!passwordIsValid) {
-    return res.status(401).json({ message: "Authentication failed" });
-  }
-
+  // const passwordIsValid = await bcrypt.compare(password, user.password);
+  // if (!passwordIsValid) {
+  //   return res.status(401).json({ message: "Authentication failed" });
   const secretKey = process.env.JWT_SECRET_KEY || "";
   const token = jwt.sign({ id: user.id, username }, secretKey, {
     expiresIn: "1d",
   });
+
+  const passwordIsValid = bcrypt.compareSync(password, user.password);
+  if (!passwordIsValid) {
+    return res.status(401).json({ message: "Authentication failed" });
+  }
 
   return res.json({ token });
 };
