@@ -20,6 +20,7 @@ h1 {
 }
 
 .landing-list {
+    list-style-type: square;
     display: flex;
     justify-content: center;
     align-items: center;
