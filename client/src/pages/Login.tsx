@@ -30,13 +30,17 @@ function LoginPage() {
       const data = await login(loginData);
       Auth.login(data.token);
       setIsLoggedIn(true);
+
+
     } catch (err) {
       console.error('Failed to login', err);
     }
-  };
 
+  };
+  
   if (isLoggedIn) {
     navigate('/Landing');
+    return;
   }
 
   return (
@@ -77,5 +81,4 @@ function LoginPage() {
 
 export default LoginPage;
 
-  
-  
+
