@@ -1,4 +1,3 @@
-import Navbar from '../components/Navbar';
 import { Link } from 'react-router-dom';
 // import React from 'react';
 import Footer from './Footer';
@@ -10,7 +9,6 @@ function Landing() {
   return (
     <>
 <body>
-    <Navbar />
     <div className="landing-body"> 
       <h1>Welcome to Car Maintenance Tracker!</h1>
       <h1>A place to keep track of all your car maintenance needs.</h1>
