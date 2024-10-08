@@ -30,15 +30,24 @@ function LoginPage() {
       const data = await login(loginData);
       Auth.login(data.token);
       setIsLoggedIn(true);
+
+
     } catch (err) {
       console.error('Failed to login', err);
     }
+
   };
 
+  // if (isLoggedIn) {
+  //   navigate('/Landing');
+  // }
   if (isLoggedIn) {
-    navigate('/Landing');
+    navigate('/');
+    return;
   }
-
+  else {
+    alert("Invalid username or password. Please try again.");
+  }
   return (
     <div className='form-container1'>
       <form className='form login-form' onSubmit={handleSubmit}>
@@ -77,5 +86,4 @@ function LoginPage() {
 
 export default LoginPage;
 
-  
-  
+
