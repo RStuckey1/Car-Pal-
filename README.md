@@ -20,8 +20,12 @@ npm i
 ```
 3. 
 ```
-npm run dev
+npm run build
 ```
+4.
+'''
+npm run start:dev
+
 ## Features
 *screenshots 
 
