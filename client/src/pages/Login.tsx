@@ -2,9 +2,12 @@ import { useState, type FormEvent, type ChangeEvent } from 'react';
 
 import Auth from '../utils/auth';
 import { login } from '../api/authAPI';
+import { useNavigate } from 'react-router-dom';
 import type { UserLogin } from '../interfaces/UserLogin';
+import "../index.css";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState<UserLogin>({
     username: '',
     password: '',
@@ -25,15 +28,19 @@ const Login = () => {
     try {
       const data = await login(loginData);
       Auth.login(data.token);
+      if (true) navigate('/Landing');
     } catch (err) {
       console.error('Failed to login', err);
     }
   };
 
+
   return (
-    <div className='form-container'>
+    <div className='form-container1'>
       <form className='form login-form' onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h2>Welcome to the World of Car</h2>
+        <h2>Maintenance Logbook</h2>
+        <h1>Please Login</h1>
         <div className='form-group'>
           <label>Username</label>
           <input
@@ -62,6 +69,8 @@ const Login = () => {
       </form>
     </div>
   );
-};
+}
 
 export default Login;
+
+

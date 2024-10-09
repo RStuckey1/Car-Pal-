@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Navbar from './Navbar';
 
 function MpgCalculator() {
   const [milesDriven, setMilesDriven] = useState(0);

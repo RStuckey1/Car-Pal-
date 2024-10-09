@@ -1,1 +1,49 @@
+* {
+    background-color: #D7F9F1;
+}
+
+h1 {
+    color: #090510;
+    font-size: 7rem;
+    font-weight: 700;
+    margin: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    color: #618B4A;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+input {
+    background-color: #7AA095;
+    border: 1px solid #618B4A;
+    display: flex;
+    justify-content: center;
+    margin: 2%;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.form-container1 {
+    color: #090510;
+    display: block;
+    position: center;
+    font-size: 2rem;
+    font-weight: 200;
+    margin: 1%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column, horizontal;
+    align-items: center;
+    justify-content: center;
+    ;
+}
 
