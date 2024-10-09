@@ -4,7 +4,7 @@
 
 h1 {
     color: #090510;
-    font-size: 2rem;
+    font-size: 7rem;
     font-weight: 700;
     margin: 1%;
     display: flex;
@@ -32,7 +32,8 @@ input {
 
 .form-container1 {
     color: #090510;
-    position: relative;
+    display: block;
+    position: center;
     font-size: 2rem;
     font-weight: 200;
     margin: 1%;
@@ -45,3 +46,4 @@ input {
     justify-content: center;
     ;
 }
+

@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
+import '../index.css';
 
 const Navbar = () => {
   const [loginCheck, setLoginCheck] = useState(false);
+  const navigate = useNavigate();
 
   const checkLogin = () => {
     if (auth.loggedIn()) {
@@ -17,9 +20,9 @@ const Navbar = () => {
   }, [loginCheck]);
 
   return (
-    <div className='display-flex justify-space-between align-center py-2 px-5 mint-green'>
-      <h1>Authentication Review</h1>
-      <div>
+    <div className='auth-review'>
+      <h1>Car Pal</h1>
+      <div className='logout'>
         {!loginCheck ? (
           <button className='btn' type='button'>
             <Link to='/login'>Login</Link>
@@ -30,6 +33,8 @@ const Navbar = () => {
             type='button'
             onClick={() => {
               auth.logout();
+              setLoginCheck(false);
+              navigate('/');
             }}
           >
             Logout

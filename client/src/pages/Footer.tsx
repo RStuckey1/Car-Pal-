@@ -1,3 +1,5 @@
+import './Landing.css'
+
 function Footer() {
   return (
     <footer>
