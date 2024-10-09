@@ -22,6 +22,9 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />
       },
+      { index: false,
+        element: <Login />
+      },
       {
         path: '/landing',
         element: <Landing />
