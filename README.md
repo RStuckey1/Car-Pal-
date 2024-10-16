@@ -1,4 +1,4 @@
-# Car Data Analyzer 
+# Car Pal Tracker 
 ![](https://img.shields.io/badge/License-MIT-green.svg)
 
 ## Description
