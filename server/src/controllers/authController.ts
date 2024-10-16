@@ -18,7 +18,7 @@ export const login = async (req: Request, res: Response) => {
   // if (!passwordIsValid) {
   //   return res.status(401).json({ message: "Authentication failed" });
   const secretKey = process.env.JWT_SECRET_KEY || "";
-  const token = jwt.sign({ id: user.id, username }, secretKey, {
+  const token = jwt.sign({ id: user.id, username: user.username }, secretKey, {
     expiresIn: "1d",
   });
 
@@ -29,3 +29,5 @@ export const login = async (req: Request, res: Response) => {
 
   return res.json({ token });
 };
+
+

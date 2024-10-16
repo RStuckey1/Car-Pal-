@@ -5,7 +5,7 @@ import auth from '../utils/auth';
 import '../index.css';
 
 const Navbar = () => {
-  const [loginCheck, setLoginCheck] = useState(false);
+  const [loginCheck, setLoginCheck] = useState<boolean>();
   const navigate = useNavigate();
 
   const checkLogin = () => {
@@ -33,8 +33,8 @@ const Navbar = () => {
             type='button'
             onClick={() => {
               auth.logout();
-              setLoginCheck(false);
-              navigate('/');
+              setLoginCheck(true);
+              navigate('/Landing');
             }}
           >
             Logout

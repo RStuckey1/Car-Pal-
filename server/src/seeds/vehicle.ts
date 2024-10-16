@@ -13,8 +13,6 @@ export const seedVehicle = async () => {
             mileage: 0,
             color: '',
             price: 0,
-            tires: '',
-            tiresCondition: ''
         },
         {
             vin: '3B3ES47Y3XT526477', 
@@ -26,8 +24,6 @@ export const seedVehicle = async () => {
             mileage: 0,
             color: '',
             price: 0,
-            tires: '',
-            tiresCondition: ''
         },
         {
             vin: 'JH4DC548X2C028006',
@@ -39,8 +35,6 @@ export const seedVehicle = async () => {
             mileage: 0,
             color: '',
             price: 0,
-            tires: '',
-            tiresCondition: ''
         },
     ]
 );
