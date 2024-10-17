@@ -4,7 +4,6 @@ import { User } from './user';
 interface CommentsAttributes {
   id: number;
   name: string;
-  status: string;
   description: string;
   assignedUserId?: number;
 }
@@ -14,7 +13,6 @@ interface CommentsCreationAttributes extends Optional<CommentsAttributes, 'id'> 
 export class Comments extends Model<CommentsAttributes, CommentsCreationAttributes> implements CommentsAttributes {
   public id!: number;
   public name!: string;
-  public status!: string;
   public description!: string;
   public assignedUserId!: number;
 
@@ -37,10 +35,6 @@ export function CommentsFactory(sequelize: Sequelize): typeof Comments {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      status: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       description: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -51,7 +45,7 @@ export function CommentsFactory(sequelize: Sequelize): typeof Comments {
       },
     },
     {
-      tableName: 'Comments',
+      tableName: 'comments',
       sequelize,
     }
   );

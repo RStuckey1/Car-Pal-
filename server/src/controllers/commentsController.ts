@@ -43,9 +43,9 @@ export const getCommentsById = async (req: Request, res: Response) => {
 };
 
 export const createComments = async (req: Request, res: Response) => {
-  const { name, status, description, assignedUserId } = req.body;
+  const { name, description, assignedUserId } = req.body;
   try {
-    const newComments = await Comments.create({ name, status, description, assignedUserId });
+    const newComments = await Comments.create({ name, description, assignedUserId });
     res.status(201).json(newComments);
   } catch (error: any) {
     res.status(400).json({ message: error.message });
@@ -55,12 +55,11 @@ export const createComments = async (req: Request, res: Response) => {
 
 export const updateComments = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { name, status, description, assignedUserId } = req.body;
+  const { name, description, assignedUserId } = req.body;
   try {
     const comments = await Comments.findByPk(id);
     if (comments) {
       comments.name = name;
-      comments.status = status;
       comments.description = description;
       comments.assignedUserId = assignedUserId;
       await comments.save();

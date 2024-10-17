@@ -8,7 +8,6 @@ import ErrorPage from "./pages/ErrorPage";
 import Landing from "./pages/Landing";
 import VIN from "./pages/Vin";
 import MpgCalculator from "./pages/MpgCalculator";
-import Weather from "./pages/Weather";
 import Signup from "./pages/Signup";
 import NewComments from "./pages/NewComments";
 
@@ -36,10 +35,6 @@ const router = createBrowserRouter([
       {
         path: '/MpgCalculator',
         element: <MpgCalculator />
-      },
-      {
-        path: '/weather',
-        element: <Weather />
       },
       {
         path: '/signup',

@@ -1,4 +1,3 @@
-// import Login from './pages/Login';
 import Footer from './pages/Footer';
 import NavBar from './pages/Navbar';
 import { Outlet } from 'react-router-dom';

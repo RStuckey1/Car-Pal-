@@ -52,7 +52,7 @@ const retrieveCommentsById = async (id: number | null): Promise<CommentsData> =>
 const createComments = async (body: CommentsData) => {
   try {
     const response = await fetch(
-      '/api/tickets/', {
+      '/api/comments/', {
         method: 'POST',
           headers: {
             'Content-Type': 'application/json',
