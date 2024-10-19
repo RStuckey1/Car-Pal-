@@ -88,7 +88,7 @@ const SignUp = () => {
           </FloatingLabel>
         </div>
         <div className="form-group">
-          <Button variant="primary" type="submit" className="custom-button">
+          <Button variant="primary" type="submit" className="form signup-form">
             Create Account
           </Button>
         </div>

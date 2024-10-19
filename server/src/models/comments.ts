@@ -6,6 +6,7 @@ interface CommentsAttributes {
   name: string;
   description: string;
   assignedUserId?: number;
+  assignedUser?: User;
 }
 
 interface CommentsCreationAttributes extends Optional<CommentsAttributes, 'id'> {}
@@ -15,9 +16,9 @@ export class Comments extends Model<CommentsAttributes, CommentsCreationAttribut
   public name!: string;
   public description!: string;
   public assignedUserId!: number;
+  public assignedUser!: User;
 
 
-  public readonly assignedUser?: User;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -41,6 +42,10 @@ export function CommentsFactory(sequelize: Sequelize): typeof Comments {
       },
       assignedUserId: {
         type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      assignedUser: {
+        type: DataTypes.STRING,
         allowNull: true,
       },
     },

@@ -12,7 +12,6 @@ const NewComments = () => {
       name: '',
       description: '',
       assignedUserId: 1,
-      status: 'Todo',
       assignedUser: undefined
     }
   );
@@ -70,18 +69,7 @@ const NewComments = () => {
             name='name'
             value={newComments?.name || ''}
             onChange={handleTextAreaChange}
-            />
-          <label htmlFor='tStatus'>Comments Status</label>
-          <select 
-            name='status' 
-            id='tStatus'
-            value={newComments?.status || ''}
-            onChange={handleTextChange}
-          >
-            <option value='Todo'>Todo</option>
-            <option value='In Progress'>In Progress</option>
-            <option value='Done'>Done</option>
-          </select>
+          />
           <label htmlFor='tDescription'>Comments Description</label>
           <textarea 
             id='tDescription'
