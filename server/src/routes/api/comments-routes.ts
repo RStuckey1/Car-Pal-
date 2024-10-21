@@ -5,7 +5,7 @@ import {
     createComments,
     updateComments,
     deleteComments,
-} from '../../controllers/commentsController';
+} from '../../controllers/commentsController.js';
 
 const router = express.Router();
 
@@ -19,4 +19,4 @@ router.put('/:id', updateComments);
 
 router.delete('/:id', deleteComments);
 
-export { router as CommentsRouter };
+export { router as commentsRouter };

@@ -4,7 +4,6 @@ import { UserData } from '../interfaces/UserData';
 import ErrorPage from './ErrorPage';
 import auth from '../utils/auth';
 import { Link } from 'react-router-dom';
-// import { useState } from 'react';
 import './Landing.css';
 // import Navbar from './Navbar';
 
@@ -54,6 +53,7 @@ const Landing = () => {
               <h3><Link to="/VIN">VIN</Link></h3>
               <h3><Link to="/MpgCalculator">MpgCalculator</Link></h3>
               <h3><Link to="/NewComments">Click to Make Comments</Link></h3>
+              <h3><Link to="/DisplayComments">Click to Display Comments</Link></h3>
             </section>
           </div>
       </>

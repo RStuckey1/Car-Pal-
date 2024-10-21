@@ -1,5 +1,4 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
-
 import Auth from '../utils/auth';
 import { loginauth } from '../api/authAPI';
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +30,7 @@ const navigate = useNavigate();
     try {
       const data = await loginauth(loginData);
       Auth.login(data.token);
-      navigate('/landing',{replace: true});
+      navigate('/Landing',{replace: true});
       // if (true) navigate('/Landing');
     } catch (err) {
       console.error('Failed to login', err);
@@ -41,10 +40,10 @@ const navigate = useNavigate();
 
   return (
     <div className='form-container1'>
+      <h2>Welcome to the World of Car</h2>
+      <h2>Maintenance Logbook</h2>
+      <h1>Please Login</h1>
       <form className='form login-form' onSubmit={handleSubmit}>
-        <h2>Welcome to the World of Car</h2>
-        <h2>Maintenance Logbook</h2>
-        <h1>Please Login</h1>
         <div className='form-group'>
           <label>Username</label>
           <input
@@ -52,6 +51,16 @@ const navigate = useNavigate();
             type='text'
             name='username'
             value={loginData.username || ''}
+            onChange={handleChange}
+          />
+        </div>
+        <div className='form-group'>
+          <label>Email</label>
+          <input
+            className='form-input'
+            type='email'
+            name='email'
+            value={loginData.email || ''}
             onChange={handleChange}
           />
         </div>
@@ -71,17 +80,13 @@ const navigate = useNavigate();
           </button>
         </div>
       </form>
-    <div>
       <div className='new login'>
         <button className='new login' type='button' onClick={() => navigate('/signup')}>
           New User Click Here
         </button>
       </div>
     </div>
-    </div>
   );
-}
+};
 
 export default Login;
-
-

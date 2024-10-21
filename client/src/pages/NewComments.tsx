@@ -5,6 +5,7 @@ import { CommentsData } from '../interfaces/CommentsData';
 import { UserData } from '../interfaces/UserData';
 import { retrieveUsers } from '../api/userAPI';
 
+
 const NewComments = () => {
   const [newComments, setNewComments] = useState<CommentsData | undefined>(
     {
@@ -38,7 +39,7 @@ const NewComments = () => {
     if (newComments){
       const data = await createCommentsAPI(newComments);
       console.log(data);
-      navigate('/');
+      navigate('/NewComments');
     }
   }
 
@@ -46,11 +47,6 @@ const NewComments = () => {
     const { name, value } = e.target;
     setNewComments((prev) => (prev ? { ...prev, [name]: value } : undefined));
   };
-
-  const handleTextChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setNewComments((prev) => (prev ? { ...prev, [name]: value } : undefined));
-  }
 
   const handleUserChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -101,6 +97,7 @@ const NewComments = () => {
           </select>
           <button type='submit' onSubmit={handleSubmit}>Submit Form</button>
         </form>
+       
       </div>
     </>
   )

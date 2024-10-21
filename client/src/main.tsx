@@ -10,6 +10,7 @@ import VIN from "./pages/Vin";
 import MpgCalculator from "./pages/MpgCalculator";
 import Signup from "./pages/Signup";
 import NewComments from "./pages/NewComments";
+import DisplayComments from "./pages/DisplayComments";
 
 import './index.css'
 
@@ -41,9 +42,13 @@ const router = createBrowserRouter([
         element: <Signup />
       },
       {
-        path: '/NewComments',
+        path: '/newComments',
         element: <NewComments />
-      }
+      },
+      {
+        path: '/DisplayComments',
+        element: <DisplayComments />
+      },
     ]
   }
 ]);
