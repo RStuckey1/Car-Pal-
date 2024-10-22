@@ -39,7 +39,7 @@ const NewComments = () => {
     if (newComments){
       const data = await createCommentsAPI(newComments);
       console.log(data);
-      navigate('/NewComments');
+      navigate('/DisplayComments');
     }
   }
 
@@ -55,18 +55,18 @@ const NewComments = () => {
 
   return (
     <>
-      <div className='container'>
+      <div className='container-newcomments'>
         <form className='form' onSubmit=
         {handleSubmit}>
           <h1>Create Comments</h1>
-          <label htmlFor='tName'>Comments Name</label>
+          <label htmlFor='tName'>Date</label>
           <textarea 
             id='tName'
             name='name'
             value={newComments?.name || ''}
             onChange={handleTextAreaChange}
           />
-          <label htmlFor='tDescription'>Comments Description</label>
+          <label htmlFor='tDescription'>Comments </label>
           <textarea 
             id='tDescription'
             name='description'
@@ -95,7 +95,7 @@ const NewComments = () => {
             )
           }
           </select>
-          <button type='submit' onSubmit={handleSubmit}>Submit Form</button>
+          <button type='submit' onSubmit={handleSubmit}>Submit Comment</button>
         </form>
        
       </div>

@@ -14,7 +14,6 @@ function MpgCalculator() {
 
   return (
     <div>
-      <Navbar />
       <h2>MPG Calculator</h2>
       <label>
         Miles Driven: 

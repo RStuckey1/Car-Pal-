@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import auth from '../utils/auth';
-import '../index.css';
+import auth from "../utils/auth";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS
+import "../index.css";
 
 const Navbar = () => {
-  const [loginCheck, setLoginCheck] = useState<boolean>();
-  const navigate = useNavigate();
+  const [loginCheck, setLoginCheck] = useState(false);
 
   const checkLogin = () => {
     if (auth.loggedIn()) {
@@ -20,27 +20,82 @@ const Navbar = () => {
   }, [loginCheck]);
 
   return (
-    <div className='auth-review'>
-      <h1>Car Pal</h1>
-      <div className='logout'>
-        {!loginCheck ? (
-          <button className='btn' type='button'>
-            <Link to='/login'>Login</Link>
-          </button>
-        ) : (
-          <button
-            className='btn'
-            type='button'
-            onClick={() => {
-              auth.logout();
-              setLoginCheck(true);
-              navigate('/Landing');
-            }}
+    <div className="display-flex justify-space-between align-center">
+      <nav className="navbar navbar-expand-lg navbar-light bg-dark align-center">
+        <div className="container-fluid">
+          <a
+            className="navbar-brand"
+            style={{ display: "flex", gap: "30px", paddingLeft: "15px" }}
+
           >
-            Logout
+           <h1>Car Pal Tracker</h1>
+          </a>{" "}
+          <span className="navbar-text">
+            <h1>Today is the day to love your car!!</h1>
+          </span>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
           </button>
-        )}
-      </div>
+          <h1>
+          <div className="collapse navbar-collapse" id="navbarText">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <div style={{ display: "flex", gap: "20px" }}>
+                  {!loginCheck ? (
+                    <button className="btn" type="button">
+
+                      <Link to="/login">Login</Link>
+                     
+                    </button>
+                  ) : (
+                    <button
+                      className="btn"
+                      type="button"
+                      id="logout"
+                      onClick={() => {
+                        auth.logout();
+                      }}
+                    >
+                      Logout
+                    </button>
+                  )}
+                </div>
+              </li>
+              <li className="nav-item">
+                <div>
+                  <button className="btn" type="button">
+                    <Link to="/Landing">Home Page</Link>
+                  </button>
+                </div>
+              </li>
+              <li className="nav-item">
+                <button className="btn" type="button">
+                  <Link to="/MpgCalculator">MPG Calculator</Link>
+                </button>
+              </li>
+              <li className="nav-item">
+                <button className="btn" type="button">
+                  <Link to="/NewComments">Leave a New Comment</Link>
+                </button>
+              </li>
+              <li className="nav-item">
+                <button className="btn" type="button">
+                  <Link to="/DisplayComments">Look at All the Comments</Link>
+                </button>
+              </li>
+            </ul>
+          </div>
+          </h1>
+        </div>
+      </nav>
     </div>
   );
 };
