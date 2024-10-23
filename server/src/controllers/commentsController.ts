@@ -8,8 +8,7 @@ export const getAllComments = async (_req: Request, res: Response) => {
     const commentsList = await Comments.findAll({
       include: [
         {
-          model: User,
-          as: 'assignedUser', 
+          model: User, 
           attributes: ['username'],
         },
       ],
@@ -26,8 +25,7 @@ export const getCommentsById = async (req: Request, res: Response) => {
     const comments = await Comments.findByPk(id, {
       include: [
         {
-          model: User,
-          as: 'assignedUser', 
+          model: User, 
           attributes: ['username'], 
         },
       ],
@@ -43,9 +41,9 @@ export const getCommentsById = async (req: Request, res: Response) => {
 };
 
 export const createComments = async (req: Request, res: Response) => {
-  const { name, description, assignedUserId } = req.body;
+  const { username, description, assignedUserId } = req.body;
   try {
-    const newComments = await Comments.create({ name, description, assignedUserId });
+    const newComments = await Comments.create({ username, description, userId: assignedUserId });
     res.status(201).json(newComments);
   } catch (error: any) {
     res.status(400).json({ message: error.message });
@@ -55,14 +53,10 @@ export const createComments = async (req: Request, res: Response) => {
 
 export const updateComments = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { name, description, assignedUserId } = req.body;
+  const { username, description } = req.body;
   try {
-    const comments = await Comments.findByPk(id);
+    const comments = await Comments.update({ username, description }, { where: { id } });
     if (comments) {
-      comments.name = name;
-      comments.description = description;
-      comments.assignedUserId = assignedUserId;
-      await comments.save();
       res.json(comments);
     } else {
       res.status(404).json({ message: 'comments not found' });
@@ -76,9 +70,8 @@ export const updateComments = async (req: Request, res: Response) => {
 export const deleteComments = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const comments = await Comments.findByPk(id);
+    const comments = await Comments.destroy({ where: { id } });
     if (comments) {
-      await comments.destroy();
       res.json({ message: 'comments deleted' });
     } else {
       res.status(404).json({ message: 'comments not found' });

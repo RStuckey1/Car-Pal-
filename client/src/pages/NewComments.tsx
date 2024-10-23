@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { createComments as createCommentsAPI } from '../api/CommentsAPI';
 import { CommentsData } from '../interfaces/CommentsData';
 import { UserData } from '../interfaces/UserData';
-import { retrieveUsers } from '../api/userAPI';
+import { retrieveUser } from '../api/userAPI';
 
 
 const NewComments = () => {
   const [newComments, setNewComments] = useState<CommentsData | undefined>(
     {
       id: 0,
-      name: '',
+      username: '',
       description: '',
       assignedUserId: 1,
       assignedUser: undefined
@@ -19,19 +19,19 @@ const NewComments = () => {
 
   const navigate = useNavigate();
 
-  const [users, setUsers] = useState<UserData[] | undefined>([]);
+  const [user, setUser] = useState<UserData[] | undefined>([]);
 
-  const getAllUsers = async () => {
+  const getAllUser = async () => {
     try {
-      const data = await retrieveUsers();
-      setUsers(data);
+      const data = await retrieveUser();
+      setUser(data);
     } catch (err) {
       console.error('Failed to retrieve user info', err);
     }
   };
 
   useEffect(() => {
-    getAllUsers();
+    getAllUser();
   }, []);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -39,7 +39,7 @@ const NewComments = () => {
     if (newComments){
       const data = await createCommentsAPI(newComments);
       console.log(data);
-      navigate('/DisplayComments');
+      navigate('/NewComments');
     }
   }
 
@@ -56,21 +56,19 @@ const NewComments = () => {
   return (
     <>
       <div className='container-newcomments'>
-        <form className='form' onSubmit=
-        {handleSubmit}>
-          <h1>Create Comments</h1>
-          <label htmlFor='tName'>Date</label>
-          <textarea 
-            id='tName'
-            name='name'
-            value={newComments?.name || ''}
-            onChange={handleTextAreaChange}
-          />
+        <form onSubmit={handleSubmit}>
           <label htmlFor='tDescription'>Comments </label>
           <textarea 
             id='tDescription'
             name='description'
             value={newComments?.description || ''}
+            onChange={handleTextAreaChange}
+          />
+           <label htmlFor='username'>UserName</label>
+          <textarea 
+            id='username'
+            name='username'
+            value={newComments?.username || ''}
             onChange={handleTextAreaChange}
           />
           <label htmlFor='tUserId'>User's ID</label>
@@ -79,7 +77,7 @@ const NewComments = () => {
             value={newComments?.assignedUserId || ''}
             onChange={handleUserChange}
           >
-            {users ? users.map((user) => {
+            {user ? user.map((user) => {
               return (
                 <option key={user.id} value={String(user.id)}>
                   {user.username}
@@ -95,7 +93,7 @@ const NewComments = () => {
             )
           }
           </select>
-          <button type='submit' onSubmit={handleSubmit}>Submit Comment</button>
+          <button type='submit'>Submit Comment</button>
         </form>
        
       </div>

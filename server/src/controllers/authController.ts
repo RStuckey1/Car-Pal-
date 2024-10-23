@@ -32,7 +32,7 @@ export const createUser = async (req: Request, res: Response) => {
     const newUser = await User.create({ username, email, password });
     const secretKey = process.env.JWT_SECRET_KEY || '';
 
-    const token = jwt.sign({ id: newUser.id, username: newUser.username }, secretKey, { expiresIn: '1d' });
+    const token = jwt.sign({ id: newUser.id, name: newUser.username }, secretKey, { expiresIn: '1d' });
   
     return res.json({ token });
   } catch (error: any) {

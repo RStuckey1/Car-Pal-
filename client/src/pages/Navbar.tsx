@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import auth from "../utils/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; 
+import Navbar from 'react-bootstrap/Navbar';
 import "../index.css";
 
-const Navbar = () => {
+const CustomNavbar = () => {
   const [loginCheck, setLoginCheck] = useState(false);
 
   const checkLogin = () => {
@@ -20,6 +21,10 @@ const Navbar = () => {
   }, [loginCheck]);
 
   return (
+    <Navbar expand="lg" className="bg-body-tertiary">
+      
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
     <div className="display-flex justify-space-between align-center">
       <nav className="navbar navbar-expand-lg navbar-light bg-dark align-center">
         <div className="container-fluid">
@@ -88,7 +93,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <button className="btn" type="button">
-                  <Link to="/DisplayComments">Look at All the Comments</Link>
+                  <Link to="/CommentsList">Look at All the Comments</Link>
                 </button>
               </li>
             </ul>
@@ -97,7 +102,10 @@ const Navbar = () => {
         </div>
       </nav>
     </div>
+    </Navbar.Collapse>
+    
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default CustomNavbar;

@@ -24,7 +24,7 @@ export class User
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
-  // Hash the password before saving the user
+  
   public async setPassword(password: string) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(password, saltRounds);
@@ -58,7 +58,7 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       
     },
     {
-      tableName: "users",
+      tableName: "user",
       sequelize,
       hooks: {
         beforeCreate: async (user: User) => {

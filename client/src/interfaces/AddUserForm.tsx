@@ -25,7 +25,7 @@ const AddUserForm: React.FC<AddUserFormProps> = ({ onAddUser }) => {
     return (
         <form onSubmit={handleSubmit} className="mt-3">
             <div className="mb-3">
-                <label htmlFor="username" className="form-label">Add User:</label>
+                <label htmlFor="username" className="form-label">USERNAME</label>
                 <input
                     type="text"
                     className="form-control"
@@ -36,7 +36,7 @@ const AddUserForm: React.FC<AddUserFormProps> = ({ onAddUser }) => {
                 />
                 {error && <div className="text-danger mt-1">{error}</div>}
             </div>
-            <button type="submit" className="btn btn-primary">Add User</button>
+            <button type="submit" className="btn btn-primary">CREATE USER</button>
         </form>
     );
 };

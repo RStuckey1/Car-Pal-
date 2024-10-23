@@ -31,7 +31,6 @@ const navigate = useNavigate();
       const data = await loginauth(loginData);
       Auth.login(data.token);
       navigate('/Landing',{replace: true});
-      // if (true) navigate('/Landing');
     } catch (err) {
       console.error('Failed to login', err);
     }

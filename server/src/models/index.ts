@@ -7,4 +7,7 @@ const User = UserFactory(sequelize);
 const Vehicle = VehicleFactory(sequelize);
 const Comments = CommentsFactory(sequelize);
 
+Comments.belongsTo(User);
+User.belongsTo(Comments);
+
 export { User, Vehicle, Comments };

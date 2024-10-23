@@ -1,22 +1,22 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
-import { User } from './user';
+import { User } from './user.js';
 
 interface CommentsAttributes {
   id: number;
-  name: string;
+  username: string;
   description: string;
-  assignedUserId?: number;
-  assignedUser?: User;
+  userId: number;
+
+ 
 }
 
 interface CommentsCreationAttributes extends Optional<CommentsAttributes, 'id'> {}
 
 export class Comments extends Model<CommentsAttributes, CommentsCreationAttributes> implements CommentsAttributes {
   public id!: number;
-  public name!: string;
+  public username!: string;
   public description!: string;
-  public assignedUserId!: number;
-  public assignedUser!: User;
+  public userId!: number;
 
 
 
@@ -32,21 +32,18 @@ export function CommentsFactory(sequelize: Sequelize): typeof Comments {
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      username: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      assignedUserId: {
+      userId: {
         type: DataTypes.INTEGER,
-        allowNull: true,
-      },
-      assignedUser: {
-        type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
+        references: {model: User, key: 'id'},
       },
     },
     {

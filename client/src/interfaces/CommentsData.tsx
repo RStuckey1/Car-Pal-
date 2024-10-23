@@ -1,7 +1,7 @@
 
 interface CommentsData {
   id: number;
-  name: string;
+  username: string;
   description: string;
   assignedUserId: number;
   assignedUser?: {

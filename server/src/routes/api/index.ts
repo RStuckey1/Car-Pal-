@@ -4,7 +4,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.use("/users", userRouter);
+router.use("/user", userRouter);
 router.use("/comments", commentsRouter);
 
 export default router;

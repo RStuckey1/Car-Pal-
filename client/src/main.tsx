@@ -11,6 +11,7 @@ import MpgCalculator from "./pages/MpgCalculator";
 import Signup from "./pages/Signup";
 import NewComments from "./pages/NewComments";
 import DisplayComments from "./pages/DisplayComments";
+import CommentsList from "./pages/CommentsList";
 
 import './index.css'
 
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: '/DisplayComments',
         element: <DisplayComments />
+      },
+      {
+        path:'/CommentsList',
+        element: <CommentsList />
       },
     ]
   }

@@ -1,6 +1,6 @@
 import { User } from "../models/index.js";
 
-export const seedUsers = async () => {
+export const seedUser = async () => {
   await User.bulkCreate(
     [
       { username: "JollyGuru", email: "jolly@guru.com", password: "password" },

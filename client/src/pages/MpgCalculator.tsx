@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Navbar from './Navbar';
+
 
 function MpgCalculator() {
   const [milesDriven, setMilesDriven] = useState(0);
@@ -15,7 +15,6 @@ function MpgCalculator() {
   return (
    
     <div>
-       <Navbar />
       <h2>MPG Calculator</h2>
       <label>
         Miles Driven: 

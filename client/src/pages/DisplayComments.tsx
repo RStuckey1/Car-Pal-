@@ -1,29 +1,27 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { retrieveComments } from '../api/CommentsAPI';
 
 interface Comment {
   id: number;
-  date: string;
+  username: string;
   description: string;
-}
+  createdAt: Date;
+};
 
-
-const DisplayComments = () => {
+const DisplayComments: React.FC = () => {
 const [comments, setComments] = useState<Comment[]>([]);
-const displayComments = retrieveComments();
-console.log(displayComments);
-displayComments.then((data) => {
-  setComments(data);
+useEffect(() => {
+  retrieveComments().then((data) => {
+    setComments(data);
+    console.log(data);
 
-
-});
+  });
+}, []);
   return (
     <div>
-      {comments.map((comment) => (
-        <div key={comment.id}>
-          <h1>{comment.date}</h1>
-          <p>{comment.description}</p>
-        </div>
+      <h1>Comments</h1>
+      {comments.map((comments) => (
+        <li key={comments.id}>{comments.username} - {comments.description}</li>
       ))}
     </div>
   );

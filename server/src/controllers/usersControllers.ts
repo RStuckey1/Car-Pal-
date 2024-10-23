@@ -1,21 +1,18 @@
 import type { Request, Response } from "express";
 import { User, Vehicle } from "../models/index.js";
 
-// How do i fix the issue with the import of Vehicle and User and it corresponding with vin for vehicle models
 
-// GET /users - Get all users
-export const getUsers = async (_req: Request, res: Response) => {
+export const getUser = async (_req: Request, res: Response) => {
   try {
-    const users = await User.findAll({
+    const user = await User.findAll({
       attributes: { exclude: ["password"] },
     });
-    res.json(users);
+    res.json(user);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// GET /users/:id - Get a user by id
 export const getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -32,45 +29,41 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
-// Get /users/:location - Get all users by location
 
-export const getUsersByLocation = async (req: Request, res: Response) => {
+export const getUserByLocation = async (req: Request, res: Response) => {
   const { location } = req.params;
   try {
-    const users = await User.findAll({
+    const user = await User.findAll({
       where: { location },
       attributes: { exclude: ["password"] },
     });
-    res.json(users);
+    res.json(user);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// GET /users/vin/:vin - Get all users by vehicle VIN
-export const getUsersByVin = async (req: Request, res: Response) => {
+export const getUserByVin = async (req: Request, res: Response) => {
   const { vin } = req.params;
   try {
     const vehicles = await Vehicle.findAll({
       where: { vin },
       include: [{ model: User, attributes: { exclude: ["password"] } }],
     });
-    const users = vehicles.flatMap((vehicle) =>
+    const user = vehicles.flatMap((vehicle) =>
       "user" in vehicle ? [vehicle.user] : [],
     );
-    if (users.length > 0) {
-      res.json(users);
+    if (user.length > 0) {
+      res.json(user);
     } else {
-      res.status(404).json({ message: "No users found for this VIN" });
+      res.status(404).json({ message: "No user found for this VIN" });
     }
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// how do i fix issue with vin
 
-// POST /users - Create a new user
 export const createUser = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
   try {
@@ -81,7 +74,6 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
 
-// PUT /users/:id - Update a user by id
 export const updateUser = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { username, password } = req.body;
@@ -100,7 +92,6 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
-// DELETE /users/:id - Delete a user by id
 export const deleteUser = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {

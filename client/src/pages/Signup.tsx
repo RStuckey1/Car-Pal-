@@ -43,7 +43,7 @@ const SignUp = () => {
         <div className="form-group">
           <FloatingLabel
             controlId="floatingName"
-            label="Username"
+            label="username"
             className="mb-3"
           >
             <Form.Control

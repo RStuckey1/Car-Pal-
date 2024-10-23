@@ -3,16 +3,13 @@ import { Comments } from "../models/index.js";
 export const seedComments = async () => {
   await Comments.bulkCreate(
     [
-      { id: 1, 
-        name: "JollyGuru",
+      { id: 1, username: "JollyGuru",
         description: "This is a comment",
-        assignedUserId: 1,
-        
-            },
+        userId: 2,  },
       {
-        id: 2, name: "SunnyScribe",
+        id: 2, username: "SunnyScribe",
         description: "This is a comment too",
-        assignedUserId: 2,
+        userId: 1,
       },
     ],
     { individualHooks: true },
