@@ -10,4 +10,6 @@ const Comments = CommentsFactory(sequelize);
 Comments.belongsTo(User);
 User.belongsTo(Comments);
 
+Vehicle.belongsTo(User);
+User.hasMany(Vehicle);
 export { User, Vehicle, Comments };

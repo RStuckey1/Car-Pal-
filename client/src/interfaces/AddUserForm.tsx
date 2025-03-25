@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 interface AddUserFormProps {
     onAddUser: (username: string) => void;
@@ -24,7 +24,7 @@ const AddUserForm: React.FC<AddUserFormProps> = ({ onAddUser }) => {
 
     return (
         <form onSubmit={handleSubmit} className="mt-3">
-            <div className="mb-3">
+            <div className="adduser-form">
                 <label htmlFor="username" className="form-label">USERNAME</label>
                 <input
                     type="text"
@@ -36,7 +36,7 @@ const AddUserForm: React.FC<AddUserFormProps> = ({ onAddUser }) => {
                 />
                 {error && <div className="text-danger mt-1">{error}</div>}
             </div>
-            <button type="submit" className="btn btn-primary">CREATE USER</button>
+            <button type="submit" className="addUserButton">CREATE USER</button>
         </form>
     );
 };

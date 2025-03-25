@@ -1,18 +1,19 @@
 import Footer from './pages/Footer';
 import NavBar from './pages/Navbar';
 import { Outlet } from 'react-router-dom';
+import './index.css';
 
 function App() {
   return (
     <>
-    <div>
-      <NavBar />
-      <main className='container pt-5'>
-              <Outlet />
+      <div className="App">
+        <NavBar />
+        <div className="container">
+          <Outlet />
+        </div>
 
-      </main>
-      <Footer />
-    </div>
+        <Footer />
+      </div>
     </>
   );
 }

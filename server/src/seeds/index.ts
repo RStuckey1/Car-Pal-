@@ -1,5 +1,6 @@
 import { seedUser } from './user-seeds.js';
 import { seedComments } from './comments-seeds.js';
+import { seedVehicle } from './vehicle-seeds';
 import sequelize from '../config/connection.js';
 
 const seedAll = async (): Promise<void> => {
@@ -12,6 +13,9 @@ const seedAll = async (): Promise<void> => {
 
     await seedComments();
     console.log('\n----- COMMENTS SEEDED -----\n');
+
+    await seedVehicle();
+    console.log('\n----- VEHICLE SEEDED -----\n');
 
     process.exit(0);
   } catch (error) {
