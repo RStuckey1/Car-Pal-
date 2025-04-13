@@ -1,6 +1,6 @@
 import { seedUser } from './user-seeds.js';
 import { seedComments } from './comments-seeds.js';
-import { seedVehicle } from './vehicle-seeds';
+import { seedVehicle } from './vehicle-seeds.js';
 import sequelize from '../config/connection.js';
 
 const seedAll = async (): Promise<void> => {

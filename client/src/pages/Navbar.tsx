@@ -22,9 +22,7 @@ const CustomNavbar = () => {
     <nav>
            <h1>Car Pal Tracker</h1>
           {" "}
-          <span className="navbar-text">
-            <h1>Today is the day to love your car!!</h1>
-          </span>
+          
           <button
             className="navbar-toggler"
             type="button"

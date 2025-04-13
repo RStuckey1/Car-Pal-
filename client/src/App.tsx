@@ -8,12 +8,13 @@ function App() {
     <>
       <div className="App">
         <NavBar />
+        </div>
         <div className="container">
           <Outlet />
         </div>
 
         <Footer />
-      </div>
+      
     </>
   );
 }
