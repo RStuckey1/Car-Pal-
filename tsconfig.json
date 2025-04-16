@@ -16,13 +16,17 @@
     "noImplicitReturns": true,
     "noImplicitOverride": true,
     "useUnknownInCatchVariables": true,
-    "outDir": "./dist" /* Redirect output structure to the directory. */
+    "outDir": "./dist" /* Redirect output structure to the directory. */,
+    "target": "ES2020" /* Specify ECMAScript target version */,
+    "lib": ["ES2020", "DOM"] /* Specify library files to include in the compilation */
   },
   "exclude": [
     "node_modules",
     "dist"
   ],
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "server/src/**/*",
+    "client/src/**/*",
   ]
 }

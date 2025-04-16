@@ -1,13 +1,13 @@
-/* .auth-review {
+.auth-review {
   display: block;
   position: center;
   margin: 0 10px;
   font-size: 1.5rem;
   color: #0c0b0b;
   cursor: pointer;
-} */
+}
 
-/* .bt-btn {
+ .bt-btn {
   color: #000;
   display: block;
   position: center;
@@ -15,8 +15,8 @@
   padding: 10px 20px;
   font-size: 1.5rem;
   cursor: pointer;
-} */
+}
 
-/* .navbar {
+.navbar {
   background-color: transparent;
-} */
+}
