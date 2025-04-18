@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import NewComments from "./pages/NewComments";
 import DisplayComments from "./pages/DisplayComments";
 import CommentsList from "./pages/CommentsList";
+import { AuthProvider } from "./context/AuthContext";
 
 import './index.css'
 
@@ -31,10 +32,10 @@ const router = createBrowserRouter([
         path: '/landing',
         element: <Landing />
       },
-      { 
+      {
         path: '/login',
         element: <Login />
-      }, 
+      },
       {
         path: '/vin',
         element: <VIN />
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
         element: <DisplayComments />
       },
       {
-        path:'/CommentsList',
+        path: '/CommentsList',
         element: <CommentsList />
       },
     ]
@@ -64,10 +65,12 @@ const router = createBrowserRouter([
 ]);
 
 const rootElement = document.getElementById('root');
-if(rootElement) {
+if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
-    <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </React.StrictMode>
   );
 }

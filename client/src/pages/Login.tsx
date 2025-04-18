@@ -4,6 +4,7 @@ import { loginauth } from '../api/authAPI';
 import { useNavigate } from 'react-router-dom';
 import type { UserLogin } from '../interfaces/UserLogin';
 import "../index.css";
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
    const [loginData, setLoginData] = useState<UserLogin>({
@@ -13,7 +14,7 @@ const Login = () => {
   });
 
 const navigate = useNavigate();
-
+const { setIsLoggedIn } = useAuth();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -30,6 +31,7 @@ const navigate = useNavigate();
     try {
       const data = await loginauth(loginData);
       Auth.login(data.token);
+      setIsLoggedIn(true); // Update global login state
       navigate('/Landing',{replace: true});
     } catch (err) {
       console.error('Failed to login', err);

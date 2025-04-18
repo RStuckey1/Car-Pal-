@@ -1,4 +1,3 @@
-
 import { type JwtPayload, jwtDecode } from 'jwt-decode';
 import type { UserData } from '../interfaces/UserData';
 
@@ -34,9 +33,11 @@ class AuthService {
     localStorage.setItem('id_token', idToken);
   }
 
-  logout() {
+  logout(shouldRedirect: boolean = true) {
     localStorage.removeItem('id_token');
-    window.location.assign('/');
+    if (shouldRedirect) {
+      window.location.assign('/');
+    }
   }
 }
 
