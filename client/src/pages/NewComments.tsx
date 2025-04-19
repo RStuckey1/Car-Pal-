@@ -57,7 +57,7 @@ const NewComments = () => {
     <>
       <div className='container-newcomments'>
         <form onSubmit={handleSubmit}>
-          <label htmlFor='tDescription'>Comments </label>
+          <label htmlFor='tDescription'>Comment</label>
           <textarea 
             id='tDescription'
             name='description'

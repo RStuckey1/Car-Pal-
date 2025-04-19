@@ -19,7 +19,7 @@ const CustomNavbar = () => {
     <>
       <nav>
         {!isLoggedIn ? (
-          <Navbar expand="lg" className="bg-body-tertiary">
+          <Navbar expand="lg" bg="light" data-bs-theme="light">
             <Container>
               <Navbar>
                 <Navbar.Brand href="/Landing">Car Pal Tracker</Navbar.Brand>
@@ -38,7 +38,7 @@ const CustomNavbar = () => {
                 <Navbar.Brand href="/Landing">Car Pal Tracker</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="me-auto">
-                  <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                  <NavDropdown title="Menu" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/Landing">Home</NavDropdown.Item>
                     <NavDropdown.Item href="/MpgCalculator">MPG Calculator</NavDropdown.Item>
                     <NavDropdown.Item href="/vin">VIN</NavDropdown.Item>
