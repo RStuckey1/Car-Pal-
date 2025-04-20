@@ -7,13 +7,14 @@ const Landing = () => {
 
   return (
     <div>
-      <div>
+      {!isLoggedIn ? (
+      <div className="container">
         <h1>Welcome to the Car Maintenance Tracker!</h1>
         <h1>A place to keep track of all your car maintenance needs.</h1>
         <h2>Login to track or click new user to start</h2>
-      </div>
-      <div className="start">
-        {!isLoggedIn ? (
+     
+     
+       
           <>
             <button className="btn" type="button">
               <Link to="/login">Login</Link>
@@ -22,8 +23,10 @@ const Landing = () => {
               <Link to="/signup">New User</Link>
             </button>
           </>
+        </div>
         ) : (
           <div className="links">
+            <h1>Welcome to the Car Maintenance Tracker!</h1>
             <h3><Link to="/VIN">VIN</Link></h3>
             <h3><Link to="/MpgCalculator">MpgCalculator</Link></h3>
             <h3><Link to="/NewComments">Click to Make Comments</Link></h3>
@@ -31,7 +34,7 @@ const Landing = () => {
           </div>
         )}
       </div>
-    </div>
+    
   );
 };
 

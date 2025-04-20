@@ -7,8 +7,6 @@ interface IVehicle {
   make: string;
   model: string;
   year: number;
-  gallonsOfGas: number;
-  distance: number;
   mileage: number;
   color: string;
   price: number;
@@ -23,8 +21,6 @@ export class Vehicle extends Model<IVehicle, VehicleCreationAttributes> implemen
     public make!: string;
     public model!: string;
     public year!: number;
-    public gallonsOfGas!: number;
-    public distance!: number;
     public mileage!: number;
     public color!: string;
     public price!: number;
@@ -54,14 +50,6 @@ export function VehicleFactory(sequelize: Sequelize): typeof Vehicle {
         allowNull: false,
       },
       year: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      gallonsOfGas: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      distance: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

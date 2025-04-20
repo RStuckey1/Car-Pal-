@@ -4,8 +4,7 @@ function Footer() {
   return (
     <footer>
       <p>
-        &copy; {new Date().getFullYear()} David Chamberlain, Richard Stukey,
-        Tony Phan
+      Car-Pal  &copy; {new Date().getFullYear()} Created by Richard Stukey
       </p>
     </footer>
   );
