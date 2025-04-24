@@ -34,7 +34,6 @@ export const getUserByLocation = async (req: Request, res: Response) => {
   const { location } = req.params;
   try {
     const user = await User.findAll({
-      where: { location },
       attributes: { exclude: ["password"] },
     });
     res.json(user);

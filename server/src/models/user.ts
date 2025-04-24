@@ -1,30 +1,24 @@
 import { DataTypes, type Sequelize, Model, type Optional } from "sequelize";
 import bcrypt from "bcrypt";
+import { Vehicle } from "./vehicle.js"
 
-interface UserAttributes {
+interface IUser {
   id: number;
   username: string;
   email: string;
   password: string;
-  location?: string;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
+interface UserCreationAttributes extends Optional<IUser, "id"> {}
 
-export class User
-  extends Model<UserAttributes, UserCreationAttributes>
-  implements UserAttributes
-{
+export class User extends Model<IUser, UserCreationAttributes> implements IUser {
   public id!: number;
   public username!: string;
   public email!: string;
   public password!: string;
-  public location!: string;
 
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  public readonly vehicles?: Vehicle[];
 
-  
   public async setPassword(password: string) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(password, saltRounds);
@@ -41,6 +35,7 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       },
       username: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
       },
       email: {
@@ -50,16 +45,12 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      location: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      
+      },      
     },
     {
-      tableName: "user",
+      tableName: "users",
       sequelize,
+      timestamps: false,
       hooks: {
         beforeCreate: async (user: User) => {
           await user.setPassword(user.password);

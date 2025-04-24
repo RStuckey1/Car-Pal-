@@ -1,14 +1,13 @@
 
 import express from "express";
 import {
-  getUserByVin,
-  getUserByLocation,
-} from "../../controllers/usersControllers.js";
+  getUserVehicles,
+  createUserVehicle,
+} from "../../controllers/usersVehicleController.js";
 
 const router = express.Router();
 
-router.get("/vin/:vin", getUserByVin);
+router.get("/userId/vehicles", getUserVehicles);
+router.post("/userId/vehicles", createUserVehicle);
 
-router.get("/location/:location", getUserByLocation);
-
-export { router as vehicleUserRouter };
+export { router as userVehicleRouter };

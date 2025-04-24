@@ -4,10 +4,10 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
 export const login = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   const user = await User.findOne({
-    where: { email },
+    where: { username },
   });
 
   if (!user) {
