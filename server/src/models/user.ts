@@ -35,7 +35,6 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       },
       username: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
       },
       email: {
@@ -48,7 +47,7 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       },      
     },
     {
-      tableName: "users",
+      tableName: "user",
       sequelize,
       timestamps: false,
       hooks: {

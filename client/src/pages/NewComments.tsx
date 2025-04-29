@@ -4,20 +4,19 @@ import { createComments as createCommentsAPI } from '../api/CommentsAPI';
 import { CommentsData } from '../interfaces/CommentsData';
 import { UserData } from '../interfaces/UserData';
 import { retrieveUser } from '../api/userAPI';
-
+import { useAuth } from '../context/AuthContext';
 
 const NewComments = () => {
-  const [newComments, setNewComments] = useState<CommentsData | undefined>(
-    {
-      id: 0,
-      username: '',
-      description: '',
-      assignedUserId: 1,
-      assignedUser: undefined
-    }
-  );
-
+  const { user: loggedInUser } = useAuth(); // Get the logged-in user's info from AuthContext
   const navigate = useNavigate();
+
+  const [newComments, setNewComments] = useState<CommentsData>({
+    id: 0,
+    username: loggedInUser?.name || '', // Automatically assign the logged-in user's name
+    description: '',
+    assignedUserId: loggedInUser?.id || 0, // Automatically assign the logged-in user's ID
+    assignedUser: undefined,
+  });
 
   const [user, setUser] = useState<UserData[] | undefined>([]);
 
@@ -36,69 +35,61 @@ const NewComments = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (newComments){
+    if (newComments) {
       const data = await createCommentsAPI(newComments);
       console.log(data);
       navigate('/NewComments');
     }
-  }
+  };
 
   const handleTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setNewComments((prev) => (prev ? { ...prev, [name]: value } : undefined));
+    setNewComments((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleUserChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setNewComments((prev) => (prev ? { ...prev, [name]: value } : undefined));
-  }
+  const handleUserChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target;
+    setNewComments((prev) => ({ ...prev, assignedUserId: parseInt(value) }));
+  };
 
   return (
     <>
-      <div className='container-newcomments'>
+      <div className="container-newcomments">
         <form onSubmit={handleSubmit}>
-          <label htmlFor='tDescription'>Comment</label>
-          <textarea 
-            id='tDescription'
-            name='description'
+          <label htmlFor="tDescription">Comment</label>
+          <textarea
+            id="tDescription"
+            name="description"
             value={newComments?.description || ''}
             onChange={handleTextAreaChange}
           />
-           <label htmlFor='username'>UserName</label>
-          <textarea 
-            id='username'
-            name='username'
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
             value={newComments?.username || ''}
-            onChange={handleTextAreaChange}
+            disabled // Disable the input field since the username is auto-assigned
           />
-          <label htmlFor='tUserId'>User's ID</label>
+          <label htmlFor="tUserId">User's ID</label>
           <select
-            name='assignedUserId'
+            name="assignedUserId"
             value={newComments?.assignedUserId || ''}
             onChange={handleUserChange}
           >
-            {user ? user.map((user) => {
-              return (
-                <option key={user.id} value={String(user.id)}>
-                  {user.username}
-                </option>
-              )
-            }) : (
-            <textarea 
-              id='tUserId'
-              name='assignedUserId'
-              value={newComments?.assignedUserId || 0}
-              onChange={handleTextAreaChange}
-            />
-            )
-          }
+            {user
+              ? user.map((user) => (
+                  <option key={user.id} value={String(user.id)}>
+                    {user.username}
+                  </option>
+                ))
+              : null}
           </select>
-          <button type='submit'>Submit Comment</button>
+          <button type="submit">Submit Comment</button>
         </form>
-       
       </div>
     </>
-  )
+  );
 };
 
 export default NewComments;

@@ -7,7 +7,7 @@ export const getUserVehicles = async (_req: Request, res: Response) => {
   const { userId } = _req.params;
   try {
     const vehiclesList = await Vehicle.findAll({
-      where: { ownerId: userId },
+      where: { userId: userId },
       include: [
         {
           model: User,
@@ -43,17 +43,17 @@ export const getUserVehicleById = async (req: Request, res: Response) => {
 };
 
 export const createUserVehicle = async (req: Request, res: Response) => {
-  const { vin, make, model, year, mileage, color, price, ownerId } = req.body;
+  const { vin, make, model, year, miles, color, price, userId } = req.body;
   try {
     const newVehicle = await Vehicle.create({
       vin,
       make,
       model,
       year,
-      mileage,
+      miles,
       color,
       price,
-      ownerId,
+      userId,
 
     });
     res.status(201).json(newVehicle);
@@ -65,10 +65,10 @@ export const createUserVehicle = async (req: Request, res: Response) => {
 
 export const updateUserVehicle = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { vin, make, model, year, mileage, color, price } = req.body;
+  const { vin, make, model, year, miles, color, price } = req.body;
   try {
     const vehicle = await Vehicle.update(
-      { vin, make, model, year, mileage, color, price },
+      { vin, make, model, year, miles, color, price },
       { where: { id } });
     if (vehicle) {
       res.json({ message: "Vehicle updated successfully" });

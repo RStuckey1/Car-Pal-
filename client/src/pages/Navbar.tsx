@@ -41,6 +41,7 @@ const CustomNavbar = () => {
                   <NavDropdown title="Menu" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/Landing">Home</NavDropdown.Item>
                     <NavDropdown.Item href="/MpgCalculator">MPG Calculator</NavDropdown.Item>
+                    <NavDropdown.Item href="/NewVehicles">Add a New Vehicle</NavDropdown.Item>
                     <NavDropdown.Item href="/vin">VIN</NavDropdown.Item>
                     <NavDropdown.Item href="/newComments">Leave a New Comment</NavDropdown.Item>
                     <NavDropdown.Item href="/DisplayComments">Look at All the Comments</NavDropdown.Item>

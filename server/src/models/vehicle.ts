@@ -7,10 +7,10 @@ interface IVehicle {
   make: string;
   model: string;
   year: number;
-  mileage: number;
+  miles: number;
   color: string;
   price: number;
-  ownerId: number;  //foreign key to User
+  userId: number;  //foreign key to User
 }
 
 interface VehicleCreationAttributes extends Optional<IVehicle, "id"> { }
@@ -22,10 +22,10 @@ export class Vehicle extends Model<IVehicle, VehicleCreationAttributes> implemen
     public make!: string;
     public model!: string;
     public year!: number;
-    public mileage!: number;
+    public miles!: number;
     public color!: string;
     public price!: number;
-    public ownerId!: number; // foreign key to User
+    public userId!: number; // foreign key to User
 }
 
 export function VehicleFactory(sequelize: Sequelize): typeof Vehicle {
@@ -53,7 +53,7 @@ export function VehicleFactory(sequelize: Sequelize): typeof Vehicle {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      mileage: {
+      miles: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -63,11 +63,11 @@ export function VehicleFactory(sequelize: Sequelize): typeof Vehicle {
       },
       price: {
         type: DataTypes.INTEGER,
-        allowNull: false,      
+        allowNull: true,      
     },
-      ownerId: {
+      userId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: User,
           key: "id",

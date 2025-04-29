@@ -1,12 +1,17 @@
+
 interface VehicleData {
-    id: number | null;
-    vin: string | null;
-    make: string | null;
-    model: string | null;
-    year: number | null;
-    miles: number | null;
-    color: string | null;
-    price: number | null;
+    id: number;
+    vin: string;
+    make: string;
+    model: string;
+    year: number;
+    miles: number;
+    color: string;
+    price: number;
+    userId: number;
+    
+    
 }
   
 export type { VehicleData };
+

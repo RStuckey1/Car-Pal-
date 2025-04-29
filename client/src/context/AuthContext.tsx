@@ -5,6 +5,7 @@ interface AuthContextType {
   isLoggedIn: boolean;
   setIsLoggedIn: (value: boolean) => void;
   checkLogin: () => void;
+  user?: { id: number; name: string }; // Optional user object
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

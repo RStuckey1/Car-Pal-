@@ -29,19 +29,6 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
-
-export const getUserByLocation = async (req: Request, res: Response) => {
-  const { location } = req.params;
-  try {
-    const user = await User.findAll({
-      attributes: { exclude: ["password"] },
-    });
-    res.json(user);
-  } catch (error: any) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
 export const getUserByVin = async (req: Request, res: Response) => {
   const { vin } = req.params;
   try {
