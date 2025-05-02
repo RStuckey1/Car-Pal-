@@ -11,7 +11,7 @@ export const seedVehicle = async () => {
                 miles: 202542,
                 color: 'Red',
                 price: 1200,
-                userId: 1
+                UserId: 1
             },
             {
                 vin: 'KNADE123186312222',
@@ -21,7 +21,7 @@ export const seedVehicle = async () => {
                 miles: 189566,
                 color: 'Grey',
                 price: 2400,
-                userId: 2
+                UserId: 2
             },
             {
                 vin: '1FMCU03G49KB78940',
@@ -31,7 +31,7 @@ export const seedVehicle = async () => {
                 miles: 99788,
                 color: 'Red',
                 price: 3250,
-                userId: 3
+                UserId: 3
             },
         ],
         { individualHooks: true },

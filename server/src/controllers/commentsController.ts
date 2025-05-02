@@ -41,9 +41,9 @@ export const getCommentsById = async (req: Request, res: Response) => {
 };
 
 export const createComments = async (req: Request, res: Response) => {
-  const { username, description, assignedUserId } = req.body;
+  const { username, description, UserId } = req.body;
   try {
-    const newComments = await Comments.create({ username, description, userId: assignedUserId });
+    const newComments = await Comments.create({ username, description, UserId });
     res.status(201).json(newComments);
   } catch (error: any) {
     res.status(400).json({ message: error.message });

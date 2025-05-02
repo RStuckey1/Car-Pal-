@@ -32,6 +32,7 @@ const Landing = () => {
             <h3><Link to="/MpgCalculator">MpgCalculator</Link></h3>
             <h3><Link to="/NewComments">Click to Make Comments</Link></h3>
             <h3><Link to="/DisplayComments">Click to Display Comments</Link></h3>
+            <h3><Link to="/DisplayVehicles">Click to Display Vehicles</Link></h3>
           </div>
         )}
       </div>

@@ -5,7 +5,7 @@ interface CommentsAttributes {
   id: number;
   username: string;
   description: string;
-  userId: number;
+  UserId: number;
 
  
 }
@@ -16,7 +16,7 @@ export class Comments extends Model<CommentsAttributes, CommentsCreationAttribut
   public id!: number;
   public username!: string;
   public description!: string;
-  public userId!: number;
+  public UserId!: number;
 
 
 
@@ -40,9 +40,9 @@ export function CommentsFactory(sequelize: Sequelize): typeof Comments {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      userId: {
+      UserId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {model: User, key: 'id'},
       },
     },

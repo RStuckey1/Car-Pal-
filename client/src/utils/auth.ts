@@ -3,7 +3,6 @@ import type { UserData } from '../interfaces/UserData';
 
 class AuthService {
   getProfile() {
-   
     return jwtDecode<UserData>(this.getToken());
   }
 
@@ -17,7 +16,7 @@ class AuthService {
       const decoded = jwtDecode<JwtPayload>(token);
 
       if (decoded?.exp && decoded?.exp < Date.now() / 1000) {
-        return true;
+        return false;
       }
     } catch (err) {
       return false;
@@ -25,8 +24,7 @@ class AuthService {
   }
 
   getToken(): string {
-    const loggedUser = localStorage.getItem('id_token') || '';
-    return loggedUser;
+    return localStorage.getItem('id_token') || ''; // Retrieve the token from local storage
   }
 
   login(idToken: string) {

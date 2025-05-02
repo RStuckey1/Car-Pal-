@@ -6,18 +6,12 @@ import { CommentsFactory } from './comments.js';
 const UserModel = UserFactory(sequelize);
 const VehicleModel = VehicleFactory(sequelize);
 
-UserModel.hasMany(VehicleModel, {
-  foreignKey: 'userId',
-  as: 'vehicles',
-});
-
-
 
 const Comments = CommentsFactory(sequelize);
 
-Comments.belongsTo(User);
-User.belongsTo(Comments);
+Comments.belongsTo(UserModel);
+UserModel.hasMany(Comments);
 
-Vehicle.belongsTo(User);
-User.belongsTo(Vehicle);
+VehicleModel.belongsTo(UserModel, { foreignKey: "UserId" });
+UserModel.hasMany(VehicleModel, { foreignKey: "UserId" });
 export { User, Vehicle, Comments };

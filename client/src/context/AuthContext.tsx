@@ -5,16 +5,31 @@ interface AuthContextType {
   isLoggedIn: boolean;
   setIsLoggedIn: (value: boolean) => void;
   checkLogin: () => void;
-  user?: { id: number; name: string }; // Optional user object
+  User?: { id: number; username: string };
+  loading: boolean; // Add loading state
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [User, setUser] = useState<{ id: number; username: string } | undefined>(undefined);
+  const [loading, setLoading] = useState(true); // Track loading state
 
   const checkLogin = () => {
-    setIsLoggedIn(auth.loggedIn());
+    const token = auth.getToken();
+    if (token) {
+      const decoded = auth.getProfile();
+      setIsLoggedIn(true);
+      setUser({
+        id: decoded.id ?? -1,
+        username: decoded.username || 'Unknown',
+      });
+    } else {
+      setIsLoggedIn(false);
+      setUser(undefined);
+    }
+    setLoading(false); // Mark loading as complete
   };
 
   useEffect(() => {
@@ -22,7 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, checkLogin }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, checkLogin, User, loading }}>
       {children}
     </AuthContext.Provider>
   );

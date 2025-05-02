@@ -1,20 +1,34 @@
 import { Request, Response } from "express";
 import { Vehicle } from '../models/vehicle.js';
 import { User } from '../models/user.js';
-//import { handleErrors } from "../utils/errorHandler";
+
+declare global {
+  namespace Express {
+    interface Request {
+      User?: { id: number; username: string }; // Ensure the type includes 'id'
+    }
+  }
+}
 
 export const getUserVehicles = async (_req: Request, res: Response) => {
-  const { userId } = _req.params;
   try {
+    const UserId = _req.User?.id;
+
+    if (!UserId) {
+      res.status(400).json({ message: "unauthorized" });
+      return; // Explicitly return
+    }
+
     const vehiclesList = await Vehicle.findAll({
-      where: { userId: userId },
+      where: { UserId: UserId },
       include: [
         {
           model: User,
           attributes: ["username"],
         },
-      ]
+      ],
     });
+
     res.json(vehiclesList);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -43,7 +57,7 @@ export const getUserVehicleById = async (req: Request, res: Response) => {
 };
 
 export const createUserVehicle = async (req: Request, res: Response) => {
-  const { vin, make, model, year, miles, color, price, userId } = req.body;
+  const { vin, make, model, year, miles, color, price, UserId } = req.body;
   try {
     const newVehicle = await Vehicle.create({
       vin,
@@ -53,7 +67,7 @@ export const createUserVehicle = async (req: Request, res: Response) => {
       miles,
       color,
       price,
-      userId,
+      UserId,
 
     });
     res.status(201).json(newVehicle);

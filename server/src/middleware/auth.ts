@@ -1,32 +1,20 @@
-import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import { Request, Response, NextFunction } from "express";
 
-interface JwtPayload {
-  id: number;
-  username: string;
-}
-
-export const authenticateToken = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
 
-  if (authHeader) {
-    const token = authHeader.split(" ")[1];
+  if (!authHeader) {
+    return res.status(401).json({ message: "Unauthorized: Missing token" });
+  }
 
-    const secretKey = process.env.JWT_SECRET_KEY || "";
+  const token = authHeader.split(" ")[1];
 
-    jwt.verify(token, secretKey, (err, user) => {
-      if (err) {
-        return res.sendStatus(401); // Unauthorized
-      }
-
-      req.user = user as JwtPayload;
-      return next();
-    });
-  } else {
-    res.sendStatus(401); // Unauthorized
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY!) as { id: number; username: string };
+    req.User = decoded; // Attach the user info to the request
+    return next();
+  } catch (error) {
+    return res.status(403).json({ message: "Forbidden: Invalid token" });
   }
 };

@@ -8,7 +8,7 @@ interface VehicleData {
     miles: number;
     color: string;
     price: number;
-    userId: number;
+    UserId: number | null; // foreign key to User
     
     
 }

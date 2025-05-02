@@ -7,12 +7,12 @@ import { retrieveUser } from '../api/userAPI';
 import { useAuth } from '../context/AuthContext';
 
 const NewComments = () => {
-  const { user: loggedInUser } = useAuth(); // Get the logged-in user's info from AuthContext
+  const { User: loggedInUser } = useAuth(); // Get the logged-in user's info from AuthContext
   const navigate = useNavigate();
 
   const [newComments, setNewComments] = useState<CommentsData>({
     id: 0,
-    username: loggedInUser?.name || '', // Automatically assign the logged-in user's name
+    username: loggedInUser?.username || '', // Automatically assign the logged-in user's name
     description: '',
     assignedUserId: loggedInUser?.id || 0, // Automatically assign the logged-in user's ID
     assignedUser: undefined,
@@ -38,7 +38,7 @@ const NewComments = () => {
     if (newComments) {
       const data = await createCommentsAPI(newComments);
       console.log(data);
-      navigate('/NewComments');
+      navigate('/DisplayComments'); // Redirect to the display comments page after successful creation
     }
   };
 

@@ -5,7 +5,7 @@ import { VehicleData } from '../interfaces/VehicleData';
 import { useAuth } from '../context/AuthContext';
 
 const NewVehicles = () => {
-  const { user: loggedInUser } = useAuth(); // Ensure 'user' exists in AuthContextType
+  const { User: loggedInUser } = useAuth(); // Ensure 'user' exists in AuthContextType
   const navigate = useNavigate();
 
   const [newVehicles, setNewVehicles] = useState<VehicleData>({
@@ -17,7 +17,7 @@ const NewVehicles = () => {
     miles: 0,
     color: '',
     price: 0,
-    UserId: loggedInUser?.id || 0, // Automatically assign the logged-in user's ID
+    UserId: loggedInUser?.id || 1, // Automatically assign the logged-in user's ID
   });
 
   const handleSubmit = async (e: FormEvent) => {
@@ -25,7 +25,7 @@ const NewVehicles = () => {
     try {
       const data = await createVehicleAPI(newVehicles);
       console.log('Vehicle created:', data);
-      navigate('/Landing'); // Redirect to the landing page after successful creation
+      navigate('/DisplayVehicles'); // Redirect to the landing page after successful creation
     } catch (err) {
       console.error('Failed to create vehicle:', err);
     }

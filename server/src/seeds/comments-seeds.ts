@@ -5,11 +5,11 @@ export const seedComments = async () => {
     [
       { id: 1, username: "JollyGuru",
         description: "This is a comment",
-        userId: 2,  },
+        UserId: 2,  },
       {
         id: 2, username: "SunnyScribe",
         description: "This is a comment too",
-        userId: 1,
+        UserId: 1,
       },
     ],
     { individualHooks: true },

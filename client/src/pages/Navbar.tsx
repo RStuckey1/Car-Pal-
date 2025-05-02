@@ -8,12 +8,17 @@ import "../index.css";
 import "./Navbar.css";
 
 const CustomNavbar = () => {
-  const { isLoggedIn, checkLogin } = useAuth();
+  const { isLoggedIn, checkLogin, User, loading } = useAuth(); // Include loading state
 
   const handleLogout = () => {
     auth.logout(false); // Prevent redirection
     checkLogin(); // Update the login state
   };
+
+  if (loading) {
+    // Show a loading indicator or nothing while loading
+    return null;
+  }
 
   return (
     <>
@@ -38,13 +43,14 @@ const CustomNavbar = () => {
                 <Navbar.Brand href="/Landing">Car Pal Tracker</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="me-auto">
-                  <NavDropdown title="Menu" id="basic-nav-dropdown">
+                  <NavDropdown title={`Welcome, ${User?.username || 'User'}`} id="basic-nav-dropdown">
                     <NavDropdown.Item href="/Landing">Home</NavDropdown.Item>
                     <NavDropdown.Item href="/MpgCalculator">MPG Calculator</NavDropdown.Item>
                     <NavDropdown.Item href="/NewVehicles">Add a New Vehicle</NavDropdown.Item>
                     <NavDropdown.Item href="/vin">VIN</NavDropdown.Item>
                     <NavDropdown.Item href="/newComments">Leave a New Comment</NavDropdown.Item>
                     <NavDropdown.Item href="/DisplayComments">Look at All the Comments</NavDropdown.Item>
+                    <NavDropdown.Item href="/DisplayVehicles">Look at All the Vehicles</NavDropdown.Item>
                     <NavDropdown.Item onClick={handleLogout}>
                       Logout
                     </NavDropdown.Item>

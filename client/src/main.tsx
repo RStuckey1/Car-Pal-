@@ -11,8 +11,8 @@ import NewVehicles from "./pages/NewVehicles";
 import MpgCalculator from "./pages/MpgCalculator";
 import Signup from "./pages/Signup";
 import NewComments from "./pages/NewComments";
-import DisplayComments from "./pages/DisplayComments";
-import CommentsList from "./pages/CommentsList";
+import DisplayComments from "./pages/DisplayComments.tsx";
+import DisplayVehicles from "./pages/DisplayVehicles";
 import { AuthProvider } from "./context/AuthContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
@@ -62,9 +62,9 @@ const router = createBrowserRouter([
         element: <DisplayComments />
       },
       {
-        path: '/CommentsList',
-        element: <CommentsList />
-      },
+        path: '/DisplayVehicles',
+        element: <DisplayVehicles />
+      }
     ]
   }
 ]);
