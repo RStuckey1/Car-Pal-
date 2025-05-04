@@ -1,27 +1,35 @@
-import { useState, FormEvent, ChangeEvent } from 'react';
+import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createVehicle as createVehicleAPI } from '../api/VehicleAPI';
 import { VehicleData } from '../interfaces/VehicleData';
 import { useAuth } from '../context/AuthContext';
 
 const NewVehicles = () => {
-  const { User: loggedInUser } = useAuth(); // Ensure 'user' exists in AuthContextType
+  const { User: loggedInUser, loading } = useAuth(); // Include loading state from AuthContext
   const navigate = useNavigate();
 
-  const [newVehicles, setNewVehicles] = useState<VehicleData>({
-    id: 0,
-    vin: '',
-    make: '',
-    model: '',
-    year: 0,
-    miles: 0,
-    color: '',
-    price: 0,
-    UserId: loggedInUser?.id || 1, // Automatically assign the logged-in user's ID
-  });
+  const [newVehicles, setNewVehicles] = useState<VehicleData | null>(null); // Initialize as null
+
+  // Initialize the newVehicles state once loggedInUser is available
+  useEffect(() => {
+    if (!loading && loggedInUser) {
+      setNewVehicles({
+        id: 0,
+        vin: '',
+        make: '',
+        model: '',
+        year: 0,
+        miles: 0,
+        color: '',
+        price: 0,
+        UserId: loggedInUser.id, // Assign the logged-in user's ID
+      });
+    }
+  }, [loggedInUser, loading]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (!newVehicles) return; // Prevent submission if state is not initialized
     try {
       const data = await createVehicleAPI(newVehicles);
       console.log('Vehicle created:', data);
@@ -33,11 +41,16 @@ const NewVehicles = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setNewVehicles((prev) => ({
+    setNewVehicles((prev) => prev && ({
       ...prev,
       [name]: name === 'year' || name === 'miles' || name === 'price' ? Number(value) : value,
     }));
   };
+
+  if (loading || !newVehicles) {
+    // Show a loading indicator or nothing while loading
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="container-newVehicle">
@@ -105,7 +118,7 @@ const NewVehicles = () => {
           onChange={handleChange}
         />
 
-        <button type="submit">Submit Comment</button>
+        <button type="submit">Submit Vehicle</button>
       </form>
     </div>
   );
