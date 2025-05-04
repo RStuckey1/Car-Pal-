@@ -1,6 +1,7 @@
 import { CommentsData } from '../interfaces/CommentsData.tsx';
 import { ApiMessage } from '../interfaces/ApiMessage';
 import Auth from '../utils/auth';
+import axios from 'axios';
 
 const retrieveComments = async () => {
   try {
@@ -125,5 +126,19 @@ const deleteComments = async (commentsId: number): Promise<ApiMessage> => {
   }
 };
 
+export const deleteComment = async (commentId: number) => {
+  try {
+    const token = Auth.getToken(); // Retrieve the JWT token
+    const response = await axios.delete(`/api/comments/${commentId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting comment:', error);
+    throw error;
+  }
+};
 
-export { createComments, deleteComments, retrieveComments, retrieveCommentsById, updateComments};
+export { createComments, deleteComments, retrieveComments, retrieveCommentsById, updateComments };

@@ -7,82 +7,84 @@ import "../index.css";
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
-   const [loginData, setLoginData] = useState<UserLogin>({
+  const [loginData, setLoginData] = useState<UserLogin>({
     username: '',
     email: '',
     password: '',
   });
 
-const navigate = useNavigate();
-const { setIsLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const { setIsLoggedIn, checkLogin } = useAuth(); // Include checkLogin from AuthContext
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setLoginData({
       ...loginData,
       [name]: value,
     });
   };
-  
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const data = await loginauth(loginData);
       Auth.login(data.token);
       setIsLoggedIn(true); // Update global login state
-      navigate('/Landing',{replace: true});
+      checkLogin(); // Trigger checkLogin to update User state
+      navigate('/Landing', { replace: true });
     } catch (err) {
       console.error('Failed to login', err);
     }
   };
 
-
   return (
-    <div className='form-container1'>
+    <div className="form-container1">
       <h2>Welcome to the World of Car</h2>
       <h2>Maintenance Logbook</h2>
       <h1>Please Login</h1>
-      <form className='form login-form' onSubmit={handleSubmit}>
-        <div className='form-group'>
+      <form className="form login-form" onSubmit={handleSubmit}>
+        <div className="form-group">
           <label>Username</label>
           <input
-            className='form-input'
-            type='text'
-            name='username'
+            className="form-input"
+            type="text"
+            name="username"
             value={loginData.username || ''}
             onChange={handleChange}
           />
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <label>Email</label>
           <input
-            className='form-input'
-            type='email'
-            name='email'
+            className="form-input"
+            type="email"
+            name="email"
             value={loginData.email || ''}
             onChange={handleChange}
           />
         </div>
-        <div className='form-group'>
+        <div className="form-group">
           <label>Password</label>
           <input
-            className='form-input'
-            type='password'
-            name='password'
+            className="form-input"
+            type="password"
+            name="password"
             value={loginData.password || ''}
             onChange={handleChange}
           />
         </div>
-        <div className='form-group'>
-          <button className='btn btn-primary' type='submit'>
+        <div className="form-group">
+          <button className="btn btn-primary" type="submit">
             Login
           </button>
         </div>
       </form>
-      <div className='new login'>
-        <button className='new login' type='button' onClick={() => navigate('/signup')}>
+      <div className="new login">
+        <button
+          className="new login"
+          type="button"
+          onClick={() => navigate('/signup')}
+        >
           New User Click Here
         </button>
       </div>

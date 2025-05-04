@@ -17,6 +17,6 @@ router.post('/', createComments);
 
 router.put('/:id', updateComments);
 
-router.delete('/:id', deleteComments);
+router.delete('/comments/:id', deleteComments);
 
 export { router as commentsRouter };

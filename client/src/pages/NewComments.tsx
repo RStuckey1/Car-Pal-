@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createComments as createCommentsAPI } from '../api/CommentsAPI';
+import { createComments as createCommentsAPI, deleteComment, retrieveComments } from '../api/CommentsAPI';
 import { CommentsData } from '../interfaces/CommentsData';
 import { UserData } from '../interfaces/UserData';
 import { retrieveUser } from '../api/userAPI';
@@ -14,11 +14,10 @@ const NewComments = () => {
     id: 0,
     username: loggedInUser?.username || '', // Automatically assign the logged-in user's name
     description: '',
-    assignedUserId: loggedInUser?.id || 0, // Automatically assign the logged-in user's ID
-    assignedUser: undefined,
   });
 
   const [user, setUser] = useState<UserData[] | undefined>([]);
+  const [comments, setComments] = useState<CommentsData[]>([]);
 
   const getAllUser = async () => {
     try {
@@ -29,16 +28,47 @@ const NewComments = () => {
     }
   };
 
+  const fetchComments = async () => {
+    try {
+      const data = await retrieveComments(); // Fetch all comments
+      setComments(data);
+    } catch (err) {
+      console.error('Failed to fetch comments:', err);
+    }
+  };
+
   useEffect(() => {
     getAllUser();
+    fetchComments();
   }, []);
+
+  // Update the newComments state whenever the loggedInUser changes
+  useEffect(() => {
+    setNewComments((prev) => ({
+      ...prev,
+      username: loggedInUser?.username || '', // Update the username field
+    }));
+  }, [loggedInUser]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (newComments) {
-      const data = await createCommentsAPI(newComments);
-      console.log(data);
-      navigate('/DisplayComments'); // Redirect to the display comments page after successful creation
+      try {
+        const data = await createCommentsAPI(newComments);
+        console.log('Comment created:', data);
+
+        // Reset the newComments state after submission
+        setNewComments({
+          id: 0,
+          username: loggedInUser?.username || '', // Reset to the logged-in user's username
+          description: '',
+        });
+
+        fetchComments(); // Refresh comments after successful creation
+        navigate('/DisplayComments'); // Redirect to the display comments page after successful creation
+      } catch (err) {
+        console.error('Failed to create comment:', err);
+      }
     }
   };
 
@@ -47,9 +77,14 @@ const NewComments = () => {
     setNewComments((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleUserChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const { value } = e.target;
-    setNewComments((prev) => ({ ...prev, assignedUserId: parseInt(value) }));
+  const handleDelete = async (commentId: number) => {
+    try {
+      await deleteComment(commentId);
+      setComments((prevComments) => prevComments.filter((comment) => comment.id !== commentId));
+      console.log(`Comment with ID ${commentId} deleted successfully.`);
+    } catch (error) {
+      console.error('Failed to delete comment:', error);
+    }
   };
 
   return (
@@ -71,22 +106,9 @@ const NewComments = () => {
             value={newComments?.username || ''}
             disabled // Disable the input field since the username is auto-assigned
           />
-          <label htmlFor="tUserId">User's ID</label>
-          <select
-            name="assignedUserId"
-            value={newComments?.assignedUserId || ''}
-            onChange={handleUserChange}
-          >
-            {user
-              ? user.map((user) => (
-                  <option key={user.id} value={String(user.id)}>
-                    {user.username}
-                  </option>
-                ))
-              : null}
-          </select>
           <button type="submit">Submit Comment</button>
         </form>
+       
       </div>
     </>
   );

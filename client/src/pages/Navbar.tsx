@@ -1,5 +1,6 @@
 import { useAuth } from '../context/AuthContext';
 import auth from "../utils/auth";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -9,10 +10,12 @@ import "./Navbar.css";
 
 const CustomNavbar = () => {
   const { isLoggedIn, checkLogin, User, loading } = useAuth(); // Include loading state
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleLogout = () => {
-    auth.logout(false); // Prevent redirection
+    auth.logout(false); // Prevent redirection by AuthService
     checkLogin(); // Update the login state
+    navigate('/Landing'); // Redirect to the landing page
   };
 
   if (loading) {

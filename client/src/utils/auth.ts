@@ -34,7 +34,7 @@ class AuthService {
   logout(shouldRedirect: boolean = true) {
     localStorage.removeItem('id_token');
     if (shouldRedirect) {
-      window.location.assign('/');
+      window.location.assign('/Landing'); // Redirect to the landing page
     }
   }
 }
