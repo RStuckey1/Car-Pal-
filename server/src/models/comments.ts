@@ -20,8 +20,7 @@ export class Comments extends Model<CommentsAttributes, CommentsCreationAttribut
 
 
 
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+
 }
 
 export function CommentsFactory(sequelize: Sequelize): typeof Comments {

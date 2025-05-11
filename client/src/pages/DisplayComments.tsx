@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { retrieveComments, deleteComment } from '../api/CommentsAPI';
+import { retrieveComments, deleteComments } from '../api/CommentsAPI';
 import { retrieveUser } from '../api/userAPI'; // Assuming this function exists
 import { UserData } from '../interfaces/UserData';
 import { CommentsData } from '../interfaces/CommentsData';
+import { useAuth } from '../context/AuthContext'; // Add this import
+
 
 const DisplayComments: React.FC = () => {
-  const [user, setUser] = useState<UserData[]>([]); // Corrected type to avoid undefined
+  const { User: loggedInUser } = useAuth(); 
+  const [user, setUser] = useState<UserData[]>([]); 
   const [comments, setComments] = useState<CommentsData[]>([]);
 
   const getAllUser = async () => {
@@ -31,11 +34,21 @@ const DisplayComments: React.FC = () => {
     fetchComments();
   }, []);
 
+  useEffect(() => {
+    console.log('User data:', user);
+    console.log('Comments data:', comments);
+  }, [user, comments]);
+
   const handleDelete = async (commentId: number) => {
+    const comment = comments.find((c) => c.id === commentId);
+    if (!loggedInUser || comment?.UserId !== loggedInUser.id) {
+      alert("you can only delete your own comments");
+      return;
+    }
     try {
-      await deleteComment(commentId);
-      setComments((prevComments) => prevComments.filter((comment) => comment.id !== commentId));
-      console.log(`Comment with ID ${commentId} deleted successfully.`);
+      await deleteComments(commentId);
+      setComments((prev) => prev.filter((c) => c.id !== commentId));
+      
     } catch (error) {
       console.error('Failed to delete comment:', error);
     }
@@ -49,7 +62,7 @@ const DisplayComments: React.FC = () => {
           {comments.map((comment) => (
             <li key={comment.id}>
               <p>{comment.description}</p>
-              {user?.find((u) => u.username === comment.username) && (
+              {loggedInUser && comment.UserId === loggedInUser.id && (
                 <button onClick={() => handleDelete(comment.id)}>Delete</button>
               )}
             </li>

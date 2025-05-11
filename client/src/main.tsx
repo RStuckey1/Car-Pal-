@@ -6,7 +6,6 @@ import Login from "./pages/Login";
 import App from "./App.tsx"
 import ErrorPage from "./pages/ErrorPage";
 import Landing from "./pages/Landing";
-import VIN from "./pages/Vin";
 import NewVehicles from "./pages/NewVehicles";
 import MpgCalculator from "./pages/MpgCalculator";
 import Signup from "./pages/Signup";
@@ -36,10 +35,6 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
-      },
-      {
-        path: '/vin',
-        element: <VIN />
       },
       {
         path: '/NewVehicles',

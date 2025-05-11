@@ -2,17 +2,18 @@ import { useState, type FormEvent } from "react";
 import Auth from "../utils/auth";
 import { signUp } from "../api/authAPI";
 import type { UserLogin } from "../interfaces/UserLogin";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState<UserLogin>({
     username: "",
     email: "",
     password: "",
   });
-
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement
@@ -24,7 +25,7 @@ const SignUp = () => {
       [name]: value,
     });
   };
-
+ 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
@@ -88,9 +89,14 @@ const SignUp = () => {
           </FloatingLabel>
         </div>
         <div className="form-group">
-          <Button variant="primary" type="submit" className="form signup-form">
+            <Button
+            variant="primary"
+            type="submit"
+            className="form signup-form"
+            onClick={handleSubmit}
+            >
             Create Account
-          </Button>
+            </Button>
         </div>
       </form>
     </div>

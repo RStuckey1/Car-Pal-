@@ -54,16 +54,6 @@ const Login = () => {
           />
         </div>
         <div className="form-group">
-          <label>Email</label>
-          <input
-            className="form-input"
-            type="email"
-            name="email"
-            value={loginData.email || ''}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
           <label>Password</label>
           <input
             className="form-input"

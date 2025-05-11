@@ -9,12 +9,9 @@ const Landing = () => {
     <div className="landing">
       {!isLoggedIn ? (
       <div className="container">
-        <h1>Welcome to the Car Maintenance Tracker!</h1>
-        <h1>A place to keep track of all your car maintenance needs.</h1>
-        <h3>Login to track or click new user to start</h3>
-     
-     
-       
+        <h1>Welcome to Car-Pal!</h1>
+        <h1>The place to track what your car needs</h1>
+        <h3>To get started, please login or create an account</h3>
           <>
             <button className="landbtn" type="button">
               <h3><Link to="/login">Login</Link></h3>
@@ -26,8 +23,7 @@ const Landing = () => {
         </div>
         ) : (
           <div className="links">
-            <h1>Welcome to the Car Maintenance Tracker!</h1>
-            <h3><Link to="/VIN">VIN</Link></h3>
+            <h1>Welcome to the Car-Pal!</h1>
             <h3><Link to="/NewVehicles">Add New Vehicle</Link></h3>
             <h3><Link to="/MpgCalculator">MpgCalculator</Link></h3>
             <h3><Link to="/NewComments">Click to Make Comments</Link></h3>

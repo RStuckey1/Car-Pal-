@@ -1,13 +1,11 @@
 import { CommentsData } from '../interfaces/CommentsData.tsx';
 import { ApiMessage } from '../interfaces/ApiMessage';
 import Auth from '../utils/auth';
-import axios from 'axios';
+
 
 const retrieveComments = async () => {
   try {
-    const response = await fetch(
-      '/api/Comments/',
-      {
+    const response = await fetch('/api/comments/', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${Auth.getToken()}`
@@ -16,7 +14,7 @@ const retrieveComments = async () => {
     );
     const data = await response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -26,6 +24,7 @@ const retrieveComments = async () => {
     return [];
   }
 };
+
 const retrieveCommentsById = async (id: number | null): Promise<CommentsData> => {
   try {
     const response = await fetch(
@@ -40,7 +39,7 @@ const retrieveCommentsById = async (id: number | null): Promise<CommentsData> =>
 
     const data = await response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('Could not invalid API response, check network tab!');
     }
     return data;
@@ -54,18 +53,18 @@ const createComments = async (body: CommentsData) => {
   try {
     const response = await fetch(
       '/api/comments/', {
-        method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${Auth.getToken()}`
-          },
-        body: JSON.stringify(body)
-      }
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Auth.getToken()}`
+      },
+      body: JSON.stringify(body)
+    }
 
     )
     const data = response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -81,17 +80,17 @@ const updateComments = async (commentsId: number, body: CommentsData): Promise<C
   try {
     const response = await fetch(
       `/api/comments/${commentsId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${Auth.getToken()}`
-        },
-        body: JSON.stringify(body)
-      }
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Auth.getToken()}`
+      },
+      body: JSON.stringify(body)
+    }
     )
     const data = await response.json();
 
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error('invalid API response, check network tab!');
     }
 
@@ -102,43 +101,32 @@ const updateComments = async (commentsId: number, body: CommentsData): Promise<C
   }
 };
 
-const deleteComments = async (commentsId: number): Promise<ApiMessage> => {
+const deleteComments = async (commentId: number): Promise<ApiMessage> => {
   try {
-    const response = await fetch(
-      `/api/comments/${commentsId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${Auth.getToken()}`
-        }
+    const response = await fetch(`/api/comments/${commentId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Auth.getToken()}`
       }
-    )
-    const data = await response.json();
+    });
 
-    if(!response.ok) {
-      throw new Error('invalid API response, check network tab!');
+    if (!response.ok) {
+      throw new Error(`Failed to delete comment: ${response.statusText}`);
+    }
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+        const data = await response.json();
+        return data;
+    } else {
+        // Handle cases where no JSON is returned on successful deletion
+        return { message: 'Comment deleted successfully' }; // Provide a default message
     }
 
-    return data;
-  } catch (err) {
-    console.error('Error in deleting comment', err);
+  } catch (error) {
+    console.error('Error in deleteComment API:', error);
     return Promise.reject('Could not delete comment');
   }
 };
 
-export const deleteComment = async (commentId: number) => {
-  try {
-    const token = Auth.getToken(); // Retrieve the JWT token
-    const response = await axios.delete(`/api/comments/${commentId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error deleting comment:', error);
-    throw error;
-  }
-};
-
-export { createComments, deleteComments, retrieveComments, retrieveCommentsById, updateComments };
+export { createComments, retrieveComments, retrieveCommentsById, updateComments, deleteComments };

@@ -1,56 +1,77 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
-import { User } from './user.js';
+import { Vehicle } from './vehicle.js';
 
-interface CommentsAttributes {
+interface GasAttributes {
   id: number;
-  username: string;
-  description: string;
-  userId: number;
+  date: Date;
+  starting_miles: number;
+  current_miles: number;
+  gallons_gas: number;
+  mpg: number;
+  gas_price: number;
+  vehicleId: number;
 
  
 }
 
-interface CommentsCreationAttributes extends Optional<CommentsAttributes, 'id'> {}
+interface GasCreationAttributes extends Optional<GasAttributes, 'id'> {}
 
-export class Comments extends Model<CommentsAttributes, CommentsCreationAttributes> implements CommentsAttributes {
+export class Gas extends Model<GasAttributes, GasCreationAttributes> implements GasAttributes {
   public id!: number;
-  public username!: string;
-  public description!: string;
-  public userId!: number;
+  public date!: Date;
+  public starting_miles!: number;
+  public current_miles!: number;
+  public gallons_gas!: number;
+  public mpg!: number;
+  public gas_price!: number;
+  public vehicleId!: number; // foreign key to Vehicle
 
-
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
 }
 
-export function CommentsFactory(sequelize: Sequelize): typeof Comments {
-  Comments.init(
+export function GasMilesFactory(sequelize: Sequelize): typeof Gas {
+  Gas.init(
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      description: {
-        type: DataTypes.STRING,
+      date: {
+        type: DataTypes.DATE,
         allowNull: false,
       },
-      userId: {
+      starting_miles: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      current_miles: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {model: User, key: 'id'},
       },
+      gallons_gas: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      mpg: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      gas_price: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      vehicleId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {model: Vehicle, key: 'id'},
+  
     },
+  },
     {
-      tableName: 'comments',
+      tableName: 'gas',
       sequelize,
     }
   );
 
-  return Comments;
+  return Gas;
 }
