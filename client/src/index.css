@@ -46,6 +46,13 @@ p {
     font-weight: 700;
 }
 
+li{
+    color: #52796f;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
 input {
     display: flex;
     justify-content: center;

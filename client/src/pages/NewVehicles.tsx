@@ -14,7 +14,7 @@ const NewVehicles = () => {
   useEffect(() => {
     if (!loading && loggedInUser) {
       setNewVehicles({
-        id: 0,
+        id: 2,
         vin: '',
         make: '',
         model: '',

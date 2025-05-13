@@ -2,6 +2,7 @@ import { seedUser } from './user-seeds.js';
 import { seedComments } from './comments-seeds.js';
 import { seedVehicle } from './vehicle-seeds.js';
 import sequelize from '../config/connection.js';
+import { seedGas } from './gas-seeds.js';
 
 const seedAll = async (): Promise<void> => {
   try {
@@ -16,6 +17,10 @@ const seedAll = async (): Promise<void> => {
 
     await seedVehicle();
     console.log('\n----- VEHICLE SEEDED -----\n');
+
+    await seedGas();
+    console.log('\n----- GAS SEEDED -----\n');
+    console.log('\n----- ALL SEEDED -----\n');
 
     process.exit(0);
   } catch (error) {

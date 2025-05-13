@@ -32,6 +32,7 @@ const SignUp = () => {
       const data = await signUp(userData);
       Auth.login(data.token);
       console.log("User created successfully");
+      navigate('/login');
     } catch (err) {
       console.error("Failed to create user", err);
     }

@@ -4,6 +4,7 @@ export const seedVehicle = async () => {
     await Vehicle.bulkCreate(
         [
             {
+                id: 1,
                 vin: '1ZWFT61L8Y5645645',
                 make: 'Mercury',
                 model: 'Cougar',
@@ -14,6 +15,7 @@ export const seedVehicle = async () => {
                 UserId: 1
             },
             {
+                id: 2,
                 vin: 'KNADE123186312222',
                 make: 'Kia',
                 model: 'Rio',
@@ -24,6 +26,7 @@ export const seedVehicle = async () => {
                 UserId: 2
             },
             {
+                id: 3,
                 vin: '1FMCU03G49KB78940',
                 make: 'Ford',
                 model: 'Escape',

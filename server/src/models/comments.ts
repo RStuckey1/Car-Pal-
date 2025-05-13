@@ -34,7 +34,6 @@ export function CommentsFactory(sequelize: Sequelize): typeof Comments {
       username: {
         type: DataTypes.STRING,
         allowNull: true,
-        references: {model: User, key: 'username'},
       },
       description: {
         type: DataTypes.STRING,

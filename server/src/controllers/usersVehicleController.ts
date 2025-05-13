@@ -24,7 +24,7 @@ export const getUserVehicles = async (_req: Request, res: Response) => {
       include: [
         {
           model: User,
-          attributes: ["username"],
+          attributes: ['id', 'username'],
         },
       ],
     });
