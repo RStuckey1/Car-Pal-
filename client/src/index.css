@@ -20,8 +20,7 @@
 h1 {
     color: #52796f;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 4rem;
-    font-weight: 800;
+    font-size: 5rem;
 }
 
 h2 {
@@ -63,9 +62,45 @@ input {
 
 .form-container1 {
     color: #090510;
+    border: 2px solid #001524;
     display: block;
     position: center;
     margin: 1%;
+}
+
+.container > div > form > div > button:nth-child(1) {
+    color: white;
+    border: 2px solid #001524;
+    background-color: #52796f;
+    border-radius: 10%;
+    padding: 2%;
+    font-size: 2em;
+    margin: 5%;
+}
+
+#root > div.container > div > form > div:nth-child(1) {
+    color: white;
+    border: 2px solid #001524;
+    background-color: #52796f;
+    padding: 3%;
+    font-size: 1.5em;
+    margin: 5% 5% 5% 5%;
+}
+#root > div.container > div > form > div:nth-child(2) {
+    color: white;
+    border: 2px solid #001524;
+    background-color: #52796f;
+    padding: 3%;
+    font-size: 1.5em;
+    margin: 5% 5% 5% 5%;
+}
+
+.form-container1>h2 {
+    color: #52796f;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 4% 10% 4% 10%;
 }
 
 .form-group {
@@ -73,7 +108,20 @@ input {
     flex-direction: column, horizontal;
     align-items: center;
     justify-content: center;
-    ;
+    
+}
+
+
+button.new-login {
+    color: white;
+    border: none;
+    border: solid 2px #001524;
+    background-color: #52796f;
+    padding: 2%;
+    font-size: 2em;
+    align-items: center;
+    margin: 5% auto 5% auto;
+    position: center;
 }
 
 .container-newcommeents {
@@ -94,13 +142,35 @@ input {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 2%;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin: 5% 10% 5% 10%
+}
+
+.commentContainer h1 { 
+    color: #52796f;
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 2% 10% 2% 10%;
+}
+
+
+
+.container-newVehicle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5%
 }
 
 ul.commentList {
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    margin: 5% 10% 5% 10%;
+    padding: 5%;
+    align-items: center;
     font-size: 1em;
     padding: 0;
     margin: 0;
@@ -109,6 +179,7 @@ ul.commentList {
 ul.commentList li {
     background-color: #f0f0f0;
     border-radius: 5px;
+    border: 3px solid black;
     padding: 10px;
     margin: 5px 0;
     width: 80%;

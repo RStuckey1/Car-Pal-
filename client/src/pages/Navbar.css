@@ -1,1 +1,22 @@
 
+#root > div.App > nav{
+  display: flex;
+  font-size: 2em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#root > div.App > nav > nav > div > nav > a {
+  display: flex;
+  font-size: 2em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#root > div.App > nav > nav > div > nav > div > div > div 
+{
+  font-size: 0.75em;
+  padding: 0 20px;
+}

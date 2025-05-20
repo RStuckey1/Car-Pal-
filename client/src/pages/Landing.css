@@ -1,7 +1,5 @@
  .landing-body {
      width: 100vh;
- 
-
  }
 
 .landing {
@@ -13,20 +11,48 @@
         padding: 2%;
     }
 
-.landbtn {
+#root > div.container > div > div > button:nth-child(5) 
+{
+     color: white;
+    border: none;
     border: solid 2px #001524;
-    margin: 5% auto 5% auto;
+    border-radius: 10%;
     padding: 2%;
-    text-decoration: none;
+    font-size: 2.5em;
+    margin: 8% 5% 5% 5%;
+    
 }
 
-.container>h1 {
+#root > div.container > div > div > button:nth-child(4) {
+    color: white;
+    border: none;
+    border: solid 2px #001524;
+    border-radius: 10%;
+    padding: 2%;
+    font-size: 2.5em;
+    margin: 8% 5% 5% 5%;
+}
+
+.links > h1 {
      position: relative;
      text-align: center;
-     margin: 5% auto 5% auto;
-
+     font-size: 5em;
+     margin: 5% 10% 5% 10%;
  }
 
+ .links > h2 {
+        position: relative;
+        text-align: center;
+        font-size: 2em;
+        margin: 10%;
+ }
+
+
+ 
+a {
+     text-decoration: none;
+     font-size: 1.5em;
+ }
  a:active {
      color: #0a0a0a
  }
@@ -35,7 +61,7 @@
      color: #0a0a0a
  }
 
- a:visited {
+a:visited {
      color: #0a0a0a;
      text-decoration: none;
  }

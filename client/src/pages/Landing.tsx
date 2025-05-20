@@ -23,8 +23,9 @@ const Landing = () => {
         </div>
         ) : (
           <div className="links">
-            <h1>Welcome to the Car-Pal!</h1>
-            <h3><Link to="/NewVehicles">Add New Vehicle</Link></h3>
+            <h1>Welcome Back!</h1>
+            <h2>Click on "New Vehicle" to start</h2>
+            <h3><Link to="/NewVehicles">New Vehicle</Link></h3>
             <h3><Link to="/MpgCalculator">MpgCalculator</Link></h3>
             <h3><Link to="/NewComments">Click to Make Comments</Link></h3>
             <h3><Link to="/DisplayComments">Click to Display Comments</Link></h3>

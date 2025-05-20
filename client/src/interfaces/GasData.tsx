@@ -1,6 +1,6 @@
 
 interface GasData {
-    id: number;
+    id?: number;
     date: Date;
     starting_miles: number;
     current_miles: number;

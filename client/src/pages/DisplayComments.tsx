@@ -61,8 +61,9 @@ const DisplayComments: React.FC = () => {
         <ul className="commentList">
           {comments.map((comment) => (
             <li key={comment.id}>
-              Comment:{comment.description}
-              UserName:{comment.username} <br></br>
+              User:{comment.username} <br></br>
+              Comment:{comment.description} <br></br>
+              
               {loggedInUser && comment.UserId === loggedInUser.id && (
                 <button onClick={() => handleDelete(comment.id)}>Delete</button>
               )}

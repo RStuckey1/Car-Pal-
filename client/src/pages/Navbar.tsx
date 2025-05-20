@@ -30,7 +30,7 @@ const CustomNavbar = () => {
           <Navbar expand="lg" bg="light" data-bs-theme="light">
             <Container>
               <Navbar>
-                <Navbar.Brand href="/Landing">Car Pal Tracker</Navbar.Brand>
+                <Navbar.Brand href="/Landing">Car-Pal Tracker</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="me-auto">
                   <Nav.Link href="/login">Login</Nav.Link>
@@ -43,14 +43,14 @@ const CustomNavbar = () => {
           <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
               <Navbar>
-                <Navbar.Brand href="/Landing">Car Pal Tracker</Navbar.Brand>
+                <Navbar.Brand href="/Landing">Car-Pal Tracker</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Nav className="me-auto">
                   <NavDropdown title={`Welcome, ${User?.username || 'User'}`} id="basic-nav-dropdown">
                     <NavDropdown.Item href="/Landing">Home</NavDropdown.Item>
                     <NavDropdown.Item href="/MpgCalculator">MPG Calculator</NavDropdown.Item>
+                    <NavDropdown.Item href="/NewGasEntry">Add a New Gas Entry</NavDropdown.Item>
                     <NavDropdown.Item href="/NewVehicles">Add a New Vehicle</NavDropdown.Item>
-                    <NavDropdown.Item href="/vin">VIN</NavDropdown.Item>
                     <NavDropdown.Item href="/newComments">Leave a New Comment</NavDropdown.Item>
                     <NavDropdown.Item href="/DisplayComments">Look at All the Comments</NavDropdown.Item>
                     <NavDropdown.Item href="/DisplayVehicles">Look at All the Vehicles</NavDropdown.Item>

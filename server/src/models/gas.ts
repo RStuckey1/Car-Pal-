@@ -41,7 +41,7 @@ export function GasMilesFactory(sequelize: Sequelize): typeof Gas {
         allowNull: false,
       },
       starting_miles: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       current_miles: {
@@ -49,15 +49,15 @@ export function GasMilesFactory(sequelize: Sequelize): typeof Gas {
         allowNull: false,
       },
       gallons_gas: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       mpg: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       gas_price: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       vehicleId: {

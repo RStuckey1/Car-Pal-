@@ -3,26 +3,6 @@ import { ApiMessage } from '../interfaces/ApiMessage.tsx';
 import Auth from '../utils/auth.ts';
 
 
-const retrieveGas = async () => {
-  try {
-    const response = await fetch('/api/gas/', {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${Auth.getToken()}`, // Include the token
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error('Error fetching gas mileage:', err);
-    return [];
-  }
-};
 
 const retrieveGasByVehicle = async (vehicleId: number) => {
   try {
@@ -45,10 +25,10 @@ const retrieveGasByVehicle = async (vehicleId: number) => {
   }
 };
 
-const retrieveGasById = async (id: number | null): Promise<GasData> => {
+const getLastGasEntry = async (vehicleId: number) => {
   try {
     const response = await fetch(
-      `/api/gas/${id}`,
+      `/api/gas/last/${vehicleId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -57,17 +37,19 @@ const retrieveGasById = async (id: number | null): Promise<GasData> => {
       }
     );
 
-    const data = await response.json();
-
     if (!response.ok) {
-      throw new Error('Could not invalid API response, check network tab!');
+      // If 404, just return null (no entries yet)
+      if (response.status === 404) return null;
+      throw new Error('Invalid API response, check network tab!');
     }
+    const data = await response.json();
     return data;
   } catch (err) {
     console.log('Error from data retrieval: ', err);
-    return Promise.reject('Could not fetch gas mileage');
+    return null;
   }
 }
+
 
 const createGas = async (body: GasData) => {
   try {
@@ -146,5 +128,22 @@ const deleteGas = async (gasId: number): Promise<ApiMessage> => {
   }
 };
 
+/**
+ * Gets the current_miles from the last gas entry for a vehicle.
+ */
+const getLastCurrentMiles = async (vehicleId: number): Promise<number | null> => {
+  try {
+    const entries = await retrieveGasByVehicle(vehicleId);
+    if (!entries || entries.length === 0) return null;
 
-export { createGas, deleteGas, retrieveGas, retrieveGasByVehicle, retrieveGasById, updateGas };
+    // Sort by date or id descending (assuming higher id is newer)
+    const sorted = entries.sort((a: GasData, b: GasData) => (b.id ?? 0) - (a.id ?? 0));
+    return sorted[0].current_miles ?? null;
+  } catch (err) {
+    console.error('Error getting last current_miles:', err);
+    return null;
+  }
+};
+
+
+export { deleteGas, retrieveGasByVehicle, getLastGasEntry, updateGas, createGas, getLastCurrentMiles };

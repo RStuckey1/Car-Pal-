@@ -39,9 +39,8 @@ const Login = () => {
 
   return (
     <div className="form-container1">
-      <h2>Welcome to the World of Car</h2>
-      <h2>Maintenance Logbook</h2>
-      <h1>Please Login</h1>
+      <h2>Welcome to Car-Pal</h2>
+      <h2>Please Login</h2>
       <form className="form login-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Username</label>
@@ -69,9 +68,9 @@ const Login = () => {
           </button>
         </div>
       </form>
-      <div className="new login">
+      <div className="new-login">
         <button
-          className="new login"
+          className="new-login"
           type="button"
           onClick={() => navigate('/signup')}
         >

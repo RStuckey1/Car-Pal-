@@ -82,3 +82,19 @@ export const deleteGasMiles = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getLastGasEntry = async (req: Request, res: Response) => {
+  try {
+    const { vehicleId } = req.params;
+    const lastEntry = await Gas.findOne({
+      where: { vehicleId },
+      order: [['date', 'DESC']],
+    });
+    if (!lastEntry) {
+      return res.status(404).json({ message: 'No gas entries found for this vehicle.' });
+    }
+    return res.json(lastEntry); // Ensure return here
+  } catch (error) {
+    return res.status(500).json({ message: 'Server error', error }); // Ensure return here
+  }
+};

@@ -36,6 +36,8 @@ const DisplayVehicles: React.FC = () => {
   }, [User?.id]); // Re-run if the logged-in user's ID changes
 
   const handleDelete = async (vehicleId: number) => {
+    const confirmed = window.confirm('Are you sure you want to delete this vehicle?');
+    if (!confirmed) return;
     try {
       await deleteVehicle(vehicleId);
       setVehicles((prevVehicles) => prevVehicles.filter((vehicle) => vehicle.id !== vehicleId));

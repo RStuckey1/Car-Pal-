@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import NewComments from "./pages/NewComments";
 import DisplayComments from "./pages/DisplayComments.tsx";
 import DisplayVehicles from "./pages/DisplayVehicles";
+import NewGasEntry from "./pages/NewGasEntry.tsx";
 import { AuthProvider } from "./context/AuthContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: '/MpgCalculator',
         element: <MpgCalculator />
+      },
+       {
+        path: '/NewGasEntry',
+        element: <NewGasEntry />
       },
       {
         path: '/signup',
