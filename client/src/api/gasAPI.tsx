@@ -28,7 +28,7 @@ const retrieveGasByVehicle = async (vehicleId: number) => {
 const getLastGasEntry = async (vehicleId: number) => {
   try {
     const response = await fetch(
-      `/api/gas/last/${vehicleId}`,
+      `/api/gas/${vehicleId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -128,22 +128,6 @@ const deleteGas = async (gasId: number): Promise<ApiMessage> => {
   }
 };
 
-/**
- * Gets the current_miles from the last gas entry for a vehicle.
- */
-const getLastCurrentMiles = async (vehicleId: number): Promise<number | null> => {
-  try {
-    const entries = await retrieveGasByVehicle(vehicleId);
-    if (!entries || entries.length === 0) return null;
-
-    // Sort by date or id descending (assuming higher id is newer)
-    const sorted = entries.sort((a: GasData, b: GasData) => (b.id ?? 0) - (a.id ?? 0));
-    return sorted[0].current_miles ?? null;
-  } catch (err) {
-    console.error('Error getting last current_miles:', err);
-    return null;
-  }
-};
 
 
-export { deleteGas, retrieveGasByVehicle, getLastGasEntry, updateGas, createGas, getLastCurrentMiles };
+export { deleteGas, retrieveGasByVehicle, getLastGasEntry, updateGas, createGas };

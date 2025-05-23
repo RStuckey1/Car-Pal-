@@ -14,7 +14,7 @@ interface GasAttributes {
  
 }
 
-interface GasCreationAttributes extends Optional<GasAttributes, 'id'> {}
+interface GasCreationAttributes extends Optional<GasAttributes, 'id'> { }
 
 export class Gas extends Model<GasAttributes, GasCreationAttributes> implements GasAttributes {
   public id!: number;
@@ -38,6 +38,7 @@ export function GasMilesFactory(sequelize: Sequelize): typeof Gas {
       },
       date: {
         type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
         allowNull: false,
       },
       starting_miles: {
@@ -70,6 +71,7 @@ export function GasMilesFactory(sequelize: Sequelize): typeof Gas {
     {
       tableName: 'gas',
       sequelize,
+      timestamps: false,
     }
   );
 

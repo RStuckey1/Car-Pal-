@@ -12,7 +12,7 @@ const GasMiles = GasMilesFactory(sequelize);
 Comments.belongsTo(UserModel);
 UserModel.hasMany(Comments);
 GasMiles.belongsTo(VehicleModel);
-VehicleModel.hasMany(GasMiles);
+VehicleModel.hasMany(GasMiles, {foreignKey: "vehicleId"});
 
 VehicleModel.belongsTo(UserModel, { foreignKey: "UserId" });
 UserModel.hasMany(VehicleModel, { foreignKey: "UserId" });

@@ -13,9 +13,15 @@ declare global {
 
 
 export const getGasMiles = async (req: Request, res: Response) => {
-  try {
-    const { vehicleId } = req.params;
-    const gasMiles = await Gas.findByPk(vehicleId, {
+  try {   
+    const vehicleId = req.Vehicle?.id;
+
+    if (!vehicleId) {
+      res.status(400).json({ message: "Vehicle ID is required" });
+      return;
+    }
+    const gasMiles = await Gas.findAll({
+      where: { vehicleId },
       include: [
         {
           model: Vehicle,
@@ -23,11 +29,8 @@ export const getGasMiles = async (req: Request, res: Response) => {
         },
       ],
     });
-    if (gasMiles) {
+   
       res.json(gasMiles);
-    } else {
-      res.status(404).json({ message: "Gas miles not found" });
-    }
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

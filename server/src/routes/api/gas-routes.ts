@@ -1,5 +1,4 @@
 import express from "express";
-import { authenticateToken } from "../../middleware/auth.js";
 import {
   getGasMiles,
   createGasMiles,
@@ -10,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", authenticateToken, getGasMiles);
+router.get("/", getGasMiles);
 
 router.post("/", createGasMiles);
 

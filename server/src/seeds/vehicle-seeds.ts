@@ -36,6 +36,17 @@ export const seedVehicle = async () => {
                 price: 3250,
                 UserId: 3
             },
+             {
+                id: 4,
+                vin: '3EUD120DJEYDH3902',
+                make: 'BMW',
+                model: '225i',
+                year: 2017,
+                miles: 112388,
+                color: 'Black',
+                price: 5250,
+                UserId: 3
+            },
         ],
         { individualHooks: true },
     );
