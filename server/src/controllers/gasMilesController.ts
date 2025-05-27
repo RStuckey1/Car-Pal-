@@ -12,33 +12,52 @@ declare global {
 }
 
 
-export const getGasMiles = async (req: Request, res: Response) => {
+export const getGasMiles = async (_req: Request, res: Response) => {
   try {   
-    const vehicleId = req.Vehicle?.id;
+    const VehicleId = _req.Vehicle?.id;
 
-    if (!vehicleId) {
-      res.status(400).json({ message: "Vehicle ID is required" });
+    if (!VehicleId) {
+      res.status(400).json({ message: "unauthorized" });
       return;
     }
-    const gasMiles = await Gas.findAll({
-      where: { vehicleId },
+
+    const gasList = await Gas.findAll({
+      where: { VehicleId: VehicleId },
       include: [
         {
           model: Vehicle,
-          attributes: ["vehicleId"],
+          attributes: ['id'],
         },
       ],
     });
    
-      res.json(gasMiles);
+      res.json(gasList);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 };
 
 export const createGasMiles = async (req: Request, res: Response) => {
-  const { date, starting_miles, current_miles, gallons_gas, mpg, gas_price, vehicleId } = req.body;
   try {
+    // Try to get vehicleId from req.Vehicle or req.body
+    const VehicleId = req.Vehicle?.id ?? req.body.VehicleId;
+    if (!VehicleId) {
+      return res.status(400).json({ message: "unauthorized" });
+    }
+
+    // 1. Get the last entry for this vehicle
+    const lastEntry = await Gas.findOne({
+      where: { VehicleId },
+      order: [['date', 'DESC']], // or [['id', 'DESC']]
+    });
+
+    // 2. Use lastEntry.current_miles as starting_miles
+    const starting_miles = lastEntry ? lastEntry.current_miles : 0;
+
+    // 3. Get other fields from req.body
+    const { date, current_miles, gallons_gas, mpg, gas_price } = req.body;
+
+    // 4. Create new entry
     const newGasMiles = await Gas.create({
       date,
       starting_miles,
@@ -46,11 +65,12 @@ export const createGasMiles = async (req: Request, res: Response) => {
       gallons_gas,
       mpg,
       gas_price,
-      vehicleId,
+      VehicleId,
     });
-    res.status(201).json(newGasMiles);
+
+    return res.status(201).json(newGasMiles);
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -86,18 +106,15 @@ export const deleteGasMiles = async (req: Request, res: Response) => {
   }
 };
 
-export const getLastGasEntry = async (req: Request, res: Response) => {
+export const getLastGasEntry = async (VehicleId: number) => {
   try {
-    const { vehicleId } = req.params;
     const lastEntry = await Gas.findOne({
-      where: { vehicleId },
+      where: { VehicleId },
       order: [['date', 'DESC']],
     });
-    if (!lastEntry) {
-      return res.status(404).json({ message: 'No gas entries found for this vehicle.' });
-    }
-    return res.json(lastEntry); // Ensure return here
+    return lastEntry;
   } catch (error) {
-    return res.status(500).json({ message: 'Server error', error }); // Ensure return here
+    console.error("Error fetching last gas entry:", error);
+    throw error;
   }
 };

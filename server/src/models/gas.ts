@@ -9,7 +9,7 @@ interface GasAttributes {
   gallons_gas: number;
   mpg: number;
   gas_price: number;
-  vehicleId: number;
+  VehicleId: number;
 
  
 }
@@ -24,7 +24,7 @@ export class Gas extends Model<GasAttributes, GasCreationAttributes> implements 
   public gallons_gas!: number;
   public mpg!: number;
   public gas_price!: number;
-  public vehicleId!: number; // foreign key to Vehicle
+  public VehicleId!: number; // foreign key to Vehicle
 
 }
 
@@ -61,7 +61,7 @@ export function GasMilesFactory(sequelize: Sequelize): typeof Gas {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      vehicleId: {
+      VehicleId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {model: Vehicle, key: 'id'},

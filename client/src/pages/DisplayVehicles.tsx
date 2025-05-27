@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { retrieveVehicles, deleteVehicle } from '../api/VehicleAPI';
 import { useAuth } from '../context/AuthContext';
+import NewGasEntry from './NewGasEntry';
 import './DisplayVehicles.css'; // Import your CSS file for styling
 
 interface Vehicle {
@@ -18,6 +19,7 @@ interface Vehicle {
 const DisplayVehicles: React.FC = () => {
   const { User } = useAuth(); // Get the logged-in user
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
 
   useEffect(() => {
     if (!User?.id) {
@@ -47,6 +49,10 @@ const DisplayVehicles: React.FC = () => {
     }
   };
 
+  const handleExpand = (vehicleId: number) => {
+    setExpandedId(expandedId === vehicleId ? null : vehicleId);
+  };
+
   return (
     <div className="display-vehicles">
       <h1>Your Vehicles</h1>
@@ -54,11 +60,23 @@ const DisplayVehicles: React.FC = () => {
         <ul className="vehicle-list">
           {vehicles.map((vehicle) => (
             <li key={vehicle.id}>
-              Year:{vehicle.year} Make: {vehicle.make} Model:{vehicle.model} Color: {vehicle.color} Miles: {vehicle.miles} <br></br>
-              Price:${vehicle.price} {vehicle.User && (
-                <span>Owner: {vehicle.User.username}</span>
-              )}
-              <button onClick={() => handleDelete(vehicle.id)}>Delete</button>
+              <div className="vehicle-summary" onClick={() => handleExpand(vehicle.id)} style={{cursor: 'pointer'}}>
+                {vehicle.year} {vehicle.make} {vehicle.model}
+              </div>
+              {expandedId === vehicle.id && (
+                            <>
+                              <div className="vehicle-details">
+                                  <p>Color: {vehicle.color}</p>
+                                  <p>Miles: {vehicle.miles}</p>
+                                  <p>Price: ${vehicle.price}</p>         
+                                  {vehicle.User && <p>Owner: {vehicle.User.username}</p>}
+                                  <button onClick={() => handleDelete(vehicle.id)}>Delete</button>
+                              </div>    
+                              <div className="newestGas" style={{marginTop: '2em'}}>
+                                    <NewGasEntry VehicleId={vehicle.id} />
+                              </div>
+                            </>
+                            )}
             </li>
           ))}
         </ul>

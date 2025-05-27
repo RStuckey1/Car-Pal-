@@ -5,21 +5,20 @@
     justify-content: center;
     border: 3px solid black;
     border-radius: 10px;
-    margin: 5% 10% 5% 10%;
 }
 
 .display-vehicles h1 {
     color: #52796f;
     font-size: 2.5rem;
     font-weight: 800;
-    margin: 2% 10% 2% 10%;
+    margin: 2% 4% 2% 4%;
 }
 .display-vehicles li {
 
-    list-style: none;
-    column-count: 3;
-    margin: 4%;
-    padding: 2%;
+    list-style: none;   
+    column-count: 2;
+    margin: 2%;
+    padding: 1%;
     border: 1px solid #52796f;
     border-radius: 5px;
 }
@@ -35,3 +34,27 @@
     cursor: pointer;
 }
 
+.vehicle-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #52796f;
+    border-radius: 5px;
+    padding: 2%;
+}
+
+.newestGas {
+   
+    color: 52796f;
+    border: 2px solid #52796f;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2%;
+    padding: 2%;
+    background-color: #f0f4f3
+  
+}

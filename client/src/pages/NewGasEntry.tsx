@@ -18,13 +18,14 @@ type GasForm = {
   gallons_gas: number;
   mpg: number;
   gas_price: number;
-  vehicleId: number;
+  VehicleId: number;
 };
 
-const NewGasEntry = () => {
+// Accept vehicleId as a prop
+const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
   const { User } = useAuth();
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-  const [selectedVehicleId, setSelectedVehicleId] = useState<number | null>(null);
+  const [selectedVehicleId, setSelectedVehicleId] = useState<number | null>(VehicleId ?? null);
   const [form, setForm] = useState<GasForm>({
     date: '',
     starting_miles: 0,
@@ -32,15 +33,15 @@ const NewGasEntry = () => {
     gallons_gas: 0,
     mpg: 0,
     gas_price: 0,
-    vehicleId: 0,
+    VehicleId: VehicleId ?? 0,
   });
 
-  // Fetch user's vehicles
+  // Fetch user's vehicles only if not provided
   useEffect(() => {
-    if (User?.id) {
+    if (User?.id && !VehicleId) {
       retrieveVehicles().then(data => setVehicles(data.filter((v: Vehicle) => v.UserId === User.id)));
     }
-  }, [User]);
+  }, [User, VehicleId]);
 
   // When vehicle changes, fetch last gas entry
   useEffect(() => {
@@ -49,19 +50,30 @@ const NewGasEntry = () => {
         setForm(f => ({
           ...f,
           starting_miles: lastEntry ? lastEntry.current_miles : 0,
-          vehicleId: selectedVehicleId,
+          current_miles: 0,
+          gallons_gas: 0,
+          mpg: 0,
+          gas_price: 0,
+          VehicleId: selectedVehicleId,
         }));
       });
     }
   }, [selectedVehicleId]);
 
+  // If vehicleId is passed as prop, always use it
+  useEffect(() => {
+    if (VehicleId) {
+      setSelectedVehicleId(VehicleId);
+      setForm(f => ({ ...f, VehicleId }));    }
+  }, [VehicleId]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setForm(f => ({
       ...f,
-      [name]: name === 'vehicleId' ? Number(value) : value,
+      [name]: name === 'VehicleId' ? Number(value) : value,
     }));
-    if (name === 'vehicleId') setSelectedVehicleId(Number(value));
+    if (name === 'VehicleId') setSelectedVehicleId(Number(value));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,7 +82,7 @@ const NewGasEntry = () => {
     const gasData = {
       ...form,
       date: new Date(form.date),
-      mpg,
+      mpg: mpg,
     };
     await createGas(gasData);
     // Optionally redirect or clear form
@@ -78,20 +90,26 @@ const NewGasEntry = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Vehicle:
-        <select name="vehicleId" value={form.vehicleId} onChange={handleChange} required>
-          <option value="">Select Vehicle</option>
-          {vehicles.map(v => (
-            <option key={v.id} value={v.id}>
-              {v.make} {v.model} ({v.year})
-            </option>
-          ))}
-        </select>
-      </label>
+      {!VehicleId && (
+        <label>
+          Vehicle:
+          <select name="vehicleId" value={form.VehicleId} onChange={handleChange} required>
+            <option value="">Select Vehicle</option>
+            {vehicles.map(v => (
+              <option key={v.id} value={v.id}>
+                {v.make} {v.model} ({v.year})
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
       <label>
         Date:
         <input type="date" name="date" value={form.date} onChange={handleChange} required />
+      </label>
+      <label>
+        Starting Miles:
+        <input type="number" name="starting_miles" value={form.starting_miles} readOnly />
       </label>
       <label>
         Current Miles:

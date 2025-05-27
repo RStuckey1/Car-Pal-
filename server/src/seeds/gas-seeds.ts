@@ -10,7 +10,7 @@ export const seedGas = async () => {
                 gallons_gas: 10,
                 mpg: 25,
                 gas_price: 3,
-                vehicleId: 1
+                VehicleId: 1
             },
             {
                 date: new Date('2023-02-01'),
@@ -19,7 +19,7 @@ export const seedGas = async () => {
                 gallons_gas: 12,
                 mpg: 30,
                 gas_price: 3,
-                vehicleId: 2
+                VehicleId: 2
             },
             {
                 date: new Date('2023-03-01'),
@@ -28,7 +28,7 @@ export const seedGas = async () => {
                 gallons_gas: 15,
                 mpg: 20,
                 gas_price: 4,
-                vehicleId: 3
+                VehicleId: 3
             },
              {
                 date: new Date('2023-04-01'),
@@ -37,7 +37,7 @@ export const seedGas = async () => {
                 gallons_gas: 15,
                 mpg: 20,
                 gas_price: 4,
-                vehicleId: 3
+                VehicleId: 3
             },
              {
                 date: new Date('2023-05-01'),
@@ -46,7 +46,7 @@ export const seedGas = async () => {
                 gallons_gas: 15,
                 mpg: 20,
                 gas_price: 4,
-                vehicleId: 3
+                VehicleId: 3
             },
         ],
         { individualHooks: true },

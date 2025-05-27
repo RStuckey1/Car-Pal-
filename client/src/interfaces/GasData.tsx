@@ -7,7 +7,7 @@ interface GasData {
     gallons_gas: number;
     mpg: number;
     gas_price: number;
-    vehicleId: number | null; // foreign key to Vehicle
+    VehicleId: number | null; // foreign key to Vehicle
     
     
 }

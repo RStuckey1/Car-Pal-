@@ -3,6 +3,28 @@ import { ApiMessage } from '../interfaces/ApiMessage.tsx';
 import Auth from '../utils/auth.ts';
 
 
+const retrieveGas = async () => {
+  try {
+    const response = await fetch('/api/gas/', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Auth.getToken()}`, // Include the token
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error('Error fetching gas:', err);
+    return [];
+  }
+};
+
+
 
 const retrieveGasByVehicle = async (vehicleId: number) => {
   try {
@@ -25,10 +47,10 @@ const retrieveGasByVehicle = async (vehicleId: number) => {
   }
 };
 
-const getLastGasEntry = async (vehicleId: number) => {
+const getLastGasEntry = async (VehicleId: number) => {
   try {
     const response = await fetch(
-      `/api/gas/${vehicleId}`,
+      `/api/gas/${VehicleId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -130,4 +152,4 @@ const deleteGas = async (gasId: number): Promise<ApiMessage> => {
 
 
 
-export { deleteGas, retrieveGasByVehicle, getLastGasEntry, updateGas, createGas };
+export { deleteGas, retrieveGasByVehicle, getLastGasEntry, updateGas, createGas, retrieveGas };
