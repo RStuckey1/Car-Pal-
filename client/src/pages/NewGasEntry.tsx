@@ -108,20 +108,12 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
         <input type="date" name="date" value={form.date} onChange={handleChange} required />
       </label>
       <label>
-        Starting Miles:
-        <input type="number" name="starting_miles" value={form.starting_miles} readOnly />
-      </label>
-      <label>
         Current Miles:
         <input type="number" name="current_miles" value={form.current_miles} onChange={handleChange} required />
       </label>
       <label>
         Gallons Gas:
         <input type="number" name="gallons_gas" value={form.gallons_gas} onChange={handleChange} required />
-      </label>
-      <label>
-        MPG:
-        <input type="number" name="mpg" value={form.mpg} onChange={handleChange} required />
       </label>
       <label>
         Gas Price:
