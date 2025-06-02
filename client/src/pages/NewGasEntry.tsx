@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { retrieveVehicles } from '../api/VehicleAPI';
-import { createGas, getLastGasEntry } from '../api/gasAPI'; // You need to implement getLastGasEntry
+import { createGas, getLastGasEntry } from '../api/gasAPI';
 import { useAuth } from '../context/AuthContext';
 
 type Vehicle = {
@@ -24,6 +24,7 @@ type GasForm = {
 // Accept vehicleId as a prop
 const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
   const { User } = useAuth();
+
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [selectedVehicleId, setSelectedVehicleId] = useState<number | null>(VehicleId ?? null);
   const [form, setForm] = useState<GasForm>({
@@ -43,22 +44,7 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
     }
   }, [User, VehicleId]);
 
-  // When vehicle changes, fetch last gas entry
-  useEffect(() => {
-    if (selectedVehicleId) {
-      getLastGasEntry(selectedVehicleId).then(lastEntry => {
-        setForm(f => ({
-          ...f,
-          starting_miles: lastEntry ? lastEntry.current_miles : 0,
-          current_miles: 0,
-          gallons_gas: 0,
-          mpg: 0,
-          gas_price: 0,
-          VehicleId: selectedVehicleId,
-        }));
-      });
-    }
-  }, [selectedVehicleId]);
+
 
   // If vehicleId is passed as prop, always use it
   useEffect(() => {
@@ -120,6 +106,7 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
         <input type="number" name="gas_price" value={form.gas_price} onChange={handleChange} required />
       </label>
       <button type="submit">Add Gas Entry</button>
+     
     </form>
   );
 };

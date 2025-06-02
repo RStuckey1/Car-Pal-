@@ -118,3 +118,13 @@ export const getLastGasEntry = async (VehicleId: number) => {
     throw error;
   }
 };
+
+export const getGasMilesByVehicle = async (req: Request, res: Response) => {
+  try {
+    const { VehicleId } = req.params;
+    const entries = await Gas.findAll({ where: { VehicleId } });
+    res.json(entries);
+  } catch (error) {
+    res.status(400).json({ error: 'Bad request' });
+  }
+};

@@ -28,21 +28,16 @@ const retrieveGas = async () => {
 
 const retrieveGasByVehicle = async (vehicleId: number) => {
   try {
-    const response = await fetch(`/api/gas?vehicleId=${vehicleId}`, {
+    const response = await fetch(`/api/gas/vehicle/${vehicleId}`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${Auth.getToken()}`,
-      },
+        Authorization: `Bearer ${Auth.getToken()}`
+      }
     });
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error('Invalid API response, check network tab!');
-    }
-
-    return data;
+    if (!response.ok) throw new Error('Bad request');
+    return await response.json();
   } catch (err) {
-    console.error('Error fetching user vehicles:', err);
+    console.error('Error fetching gas by vehicle:', err);
     return [];
   }
 };

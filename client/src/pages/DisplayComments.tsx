@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { retrieveComments, deleteComments } from '../api/CommentsAPI';
-import { retrieveUser } from '../api/userAPI'; // Assuming this function exists
+import { retrieveUser } from '../api/userAPI';
 import { UserData } from '../interfaces/UserData';
 import { CommentsData } from '../interfaces/CommentsData';
-import { useAuth } from '../context/AuthContext'; // Add this import
-
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom'; // Add this import
 
 const DisplayComments: React.FC = () => {
   const { User: loggedInUser } = useAuth(); 
   const [user, setUser] = useState<UserData[]>([]); 
   const [comments, setComments] = useState<CommentsData[]>([]);
+  const navigate = useNavigate(); // Add this line
 
   const getAllUser = async () => {
     try {
@@ -58,16 +59,17 @@ const DisplayComments: React.FC = () => {
     <div>
       <div className="commentContainer">
         <h1>Comments</h1>
+        <button onClick={() => navigate('/NewComments')} style={{ marginBottom: '1em' }}>
+          Add New Comment
+        </button>
         <ul className="commentList">
           {comments.map((comment) => (
             <li key={comment.id}>
-              User:{comment.username} <br></br>
-              Comment:{comment.description} <br></br>
-              
+              User:{comment.username} <br />
+              Comment:{comment.description} <br />
               {loggedInUser && comment.UserId === loggedInUser.id && (
                 <button onClick={() => handleDelete(comment.id)}>Delete</button>
               )}
-              
             </li>
           ))}
         </ul>

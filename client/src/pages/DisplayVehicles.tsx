@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { retrieveVehicles, deleteVehicle } from '../api/VehicleAPI';
 import { useAuth } from '../context/AuthContext';
 import NewGasEntry from './NewGasEntry';
+import { useNavigate } from 'react-router-dom'; // <-- Add this import
 import './DisplayVehicles.css'; // Import your CSS file for styling
 
 interface Vehicle {
@@ -20,6 +21,7 @@ const DisplayVehicles: React.FC = () => {
   const { User } = useAuth(); // Get the logged-in user
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  const navigate = useNavigate(); // <-- Add this line
 
   useEffect(() => {
     if (!User?.id) {
@@ -56,6 +58,10 @@ const DisplayVehicles: React.FC = () => {
   return (
     <div className="display-vehicles">
       <h1>Your Vehicles</h1>
+      <button onClick={() => navigate('/NewVehicles')} style={{marginBottom: '1em'}}>
+        Add New Vehicle
+      </button>
+      
       {vehicles.length > 0 ? (
         <ul className="vehicle-list">
           {vehicles.map((vehicle) => (
@@ -71,6 +77,16 @@ const DisplayVehicles: React.FC = () => {
                                   <p>Price: ${vehicle.price}</p>         
                                   {vehicle.User && <p>Owner: {vehicle.User.username}</p>}
                                   <button onClick={() => handleDelete(vehicle.id)}>Delete</button>
+                                  <button
+                                    onClick={() =>
+                                      navigate(`/DisplayRecords/${vehicle.id}`, {
+                                        state: { make: vehicle.make, model: vehicle.model }
+                                      })
+                                    }
+                                    style={{ marginLeft: '1em' }}
+                                  >
+                                    View Gas Records
+                                  </button>
                               </div>    
                               <div className="newestGas" style={{marginTop: '2em'}}>
                                     <NewGasEntry VehicleId={vehicle.id} />

@@ -42,23 +42,23 @@ export function GasMilesFactory(sequelize: Sequelize): typeof Gas {
         allowNull: false,
       },
       starting_miles: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(7, 1),
         allowNull: false,
       },
       current_miles: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(7, 1),
         allowNull: false,
       },
       gallons_gas: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(4, 2),
         allowNull: false,
       },
       mpg: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(4, 2),
         allowNull: false,
       },
       gas_price: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(4, 2),
         allowNull: false,
       },
       VehicleId: {
