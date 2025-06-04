@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { retrieveVehicles } from '../api/VehicleAPI';
-import { createGas, getLastGasEntry } from '../api/gasAPI';
+import { createGas } from '../api/gasAPI';
 import { useAuth } from '../context/AuthContext';
 
 type Vehicle = {
@@ -26,7 +26,7 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
   const { User } = useAuth();
 
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-  const [selectedVehicleId, setSelectedVehicleId] = useState<number | null>(VehicleId ?? null);
+  // Removed unused selectedVehicleId state
   const [form, setForm] = useState<GasForm>({
     date: '',
     starting_miles: 0,
@@ -49,8 +49,8 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
   // If vehicleId is passed as prop, always use it
   useEffect(() => {
     if (VehicleId) {
-      setSelectedVehicleId(VehicleId);
-      setForm(f => ({ ...f, VehicleId }));    }
+      setForm(f => ({ ...f, VehicleId }));
+    }
   }, [VehicleId]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -59,7 +59,6 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
       ...f,
       [name]: name === 'VehicleId' ? Number(value) : value,
     }));
-    if (name === 'VehicleId') setSelectedVehicleId(Number(value));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

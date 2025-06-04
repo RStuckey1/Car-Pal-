@@ -14,6 +14,7 @@ import DisplayComments from "./pages/DisplayComments.tsx";
 import DisplayVehicles from "./pages/DisplayVehicles";
 import NewGasEntry from "./pages/NewGasEntry.tsx";
 import DisplayRecords from "./pages/DisplayRecords.tsx";
+import NewMaintenance from "./pages/NewMaintenanceEntry.tsx";
 import { AuthProvider } from "./context/AuthContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/NewVehicles',
         element: <NewVehicles />
+      },
+       {
+        path: '/NewMaintenance',
+        element: <NewMaintenance />
       },
       {
         path: '/MpgCalculator',

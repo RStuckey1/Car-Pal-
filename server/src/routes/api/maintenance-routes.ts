@@ -16,4 +16,4 @@ router.delete("/:id", deleteVehicleMaintenance);
 
 router.get('/vehicle/:VehicleId', getMaintenanceByVehicle);
 
-export { router as gasRouter };
+export { router as maintenanceRouter };

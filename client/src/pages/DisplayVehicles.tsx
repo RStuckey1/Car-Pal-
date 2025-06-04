@@ -87,6 +87,15 @@ const DisplayVehicles: React.FC = () => {
                                   >
                                     View Gas Records
                                   </button>
+                                   <button
+                                    onClick={() =>
+                                      navigate(`/NewMaintenance`, {
+                                        state: { VehicleId: vehicle.id }
+                                      })
+                                    }
+                                  >
+                                    new Maintenance
+                                  </button>
                               </div>    
                               <div className="newestGas" style={{marginTop: '2em'}}>
                                     <NewGasEntry VehicleId={vehicle.id} />
