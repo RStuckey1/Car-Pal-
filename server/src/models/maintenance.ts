@@ -3,7 +3,7 @@ import { Vehicle } from './vehicle.js';
 
 interface MaintenanceAttributes {
   id: number;
-  date_due: Date;
+  mileage_due: number;
   maintenance_title: string;
   maintenance_description: string;
   parts_needed: string;
@@ -21,7 +21,7 @@ interface MaintenanceCreationAttributes extends Optional<MaintenanceAttributes, 
 
 export class Maintenance extends Model<MaintenanceAttributes, MaintenanceCreationAttributes> implements MaintenanceAttributes {
   public id!: number;
-  public date_due!: Date;
+  public mileage_due!: number;
   public maintenance_title!: string;
   public maintenance_description!: string;
   public parts_needed!: string;
@@ -40,8 +40,8 @@ export function MaintenanceFactory(sequelize: Sequelize): typeof Maintenance {
         autoIncrement: true,
         primaryKey: true,
       },
-      date_due: {
-        type: DataTypes.DATE,
+      mileage_due: {
+        type: DataTypes.FLOAT(6),
         allowNull: false,
       },
       maintenance_title: {
@@ -57,7 +57,7 @@ export function MaintenanceFactory(sequelize: Sequelize): typeof Maintenance {
         allowNull: true,
       },
       cost: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.FLOAT(5, 2),
         allowNull: false,
       },
       time_spent: {

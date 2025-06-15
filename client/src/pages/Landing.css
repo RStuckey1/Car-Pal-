@@ -18,6 +18,18 @@
      align-items: center;
      text-decoration: none;
  }
+
+ .container>h1 {
+        color: black;
+        font-size: 3em;
+        font-weight: 600;
+ }
+
+ .container>h3 {
+    color:black;
+    font-size: 2em;
+    font-weight: 700;
+ }
  
 
  #root>div.container>div>div>button:nth-child(5) {
@@ -27,7 +39,7 @@
      border-radius: 10%;
      padding: 2%;
      font-size: 2.5em;
-     margin: 8% 5% 5% 5%;
+     margin: 0% 5% 5% 5%;
 
  }
 
@@ -38,7 +50,13 @@
      border-radius: 10%;
      padding: 2%;
      font-size: 2.5em;
-     margin: 8% 5% 5% 5%;
+     margin: 0% 5% 5% 5%;
+ }
+
+ .welcome>h1 {
+    color:black;
+    font-size: 4em;
+    font-weight: 600;
  }
 
  .links>h1 {

@@ -39,20 +39,20 @@ const DisplayVehicles: React.FC = () => {
       });
   }, [User?.id]); // Re-run if the logged-in user's ID changes
 
-  const handleDelete = async (vehicleId: number) => {
+  const handleDelete = async (VehicleId: number) => {
     const confirmed = window.confirm('Are you sure you want to delete this vehicle?');
     if (!confirmed) return;
     try {
-      await deleteVehicle(vehicleId);
-      setVehicles((prevVehicles) => prevVehicles.filter((vehicle) => vehicle.id !== vehicleId));
-      console.log(`Vehicle with ID ${vehicleId} deleted successfully.`);
+      await deleteVehicle(VehicleId);
+      setVehicles((prevVehicles) => prevVehicles.filter((Vehicle) => Vehicle.id !== VehicleId));
+      console.log(`Vehicle with ID ${VehicleId} deleted successfully.`);
     } catch (error) {
       console.error('Failed to delete vehicle:', error);
     }
   };
 
-  const handleExpand = (vehicleId: number) => {
-    setExpandedId(expandedId === vehicleId ? null : vehicleId);
+  const handleExpand = (VehicleId: number) => {
+    setExpandedId(expandedId === VehicleId ? null : VehicleId);
   };
 
   return (
@@ -94,7 +94,7 @@ const DisplayVehicles: React.FC = () => {
                                       })
                                     }
                                   >
-                                    new Maintenance
+                                    New Maintenance
                                   </button>
                               </div>    
                               <div className="newestGas" style={{marginTop: '2em'}}>

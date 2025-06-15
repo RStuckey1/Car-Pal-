@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { retrieveVehicles } from '../api/VehicleAPI';
-import { createGas } from '../api/gasAPI';
+import { createGas, retrieveGasByVehicle } from '../api/gasAPI';
 import { useAuth } from '../context/AuthContext';
+import { useLocation } from 'react-router-dom';
 
 type Vehicle = {
   id: number;
@@ -24,6 +25,8 @@ type GasForm = {
 // Accept vehicleId as a prop
 const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
   const { User } = useAuth();
+  const location = useLocation();
+  const initialMiles = location.state?.initialMiles ?? 0;
 
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   // Removed unused selectedVehicleId state
@@ -44,14 +47,24 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
     }
   }, [User, VehicleId]);
 
-
-
   // If vehicleId is passed as prop, always use it
   useEffect(() => {
     if (VehicleId) {
       setForm(f => ({ ...f, VehicleId }));
     }
   }, [VehicleId]);
+
+  useEffect(() => {
+    if (VehicleId) {
+      // Fetch gas entries for this vehicle to check if it's the first entry
+      // Assume you have a function retrieveGasByVehicle
+      retrieveGasByVehicle(VehicleId).then(entries => {
+        if (entries.length === 0 && initialMiles) {
+          setForm(f => ({ ...f, starting_miles: initialMiles }));
+        }
+      });
+    }
+  }, [VehicleId, initialMiles]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -63,7 +76,7 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mpg = (form.current_miles - form.starting_miles) / form.gallons_gas;
+    const mpg = ((form.current_miles - form.starting_miles) / form.gallons_gas);
     const gasData = {
       ...form,
       date: new Date(form.date),
@@ -105,7 +118,6 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
         <input type="number" name="gas_price" value={form.gas_price} onChange={handleChange} required />
       </label>
       <button type="submit">Add Gas Entry</button>
-     
     </form>
   );
 };

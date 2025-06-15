@@ -1,7 +1,7 @@
 
 interface MaintenanceData {
     id?: number;
-    date_due: Date;
+    mileage_due: number;
     maintenance_title: string;
     maintenance_description: string;
     parts_needed: string;

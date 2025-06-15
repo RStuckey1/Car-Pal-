@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { retrieveVehicles } from '../api/VehicleAPI';
-import { createVehicleMaintenance, retrieveMaintenanceByVehicle } from '../api/maintenanceAPI';
+import { createVehicleMaintenance, retrieveMaintenanceByVehicle, deleteVehicleMaintenance } from '../api/maintenanceAPI';
 import { useAuth } from '../context/AuthContext';
+import './NewMaintenanceEntry.css';
 
 type Vehicle = {
   id: number;
@@ -13,7 +14,7 @@ type Vehicle = {
 };
 
 type MaintenanceForm = {
-  date_due: string;
+  mileage_due: number;
   maintenance_title: string;
   maintenance_description: string;
   parts_needed: string;
@@ -24,7 +25,7 @@ type MaintenanceForm = {
 
 type MaintenanceRecord = {
   id: number;
-  date_due: string;
+  mileage_due: number;
   maintenance_title: string;
   maintenance_description: string;
   parts_needed: string;
@@ -40,7 +41,7 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
 
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [form, setForm] = useState<MaintenanceForm>({
-    date_due: '',
+    mileage_due: 0,
     maintenance_title: '',
     maintenance_description: '',
     parts_needed: '',
@@ -78,7 +79,7 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     e.preventDefault();
     const maintenanceData = {
       ...form,
-      date_due: new Date(form.date_due),
+      mileage_due: Number(form.mileage_due),
     };
     await createVehicleMaintenance(maintenanceData);
     // Refresh maintenance records after adding
@@ -88,8 +89,37 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     // Optionally clear form
   };
 
+  const handleDelete =async (id:number) => {
+    if (window.confirm('Are you sure you want to delete this record?')) {
+      await deleteVehicleMaintenance(id);
+      setMaintenanceRecords(prev => prev.filter(entry => entry.id !== id));
+    }
+  };
+
+  // Find the selected vehicle details
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | undefined>(undefined);
+
+  useEffect(() => {
+    if (form.VehicleId && vehicles.length > 0) {
+      setSelectedVehicle(vehicles.find(v => v.id === form.VehicleId));
+    } else if (form.VehicleId && vehicles.length === 0) {
+      // Fetch the vehicle directly if not in vehicles array
+      retrieveVehicles().then(data => {
+        const found = data.find((v: Vehicle) => v.id === form.VehicleId);
+        setSelectedVehicle(found);
+      });
+    }
+  }, [form.VehicleId, vehicles]);
+
   return (
-    <div>
+    <div className="newMaintenanceEntry">
+      <h2>
+        Maintenance for{' '}
+        {selectedVehicle
+          ? `${selectedVehicle.year} ${selectedVehicle.make} ${selectedVehicle.model}`
+          : 'Vehicle'}
+      </h2>
+      <div className="vehicle-info">
       <form onSubmit={handleSubmit}>
         {!VehicleId && (
           <label>
@@ -105,8 +135,8 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
           </label>
         )}
         <label>
-          Date Due:
-          <input type="date" name="date_due" value={form.date_due} onChange={handleChange} required />
+          Mileage for maintenance to be due:
+          <input type="number" name="mileage_due" value={form.mileage_due} onChange={handleChange} required />
         </label>
         <label>
           Maintenance Title:
@@ -130,16 +160,21 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
         </label>
         <button type="submit">Add Maintenance Entry</button>
       </form>
-      <div>
+      </div>
+
+      <div className="existing-maintenance">
         <h3>Existing Maintenance Records</h3>
         {maintenanceRecords.length === 0 ? (
           <p>No maintenance records found for this vehicle.</p>
         ) : (
           <ul>
             {maintenanceRecords.map(record => (
-              <li key={record.id}>
-                <strong>{record.maintenance_title}</strong> - {record.maintenance_description} (Due: {new Date(record.date_due).toLocaleDateString()})
-              </li>
+              <div key={record.id} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <li style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                  <strong>{record.maintenance_title}</strong> - {record.maintenance_description} Parts:{record.parts_needed} Cost:{record.cost} Time:{record.time_spent}  (Due: {record.mileage_due} miles)
+                </li>
+                <button onClick={() => handleDelete(record.id)}>Delete</button>
+              </div>
             ))}
           </ul>
         )}

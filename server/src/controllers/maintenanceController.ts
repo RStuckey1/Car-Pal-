@@ -12,10 +12,10 @@ declare global {
 
 
 export const createVehicleMaintenance = async (req: Request, res: Response) => {
-  const { date_due, maintenance_title, maintenance_description, parts_needed, cost, time_spent, VehicleId } = req.body;
+  const { mileage_due, maintenance_title, maintenance_description, parts_needed, cost, time_spent, VehicleId } = req.body;
   try {
     const newMaintenance = await Maintenance.create({
-        date_due,
+        mileage_due,
         maintenance_title,
         maintenance_description,
         parts_needed,

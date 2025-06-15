@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { retrieveGasByVehicle } from '../api/gasAPI';
+import { retrieveGasByVehicle, deleteGas } from '../api/gasAPI';
 import './DisplayRecords.css'
 
 type GasData = {
@@ -34,6 +34,14 @@ const DisplayRecords: React.FC = () => {
     }
   }, [vehicleId]);
 
+  // Add delete handler
+  const handleDelete = async (id: number) => {
+    if (window.confirm('Are you sure you want to delete this record?')) {
+      await deleteGas(id);
+      setGasEntries(prev => prev.filter(entry => entry.id !== id));
+    }
+  };
+
   return (
     <div className='display-records'>
       <h2>
@@ -54,6 +62,7 @@ const DisplayRecords: React.FC = () => {
               <th>Gallons</th>
               <th>MPG</th>
               <th>Gas Price</th>
+              <th>Delete</th> {/* Add Delete column */}
             </tr>
           </thead>
           <tbody>
@@ -65,6 +74,11 @@ const DisplayRecords: React.FC = () => {
                 <td>{entry.gallons_gas}</td>
                 <td>{entry.mpg.toFixed(2)}</td>
                 <td>${entry.gas_price.toFixed(2)}</td>
+                <td>
+                  <button onClick={() => handleDelete(entry.id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

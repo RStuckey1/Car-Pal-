@@ -29,11 +29,12 @@ const NewVehicles = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!newVehicles) return; // Prevent submission if state is not initialized
+    if (!newVehicles) return;
     try {
       const data = await createVehicleAPI(newVehicles);
       console.log('Vehicle created:', data);
-      navigate('/DisplayVehicles'); // Redirect to the landing page after successful creation
+      // Redirect to NewGasEntry with VehicleId and miles as state
+      navigate('/DisplayVehicles', { state: { VehicleId: data.id, initialMiles: data.miles } });
     } catch (err) {
       console.error('Failed to create vehicle:', err);
     }

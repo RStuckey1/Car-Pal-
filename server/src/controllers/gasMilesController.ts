@@ -39,31 +39,40 @@ export const getGasMiles = async (_req: Request, res: Response) => {
 
 export const createGasMiles = async (req: Request, res: Response) => {
   try {
-    // Try to get vehicleId from req.Vehicle or req.body
     const VehicleId = req.Vehicle?.id ?? req.body.VehicleId;
     if (!VehicleId) {
       return res.status(400).json({ message: "unauthorized" });
     }
 
-    // 1. Get the last entry for this vehicle
     const lastEntry = await Gas.findOne({
       where: { VehicleId },
-      order: [['date', 'DESC']], // or [['id', 'DESC']]
+      order: [['date', 'DESC']],
     });
 
-    // 2. Use lastEntry.current_miles as starting_miles
-    const starting_miles = lastEntry ? lastEntry.current_miles : 0;
+    let starting_miles: number;
 
-    // 3. Get other fields from req.body
-    const { date, current_miles, gallons_gas, mpg, gas_price } = req.body;
+    if (!lastEntry) {
+      const vehicle = await Vehicle.findByPk(VehicleId);
+      if (!vehicle) {
+        return res.status(404).json({ message: "Vehicle not found" });
+      }
+      starting_miles = vehicle.miles;
+    } else {
+      starting_miles = lastEntry.current_miles;
+    }
 
-    // 4. Create new entry
+    // Get other fields from req.body
+    const { date, current_miles, gallons_gas, gas_price } = req.body;
+
+    // Optionally, recalculate mpg here to ensure correctness:
+    const calculatedMpg = (current_miles - starting_miles) / gallons_gas;
+
     const newGasMiles = await Gas.create({
       date,
       starting_miles,
       current_miles,
       gallons_gas,
-      mpg,
+      mpg: calculatedMpg, // Use calculated value to ensure correctness
       gas_price,
       VehicleId,
     });
