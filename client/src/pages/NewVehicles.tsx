@@ -55,7 +55,7 @@ const NewVehicles = () => {
 
   return (
     <div className="container-newVehicle">
-      <form onSubmit={handleSubmit}>
+      <form className="form-newVehicle" onSubmit={handleSubmit}>
         <label htmlFor="vin">VIN</label>
         <input
           type="text"

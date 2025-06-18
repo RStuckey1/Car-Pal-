@@ -1,4 +1,6 @@
 .display-vehicles {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,24 +10,14 @@
 }
 
 .display-vehicles h1 {
-    color: #52796f;
+    color: #000000;
     font-size: 2.5rem;
     font-weight: 800;
     margin: 2% 4% 2% 4%;
 }
-.display-vehicles li {
-
-    list-style: none;   
-    column-count: 2;
-    margin: 2%;
-    padding: 1%;
-    border: 1px solid #52796f;
-    border-radius: 5px;
-}
 
 .display-vehicles>button {
-    background-color: #52796f;
-    color: white;
+    color: #000000;
     font-size: 1.5rem;
     font-weight: 600;
     border-radius: 5px;
@@ -33,21 +25,45 @@
     margin: 2%;
     cursor: pointer;
 }
+.display-vehicles li {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;   
+    margin: 2%;
+    padding: 1%;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+
 
 .vehicle-details {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid #52796f;
+    border: 2px solid #000000;
     border-radius: 5px;
     padding: 2%;
+}
+
+.vehicle-details>button {
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 1%;
+    margin: 2%;
 }
 
 .newestGas {
    
     color: 52796f;
-    border: 2px solid #52796f;
+    border: 2px solid #000000;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -55,6 +71,5 @@
     justify-content: center;
     margin: 2%;
     padding: 2%;
-    background-color: #f0f4f3
   
 }

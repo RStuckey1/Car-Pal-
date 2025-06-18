@@ -1,0 +1,6 @@
+.new-gas-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}

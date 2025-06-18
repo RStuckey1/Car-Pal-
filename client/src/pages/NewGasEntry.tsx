@@ -3,6 +3,7 @@ import { retrieveVehicles } from '../api/VehicleAPI';
 import { createGas, retrieveGasByVehicle } from '../api/gasAPI';
 import { useAuth } from '../context/AuthContext';
 import { useLocation } from 'react-router-dom';
+import './NewGasEntry.css'; // Import your CSS file for styling
 
 type Vehicle = {
   id: number;
@@ -83,10 +84,18 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
       mpg: mpg,
     };
     await createGas(gasData);
+    // Clear out specific fields after submission
+    setForm(f => ({
+      ...f,
+      current_miles: 0,
+      gallons_gas: 0,
+      gas_price: 0,
+    }));
     // Optionally redirect or clear form
   };
 
   return (
+    <div className="new-gas-entry">
     <form onSubmit={handleSubmit}>
       {!VehicleId && (
         <label>
@@ -119,6 +128,7 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
       </label>
       <button type="submit">Add Gas Entry</button>
     </form>
+    </div>
   );
 };
 

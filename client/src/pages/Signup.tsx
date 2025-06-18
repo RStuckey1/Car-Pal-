@@ -3,9 +3,6 @@ import Auth from "../utils/auth";
 import { signUp } from "../api/authAPI";
 import type { UserLogin } from "../interfaces/UserLogin";
 import { useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -25,7 +22,7 @@ const SignUp = () => {
       [name]: value,
     });
   };
- 
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
@@ -40,67 +37,47 @@ const SignUp = () => {
 
   return (
     <div className="form-container signup-container">
-      <form className= 'form signup-form' onSubmit={handleSubmit}>
-        <h2>Create a New Account</h2>
+      <h2>Create a New Account</h2>
+      <form className='form signup-form' onSubmit={handleSubmit}>
+
         <div className="form-group">
-          <FloatingLabel
-            controlId="floatingName"
-            label="username"
-            className="mb-3"
-          >
-            <Form.Control
-              name="username"
-              placeholder="John Doe"
-              value={userData.username ?? ''}
-              onChange={handleChange}
-              required
-            />
-          </FloatingLabel>
+          <label>New Username</label>
+          <input
+            className="form-input"
+            type="text"
+            name="username"
+            onChange={handleChange}
+          />
         </div>
         <div className="form-group">
-          <FloatingLabel
-            controlId="floatingEmail"
-            label="Email"
-            className="mb-3"
-          >
-            <Form.Control
-              type="email"
-              name="email"
-              placeholder="name@example.com"
-              value={userData.email ?? ''}
-              onChange={handleChange}
-              required
+          <label>Password</label>
+          <input
+            className="form-input"
+            type="password"
+            name="password"
+            onChange={handleChange}
             />
-          </FloatingLabel>
-        </div>
-        <div className="form-group">
-          <FloatingLabel
-            controlId="floatingPassword"
-            label="Password"
-            className="mb-3"
-          >
-            <Form.Control
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={userData.password ?? ''}
-              onChange={handleChange}
-              required
+         </div>
+           <div className="form-group">
+          <label>Email</label>
+          <input
+            className="form-input"
+            type="email"
+            name="email"
+            onChange={handleChange}
             />
-          </FloatingLabel>
         </div>
-        <div className="form-group">
-            <Button
-            variant="primary"
-            type="submit"
-            className="form signup-form"
-            onClick={handleSubmit}
-            >
-            Create Account
-            </Button>
+        <div className="form-group1">
+          <button className="user-login" type="submit">
+           Signup
+          </button>
         </div>
       </form>
+      <div className="new-login"></div>
+
+
     </div>
+  
   );
 };
 

@@ -45,14 +45,33 @@ p {
     font-weight: 700;
 }
 
-li{
+li {
     color: #000000;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.5rem;
     font-weight: 700;
 }
 
-input {
+
+.form-container1 {
+    color: #090510;
+    flex-direction: column;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    display: block;
+    position: center;
+    margin: 1%;
+}
+
+
+.form-group>label {
+    color: #000000;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 2% 0 2% 0;
+}
+
+.form-input {
     display: flex;
     justify-content: center;
     margin: 2%;
@@ -60,45 +79,16 @@ input {
     padding: 5px;
 }
 
-.form-container1 {
-    color: #090510;
-    width: 90%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #001524;
-    display: block;
-    position: center;
-    margin: 1%;
-}
 
-.container > div > form > div > button:nth-child(1) {
-    color: white;
-    border: 2px solid #001524;
-    background-color: #52796f;
-    border-radius: 10%;
-    padding: 2%;
-    font-size: 2em;
-    margin: 5%;
-}
 
-#root > div.container > div > form > div:nth-child(1) {
-    color: white;
-    border: 2px solid #001524;
-    background-color: #52796f;
-    
-    padding: 3%;
-    font-size: 1.5em;
-    margin: 5% 5% 5% 5%;
-}
-#root > div.container > div > form > div:nth-child(2) {
+.form-group {
     color: #000000;
     border: 2px solid #001524;
-    background-color: #52796f;
+    border-radius: 10px;;
     padding: 3%;
-    font-size: 1.5em;
     margin: 5% 5% 5% 5%;
 }
+
 
 .form-container1>h2 {
     color: #000000;
@@ -113,22 +103,31 @@ input {
     flex-direction: column, horizontal;
     align-items: center;
     justify-content: center;
-    
+
 }
 
-
-button.new-login {
+button.user-login {
     color: #000000;
-    border: none;
-    border: solid 2px #001524;
+    border: solid 2px #000000;
     background-color: #52796f;
     border-radius: 10px;
     padding: 2%;
     font-size: 2em;
     align-items: center;
     margin: 1% auto 5% auto;
-    display:flex;
-    justify-content: center;
+    display: flex;  
+}
+
+button.new-login {
+    color: #000000;
+    border: solid 2px #000000;
+    background-color: #52796f;
+    border-radius: 10px;
+    padding: 2%;
+    font-size: 2em;
+    align-items: center;
+    margin: 1% auto 5% auto;
+    display: flex; 
 }
 
 .container-newcommeents {
@@ -154,7 +153,7 @@ button.new-login {
     margin: 5% 10% 5% 10%
 }
 
-.commentContainer h1 { 
+.commentContainer h1 {
     color: #52796f;
     font-size: 3rem;
     font-weight: 700;
@@ -163,13 +162,6 @@ button.new-login {
 
 
 
-.container-newVehicle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 5%
-}
 
 ul.commentList {
     list-style-type: none;
@@ -193,6 +185,28 @@ ul.commentList li {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#root > footer > p {
+#root>footer>p {
     text-align: center;
+}
+
+
+.container-newVehicle {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10%
+}
+
+.form-newVehicle {
+    display: flex;
+    flex-direction: column;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 10%;
+    width: 80%;
 }
