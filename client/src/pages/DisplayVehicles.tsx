@@ -58,7 +58,7 @@ const DisplayVehicles: React.FC = () => {
   return (
     <div className="display-vehicles">
       <h1>Your Vehicles</h1>
-      <button onClick={() => navigate('/NewVehicles')} style={{marginBottom: '1em'}}>
+      <button className="addVehicle" onClick={() => navigate('/NewVehicles')} style={{marginBottom: '1em'}}>
         Add New Vehicle
       </button>
       
@@ -82,8 +82,7 @@ const DisplayVehicles: React.FC = () => {
                                       navigate(`/DisplayRecords/${vehicle.id}`, {
                                         state: { make: vehicle.make, model: vehicle.model }
                                       })
-                                    }
-                                    style={{ marginLeft: '1em' }}
+                                    }                                   
                                   >
                                     View Gas Records
                                   </button>

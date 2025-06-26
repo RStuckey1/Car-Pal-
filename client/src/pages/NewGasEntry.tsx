@@ -4,6 +4,7 @@ import { createGas, retrieveGasByVehicle } from '../api/gasAPI';
 import { useAuth } from '../context/AuthContext';
 import { useLocation } from 'react-router-dom';
 import './NewGasEntry.css'; // Import your CSS file for styling
+import { retrieveMaintenanceByVehicle } from '../api/maintenanceAPI'; // Import this
 
 type Vehicle = {
   id: number;
@@ -77,14 +78,35 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mpg = ((form.current_miles - form.starting_miles) / form.gallons_gas);
+    const mpgRaw = (form.current_miles - form.starting_miles) / form.gallons_gas;
+    const mpg = Math.round(mpgRaw * 100) / 100;
+    const gallons_gas = Math.round(Number(form.gallons_gas) * 100) / 100;
+    const gas_price = Math.round(Number(form.gas_price) * 100) / 100;
+    const VehicleId = Number(form.VehicleId);
+
     const gasData = {
       ...form,
       date: new Date(form.date),
-      mpg: mpg,
+      mpg,
+      gallons_gas,
+      gas_price,
+      VehicleId,
     };
     await createGas(gasData);
-    // Clear out specific fields after submission
+
+    // After adding gas, check for due maintenance
+    const maintenanceRecords = await retrieveMaintenanceByVehicle(VehicleId);
+    const dueMaintenances = maintenanceRecords.filter(
+      (m: any) => m.mileage_due <= form.current_miles
+    );
+    if (dueMaintenances.length > 0) {
+      alert(
+        `Maintenance due at ${dueMaintenances
+          .map((m: any) => m.mileage_due)
+          .join(', ')} miles!`
+      );
+    }
+
     setForm(f => ({
       ...f,
       current_miles: 0,

@@ -41,7 +41,7 @@ export function MaintenanceFactory(sequelize: Sequelize): typeof Maintenance {
         primaryKey: true,
       },
       mileage_due: {
-        type: DataTypes.FLOAT(6),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       maintenance_title: {
@@ -57,7 +57,7 @@ export function MaintenanceFactory(sequelize: Sequelize): typeof Maintenance {
         allowNull: true,
       },
       cost: {
-        type: DataTypes.FLOAT(5, 2),
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
       time_spent: {
