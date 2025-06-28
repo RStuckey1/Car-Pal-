@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import NewGasEntry from './NewGasEntry';
 import { useNavigate } from 'react-router-dom'; // <-- Add this import
 import './DisplayVehicles.css'; // Import your CSS file for styling
+import { retrieveGasByVehicle } from '../api/gasAPI'; // Import the API function to retrieve gas entries
 
 interface Vehicle {
   id: number;
@@ -21,6 +22,7 @@ const DisplayVehicles: React.FC = () => {
   const { User } = useAuth(); // Get the logged-in user
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [latestMiles, setLatestMiles] = useState<{ [vehicleId: number]: number | null }>({});
   const navigate = useNavigate(); // <-- Add this line
 
   useEffect(() => {
@@ -38,6 +40,31 @@ const DisplayVehicles: React.FC = () => {
         console.error('Error fetching vehicles:', error);
       });
   }, [User?.id]); // Re-run if the logged-in user's ID changes
+
+  interface GasEntry {
+    id: number;
+    date: string;
+    current_miles: number;
+    // add other properties if needed
+  }
+
+  useEffect(() => {
+    if (vehicles.length > 0) {
+      vehicles.forEach(async (vehicle) => {
+        // Fetch gas entries for this vehicle
+        const gasEntries: GasEntry[] = await retrieveGasByVehicle(vehicle.id);
+        if (gasEntries && gasEntries.length > 0) {
+          // Find the newest entry (assuming sorted by date descending, otherwise sort)
+          const newest = gasEntries.reduce((a, b) =>
+            new Date(a.date) > new Date(b.date) ? a : b
+          );
+          setLatestMiles((prev) => ({ ...prev, [vehicle.id]: newest.current_miles }));
+        } else {
+          setLatestMiles((prev) => ({ ...prev, [vehicle.id]: null }));
+        }
+      });
+    }
+  }, [vehicles]);
 
   const handleDelete = async (VehicleId: number) => {
     const confirmed = window.confirm('Are you sure you want to delete this vehicle?');
@@ -73,9 +100,15 @@ const DisplayVehicles: React.FC = () => {
                             <>
                               <div className="vehicle-details">
                                   <p>Color: {vehicle.color}</p>
-                                  <p>Miles: {vehicle.miles}</p>
+                                  <p>Initial Miles: {vehicle.miles}</p>
                                   <p>Price: ${vehicle.price}</p>         
                                   {vehicle.User && <p>Owner: {vehicle.User.username}</p>}
+                                  <p>
+                                    Latest Odometer:{" "}
+                                    {latestMiles[vehicle.id] !== undefined && latestMiles[vehicle.id] !== null
+                                      ? latestMiles[vehicle.id]
+                                      : "No gas entries yet"}
+                                  </p>
                                   <button onClick={() => handleDelete(vehicle.id)}>Delete</button>
                                   <button
                                     onClick={() =>
