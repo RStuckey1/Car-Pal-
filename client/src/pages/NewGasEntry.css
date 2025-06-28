@@ -2,5 +2,46 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  justify-content: center;
+  margin: 2%;
+  padding: 2%;
 }
+
+.new-gas-entry>p {
+  font-size: 1.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+.new-gas-entry>form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-gas-entry>form>label {
+  margin: 1%;
+  font-size: 1.2rem;
+}
+
+.new-gas-entry>form>input,
+.new-gas-entry>form>select {
+  margin: 1%;
+  padding: 0.5em;
+  font-size: 1.2rem;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.new-gas-entry>form>button {
+  margin: 1%;
+  padding: 0.5em;
+  font-size: 1.2rem;
+  font-weight:600;
+  color: #000000;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+

@@ -118,6 +118,7 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
 
   return (
     <div className="new-gas-entry">
+      <p>Enter Gas Data</p>
     <form onSubmit={handleSubmit}>
       {!VehicleId && (
         <label>

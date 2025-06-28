@@ -96,7 +96,7 @@ const DisplayVehicles: React.FC = () => {
                                     New Maintenance
                                   </button>
                               </div>    
-                              <div className="newestGas" style={{marginTop: '2em'}}>
+                              <div className="newestGas">
                                     <NewGasEntry VehicleId={vehicle.id} />
                               </div>
                             </>
