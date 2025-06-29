@@ -76,7 +76,7 @@ const DisplayRecords: React.FC = () => {
                 <td>{entry.gas_price}</td>
                 <td>
                   <button onClick={() => handleDelete(entry.id)}>
-                    Delete
+                    Delete it
                   </button>
                 </td>
               </tr>
