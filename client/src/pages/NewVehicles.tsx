@@ -55,6 +55,8 @@ const NewVehicles = () => {
 
   return (
     <div className="container-newVehicle">
+      <h2>Enter New Vehicle</h2>
+      <button onClick={() => navigate('/DisplayVehicles')}>Back to Vehicles</button>
       <form className="form-newVehicle" onSubmit={handleSubmit}>
         <label htmlFor="vin">VIN</label>
         <input

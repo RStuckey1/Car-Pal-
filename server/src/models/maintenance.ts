@@ -9,6 +9,7 @@ interface MaintenanceAttributes {
   parts_needed: string;
   cost: number;
   time_spent: number;
+  completed?: boolean; // optional field to indicate if maintenance is completed
   VehicleId: number; // foreign key to Vehicle
   
   createdAt?: Date;
@@ -27,6 +28,7 @@ export class Maintenance extends Model<MaintenanceAttributes, MaintenanceCreatio
   public parts_needed!: string;
   public cost!: number;
   public time_spent!: number;
+  public completed?: boolean; // optional field to indicate if maintenance is completed
   public VehicleId!: number; // foreign key to Vehicle
   public createdAt!: Date;
   public updatedAt!: Date;
@@ -63,6 +65,11 @@ export function MaintenanceFactory(sequelize: Sequelize): typeof Maintenance {
       time_spent: {
         type: DataTypes.FLOAT,
         allowNull: false,
+      },
+      completed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true, // optional field
+        defaultValue: false, // default to false if not provided
       },
       VehicleId: {
         type: DataTypes.INTEGER,

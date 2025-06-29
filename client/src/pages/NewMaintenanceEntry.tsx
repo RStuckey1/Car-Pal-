@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { retrieveVehicles } from '../api/VehicleAPI';
-import { createVehicleMaintenance, retrieveMaintenanceByVehicle, deleteVehicleMaintenance } from '../api/maintenanceAPI';
+import { createVehicleMaintenance, retrieveMaintenanceByVehicle, deleteVehicleMaintenance, updateVehicleMaintenance } from '../api/maintenanceAPI';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './NewMaintenanceEntry.css';
 
 type Vehicle = {
@@ -32,12 +33,14 @@ type MaintenanceRecord = {
   cost: number;
   time_spent: number;
   VehicleId: number;
+  completed?: boolean; // <-- Add this line
 };
 
 const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number }) => {
   const { User } = useAuth();
   const location = useLocation();
   const VehicleId = propVehicleId ?? location.state?.VehicleId ?? 0;
+  const navigate = useNavigate();
 
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [form, setForm] = useState<MaintenanceForm>({
@@ -96,6 +99,18 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     }
   };
 
+  const handleMarkComplete = async (id: number) => {
+    // Find the record
+    const record = maintenanceRecords.find(r => r.id === id);
+    if (!record) return;
+    // Update the record as completed
+    await updateVehicleMaintenance(id, { ...record, completed: true });
+    // Update local state
+    setMaintenanceRecords(prev =>
+      prev.map(r => (r.id === id ? { ...r, completed: true } : r))
+    );
+  };
+
   // Find the selected vehicle details
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | undefined>(undefined);
 
@@ -119,6 +134,9 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
           ? `${selectedVehicle.year} ${selectedVehicle.make} ${selectedVehicle.model}`
           : 'Vehicle'}
       </h2>
+      <button onClick={() => navigate('/DisplayVehicles')}>
+        Back to Vehicles
+      </button>
       <div className="vehicle-info">
       <form onSubmit={handleSubmit}>
         {!VehicleId && (
@@ -169,11 +187,26 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
         ) : (
           <ul>
             {maintenanceRecords.map(record => (
-              <div key={record.id} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div
+                key={record.id}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  opacity: record.completed ? 0.5 : 1,
+                  textDecoration: record.completed ? 'line-through' : 'none',
+                }}
+              >
                 <li style={{ listStyle: 'none', margin: 0, padding: 0 }}>
                   <strong>{record.maintenance_title}</strong> - {record.maintenance_description} Parts:{record.parts_needed} Cost:{record.cost} Time:{record.time_spent}  (Due: {record.mileage_due} miles)
+                  {record.completed && <span style={{ color: 'green', marginLeft: 8 }}>(Completed)</span>}
                 </li>
-                <button onClick={() => handleDelete(record.id)}>Delete</button>
+                <button onClick={() => navigate('/EditMaintenance', { state: { record } })} disabled={record.completed}>Edit</button>
+                <button onClick={() => handleDelete(record.id)} disabled={record.completed}>Delete</button>
+                <button onClick={() => navigate('/DisplayMaintenance', { state: { record } })}>View</button>
+                {!record.completed && (
+                  <button onClick={() => handleMarkComplete(record.id)}>Mark Complete</button>
+                )}
               </div>
             ))}
           </ul>

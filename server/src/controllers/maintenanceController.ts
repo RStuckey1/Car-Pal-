@@ -21,6 +21,7 @@ export const createVehicleMaintenance = async (req: Request, res: Response) => {
         parts_needed,
         cost,
         time_spent,
+        completed: false, // Default value for completed
         VehicleId, // Ensure this is the correct field for the Vehicle model
 
     });

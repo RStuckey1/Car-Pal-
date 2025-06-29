@@ -7,6 +7,7 @@ interface MaintenanceData {
     parts_needed: string;
     cost: number;
     time_spent: number;
+    completed?: boolean; // optional field to indicate if maintenance is completed
     VehicleId: number | null; // foreign key to Vehicle
     
     
