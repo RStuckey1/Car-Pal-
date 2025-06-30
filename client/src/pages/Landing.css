@@ -1,137 +1,132 @@
 .landing-body {
-     width: 100vh;
- }
-
- .landing {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     text-align: center;
-     margin: 5% auto 5% auto;
-     padding: 2%;
- }
-
- .container {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     text-decoration: none;
- }
-
- .container>h1 {
-        color: black;
-        font-size: 3em;
-        font-weight: 600;
- }
-
- .container>h3 {
-    color:black;
-    font-size: 2em;
-    font-weight: 700;
- }
- 
-
- #root>div.container>div>div>button:nth-child(5) {
-     color: white;
-     border: none;
-     border: solid 2px #001524;
-     border-radius: 10%;
-     padding: 2%;
-     font-size: 2.5em;
-     margin: 0% 5% 5% 5%;
-
- }
-
- #root>div.container>div>div>button:nth-child(4) {
-     color: white;
-     border: none;
-     border: solid 2px #001524;
-     border-radius: 10%;
-     padding: 2%;
-     font-size: 2.5em;
-     margin: 0% 5% 5% 5%;
- }
-
- .welcome>h1 {
-    color:black;
-    font-size: 4em;
-    font-weight: 600;
- }
-
- .links>h1 {
-     position: relative;
-     text-align: center;
-     font-size: 5em;
-     margin: 2% auto 2% auto;
- }
-
- .links>h2 {
-     position: relative;
-     text-align: center;
-     font-size: 2em;
-     margin: 2% auto 2% auto;
- }
-
-
-
- a {
-     text-decoration: none;
-     font-size: 1em;
-     font-weight: 550;
- }
-
- a:active {
-     color: #0a0a0a;
-     text-decoration: none;
- }
-
- a:link {
-    color: #0a0a0a;
-    text-decoration: none;
- }
-
- a:visited {
-     color: #0a0a0a;
-     text-decoration: none;
- }
-
- a:hover {
-     color: #15616d;
- }
-
- .links {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     text-decoration: none;
-     margin: 5% auto 5% auto;
-
- }
-
- .links>h3 {
-        position: relative;
-        text-align: center;
-        font-size: 3em;
-        margin: 3% auto 1% auto;
-        color: #15616d;
-        font-weight: 600;
-        text-decoration: underline;
- }
-
- .button.landbtn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: 15616d;
- }
-
-.links h3, .links h3 a {
-  display: inline-block;
-  transition: transform 0.2s;
+    width: 100vh;
 }
 
-.links h3:hover, .links h3 a:hover {
-  transform: scale(1.2);
+.landing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 5% auto 5% auto;
+    padding: 2%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container>h1 {
+    color: black;
+    font-weight: 600;
+    margin: 2% auto 2% auto;
+}
+
+.container>h3 {
+    color: black;
+    font-weight: 600;
+    margin: 4% auto 4% auto;
+}
+
+
+#root>div.container>div>div>button:nth-child(5) {
+    border: solid 2px #000000;
+    border-radius: 10px;
+    padding: 2%;
+    font-size: 2.5em;
+    margin: 0% 5% 5% 5%;
+
+}
+
+#root>div.container>div>div>button:nth-child(4) {
+    border: solid 2px #000000;
+    border-radius: 10px;
+    padding: 2%;
+    font-size: 2.5em;
+    margin: 0% 5% 1% 5%;
+}
+
+.welcome>h1 {
+    color: black;
+    font-size: 4em;
+    font-weight: 600;
+}
+
+.links>h1 {
+    position: relative;
+    text-align: center;
+    font-size: 5em;
+    margin: 2% auto 2% auto;
+}
+
+.links>h2 {
+    position: relative;
+    text-align: center;
+    font-size: 2em;
+    margin: 2% auto 2% auto;
+}
+
+
+
+a {
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 550;
+}
+
+a:active {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:link {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #15616d;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin: 5% auto 5% auto;
+
+}
+
+.links>h3 {
+    position: relative;
+    text-align: center;
+    font-size: 3em;
+    margin: 3% auto 1% auto;
+    color: #15616d;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.button.landbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: 15616d;
+}
+
+.links h3,
+.links h3 a {
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.links h3:hover,
+.links h3 a:hover {
+    transform: scale(1.2);
 }

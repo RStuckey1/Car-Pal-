@@ -12,7 +12,7 @@ declare global {
 
 
 export const createVehicleMaintenance = async (req: Request, res: Response) => {
-  const { mileage_due, maintenance_title, maintenance_description, parts_needed, cost, time_spent, VehicleId } = req.body;
+  const { mileage_due, maintenance_title, maintenance_description, parts_needed, cost, time_spent, completed, VehicleId } = req.body;
   try {
     const newMaintenance = await Maintenance.create({
         mileage_due,
@@ -21,7 +21,7 @@ export const createVehicleMaintenance = async (req: Request, res: Response) => {
         parts_needed,
         cost,
         time_spent,
-        completed: false, // Default value for completed
+        completed,
         VehicleId, // Ensure this is the correct field for the Vehicle model
 
     });

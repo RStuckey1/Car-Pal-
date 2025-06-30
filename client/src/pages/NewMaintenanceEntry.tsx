@@ -21,6 +21,7 @@ type MaintenanceForm = {
   parts_needed: string;
   cost: number;
   time_spent: number;
+  completed: boolean; // <-- Add this line
   VehicleId: number;
 };
 
@@ -50,6 +51,7 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     parts_needed: '',
     cost: 0,
     time_spent: 0,
+    completed: false, // <-- Add this line
     VehicleId,
   });
   const [maintenanceRecords, setMaintenanceRecords] = useState<MaintenanceRecord[]>([]);
@@ -92,7 +94,7 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     // Optionally clear form
   };
 
-  const handleDelete =async (id:number) => {
+  const handleDelete = async (id: number) => {
     if (window.confirm('Are you sure you want to delete this record?')) {
       await deleteVehicleMaintenance(id);
       setMaintenanceRecords(prev => prev.filter(entry => entry.id !== id));
@@ -138,46 +140,58 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
         Back to Vehicles
       </button>
       <div className="vehicle-info">
-      <form onSubmit={handleSubmit}>
-        {!VehicleId && (
+        <form onSubmit={handleSubmit}>
+          {!VehicleId && (
+            <label>
+              Vehicle:
+              <select name="VehicleId" value={form.VehicleId} onChange={handleChange} required>
+                <option value="">Select Vehicle</option>
+                {vehicles.map(v => (
+                  <option key={v.id} value={v.id}>
+                    {v.make} {v.model} ({v.year})
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          <div className="long-label">
           <label>
-            Vehicle:
-            <select name="VehicleId" value={form.VehicleId} onChange={handleChange} required>
-              <option value="">Select Vehicle</option>
-              {vehicles.map(v => (
-                <option key={v.id} value={v.id}>
-                  {v.make} {v.model} ({v.year})
-                </option>
-              ))}
-            </select>
+            Maintenance Title:
+            <input type="text" name="maintenance_title" value={form.maintenance_title} onChange={handleChange} required />
           </label>
-        )}
-        <label>
-          Mileage for maintenance to be due:
-          <input type="number" name="mileage_due" value={form.mileage_due} onChange={handleChange} required />
-        </label>
-        <label>
-          Maintenance Title:
-          <input type="text" name="maintenance_title" value={form.maintenance_title} onChange={handleChange} required />
-        </label>
-        <label>
-          Maintenance Description:
-          <input type="text" name="maintenance_description" value={form.maintenance_description} onChange={handleChange} required />
-        </label>
-        <label>
-          Parts Needed:
-          <input type="text" name="parts_needed" value={form.parts_needed} onChange={handleChange} required />
-        </label>
-        <label>
-          Cost:
-          <input type="number" name="cost" value={form.cost} onChange={handleChange} required />
-        </label>
-        <label>
-          Time to Complete (in hours):
-          <input type="number" name="time_spent" value={form.time_spent} onChange={handleChange} required />
-        </label>
-        <button type="submit">Add Maintenance Entry</button>
-      </form>
+          <label>
+            Maintenance Description:
+            <input type="text" name="maintenance_description" value={form.maintenance_description} onChange={handleChange} required />
+          </label>
+          <label>
+            Parts Needed:
+            <input type="text" name="parts_needed" value={form.parts_needed} onChange={handleChange} required />
+          </label>
+          </div>
+          <div className="short-label">
+          <label>
+            Cost($):
+            <input type="number" name="cost" value={form.cost} onChange={handleChange} required />
+          </label>
+          <label>Mileage Due:
+            <input type="number" name="mileage_due" value={form.mileage_due} onChange={handleChange} required />
+          </label>
+          <label>
+            Time (in hours):
+            <input type="number" name="time_spent" value={form.time_spent} onChange={handleChange} required />
+          </label>
+          <label>
+            Completed:
+            <input
+              type="checkbox"
+              name="completed"
+              checked={form.completed}
+              onChange={(e) => setForm({ ...form, completed: e.target.checked })}
+            />
+          </label>
+          </div>
+          <button type="submit">Add Maintenance Entry</button>
+        </form>
       </div>
 
       <div className="existing-maintenance">

@@ -21,20 +21,21 @@ h1 {
     color: #000000;
     font-family: 'Courier New', Courier, monospace;
     font-size: 4rem;
+    font-weight: 600;
 }
 
 h2 {
     color: #000000;
     font-family: 'Courier New', Courier, monospace;
     font-size: 4rem;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 h3 {
     color: #000000;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 4rem;
-    font-weight: 800;
+    font-size: 3rem;
+    font-weight: 600;
 
 }
 
@@ -42,25 +43,30 @@ p {
     color: #000000;
     font-family: 'Courier New', Courier, monospace;
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 li {
     color: #000000;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 500;
 }
 
 
-.form-container1 {
-    color: #090510;
+.form-container {
+    color: #000000;
     flex-direction: column;
-    border: 2px solid #000000;
-    border-radius: 10px;
-    display: block;
-    position: center;
-    margin: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-container>h2{
+    color: #000000;
+    font-size:3rem;
+    font-weight: 600;
 }
 
 
@@ -82,9 +88,10 @@ li {
 
 
 .form-group {
+    width: 100%;
     color: #000000;
     border: 2px solid #001524;
-    border-radius: 10px;;
+    border-radius: 10px;
     padding: 3%;
     margin: 5% 5% 5% 5%;
 }
@@ -186,26 +193,67 @@ ul.commentList li {
 
 #root>footer>p {
     text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #000000;
+    margin: 2% 0 2% 0;
 }
 
 
 .container-newVehicle {
     display: flex;
-    width: 60%;
+    width: 100%;
+    margin:5% auto 5% auto;
+    padding: 5%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 10%
+}
+
+.container-newVehicle>h2 {
+    color: #000000;
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 2% 0 2% 0;
+}
+
+.container-newVehicle> button {
+    color: #000000;
+    border: solid 2px #000000;
+    border-radius: 10px;
+    padding: 2%;
+    font-size: 1.5em;
+    font-weight: 600;
+    align-items: center;
+    margin: 1% auto 5% auto;
+    display: flex;  
 }
 
 .form-newVehicle {
-    display: flex;
+    width:100%;
+    display:table-column;
     flex-direction: column;
-    column-gap: 10px;
+    margin: 5% auto 5% auto;
+    padding: 5%;
     align-items: center;
     justify-content: center;
-    border: 3px solid black;
-    border-radius: 10px;
-    padding: 10%;
-    width: 80%;
 }
+
+.form-newVehicle>label {
+    color: #000000;
+    font-size: 1.5em;
+    font-weight: 700;
+    justify-content: center;
+    margin: 2% auto 2% auto;
+}
+
+
+.form-newVehicle>input {
+    justify-content: center;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    margin: 2% auto 2% auto;
+    width: 100%;
+    height: 40%;
+}
+
