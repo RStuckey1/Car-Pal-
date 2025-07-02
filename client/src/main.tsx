@@ -7,7 +7,6 @@ import App from "./App.tsx"
 import ErrorPage from "./pages/ErrorPage";
 import Landing from "./pages/Landing";
 import NewVehicles from "./pages/NewVehicles";
-import MpgCalculator from "./pages/MpgCalculator";
 import Signup from "./pages/Signup";
 import NewComments from "./pages/NewComments";
 import DisplayComments from "./pages/DisplayComments.tsx";
@@ -16,7 +15,6 @@ import NewGasEntry from "./pages/NewGasEntry.tsx";
 import DisplayRecords from "./pages/DisplayRecords.tsx";
 import NewMaintenance from "./pages/NewMaintenanceEntry.tsx";
 import { AuthProvider } from "./context/AuthContext";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
 
 
@@ -46,10 +44,6 @@ const router = createBrowserRouter([
        {
         path: '/NewMaintenance',
         element: <NewMaintenance />
-      },
-      {
-        path: '/MpgCalculator',
-        element: <MpgCalculator />
       },
        {
         path: '/NewGasEntry',

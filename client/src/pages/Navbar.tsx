@@ -1,10 +1,7 @@
 import { useAuth } from '../context/AuthContext';
 import auth from "../utils/auth";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from 'react-router-dom';
 import "../index.css";
 import "./Navbar.css";
 
@@ -27,39 +24,29 @@ const CustomNavbar = () => {
     <>
       <nav>
         {!isLoggedIn ? (
-          <Navbar expand="lg" bg="light" data-bs-theme="light">
-            <Container>
-              <Navbar>
-                <Navbar.Brand href="/Landing">Car-Pal Tracker</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Nav className="me-auto">
-                  <Nav.Link href="/login">Login</Nav.Link>
-                  <Nav.Link href="/signup">Signup</Nav.Link>
-                </Nav>
-              </Navbar>
-            </Container>
-          </Navbar>
+          <div className="navbar-logo">
+            <ul>
+              <li><Link to="/Landing">Car-Pal</Link></li>
+              <li><Link to="/login">Login</Link></li>
+              <li><Link to="/signup">Signup</Link></li>
+            </ul>
+          </div>
         ) : (
-          <Navbar expand="lg" className="bg-body-tertiary">
-            <Container>
-              <Navbar>
-                <Navbar.Brand href="/Landing">Car-Pal Tracker</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Nav className="me-auto">
-                  <NavDropdown title={`Welcome, ${User?.username || 'User'}`} id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/Landing">Home</NavDropdown.Item>
-                    <NavDropdown.Item href="/DisplayVehicles">Your Vehicles</NavDropdown.Item>
-                    <NavDropdown.Item href="/NewVehicles">Enter a New Vehicle</NavDropdown.Item>
-                    <NavDropdown.Item href="/DisplayComments">Comment Space</NavDropdown.Item>
-                    
-                    <NavDropdown.Item onClick={handleLogout}>
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-              </Navbar>
-            </Container>
-          </Navbar>
+          <div className="navbar-logo">
+            <h1>{`Welcome, ${User?.username || 'User'}`}</h1>
+            <ul>
+              <li className="dropdown">
+              <a href="javascript:void(0)" className="dropbtn">Menu</a>
+              <div className="dropdown-content">
+              <a href="#"><Link to="/Landing">Home</Link></a>
+              <a href="#"><Link to="/DisplayVehicles">Your Vehicles</Link></a>
+              <a href="#"><Link to="/NewVehicles">Enter a New Vehicle</Link></a>
+              <a href="#"><Link to="/DisplayComments">Comment Space</Link></a>
+              <a href="#"><button onClick={handleLogout}>Logout</button></a>
+              </div>
+              </li>
+            </ul>
+          </div>
         )}
       </nav>
     </>
