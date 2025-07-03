@@ -5,6 +5,8 @@ import { UserData } from '../interfaces/UserData';
 import { CommentsData } from '../interfaces/CommentsData';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom'; // Add this import
+import Carousel from '../components/carousel.tsx'; // Adjust the import path as necessary
+
 
 const DisplayComments: React.FC = () => {
   const { User: loggedInUser } = useAuth(); 
@@ -57,6 +59,7 @@ const DisplayComments: React.FC = () => {
 
   return (
     <div>
+      <Carousel />
       <div className="commentContainer">
         <h1>Comments</h1>
         <button onClick={() => navigate('/NewComments')} style={{ marginBottom: '1em' }}>
