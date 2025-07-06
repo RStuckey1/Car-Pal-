@@ -113,6 +113,15 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     );
   };
 
+  const handleMarkIncomplete = async (id: number) => {
+    const record = maintenanceRecords.find(r => r.id === id);
+    if (!record) return;
+    await updateVehicleMaintenance(id, { ...record, completed: false });
+    setMaintenanceRecords(prev =>
+      prev.map(r => (r.id === id ? { ...r, completed: false } : r))
+    );
+  };
+
   // Find the selected vehicle details
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | undefined>(undefined);
 
@@ -154,19 +163,21 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
               </select>
             </label>
           )}
+          <div className="maintenance_form">
           <div className="long-label">
-          <label>
+          <label className="maintenance_title" id="maintenance_title">
             Maintenance Title:
-            <input type="text" name="maintenance_title" value={form.maintenance_title} onChange={handleChange} required />
           </label>
-          <label>
+          <input type="text" id="maintenance_title" name="maintenance_title" value={form.maintenance_title} onChange={handleChange} required />
+         
+          <label className="maintenance_description" id="maintenance_description">
             Maintenance Description:
-            <input type="text" name="maintenance_description" value={form.maintenance_description} onChange={handleChange} required />
           </label>
-          <label>
+            <input type="text" id="maintenance_description" name="maintenance_description" value={form.maintenance_description} onChange={handleChange} required />
+          <label className="parts_needed" id="parts_needed">
             Parts Needed:
-            <input type="text" name="parts_needed" value={form.parts_needed} onChange={handleChange} required />
           </label>
+            <input type="text" id="parts_needed" name="parts_needed" value={form.parts_needed} onChange={handleChange} required />
           </div>
           <div className="short-label">
           <label>
@@ -190,6 +201,7 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
             />
           </label>
           </div>
+          </div>
           <button type="submit">Add Maintenance Entry</button>
         </form>
       </div>
@@ -211,17 +223,22 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
                   textDecoration: record.completed ? 'line-through' : 'none',
                 }}
               >
-                <li style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                  <strong>{record.maintenance_title}</strong> - {record.maintenance_description} Parts:{record.parts_needed} Cost:{record.cost} Time:{record.time_spent}  (Due: {record.mileage_due} miles)
-                  {record.completed && <span style={{ color: 'green', marginLeft: 8 }}>(Completed)</span>}
-                </li>
-                <button onClick={() => navigate('/EditMaintenance', { state: { record } })} disabled={record.completed}>Edit</button>
-                <button onClick={() => handleDelete(record.id)} disabled={record.completed}>Delete</button>
-                <button onClick={() => navigate('/DisplayMaintenance', { state: { record } })}>View</button>
-                {!record.completed && (
-                  <button onClick={() => handleMarkComplete(record.id)}>Mark Complete</button>
-                )}
+                <ul className="records">
+                  <li className="records" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                    <strong>{record.maintenance_title}</strong> - {record.maintenance_description} Parts:{record.parts_needed} Cost:{record.cost} Time:{record.time_spent}  (Due: {record.mileage_due} miles)
+                    {record.completed && <span style={{ color: 'green', marginLeft: 8 }}>(Completed)</span>}
+                  </li>
+                  <button onClick={() => navigate('/EditMaintenance', { state: { record } })} disabled={record.completed}>Edit</button>
+                  <button onClick={() => handleDelete(record.id)} disabled={record.completed}>Delete</button>
+                  {!record.completed && (
+                    <button onClick={() => handleMarkComplete(record.id)}>Mark Complete</button>
+                  )}
+                  {record.completed && (
+                    <button onClick={() => handleMarkIncomplete(record.id)}>Mark Incomplete</button>
+                  )}
+                </ul>
               </div>
+              
             ))}
           </ul>
         )}

@@ -16,6 +16,11 @@
   float:center;
 }
 
+.navbar-logo>h1 {
+  font-size:3rem;
+  
+}
+
 li a, .dropbtn {
   display: inline-block;
  text-align: center;

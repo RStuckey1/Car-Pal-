@@ -133,23 +133,23 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
           </select>
         </label>
       )}
-      <label>
+      <label className="date">
         Date:
         <input type="date" name="date" value={form.date} onChange={handleChange} required />
       </label>
-      <label>
+      <label className="date">
         Current Miles:
         <input type="number" name="current_miles" value={form.current_miles} onChange={handleChange} required />
       </label>
-      <label>
+      <label className="date">
         Gallons Gas:
         <input type="number" name="gallons_gas" value={form.gallons_gas} onChange={handleChange} required />
       </label>
-      <label>
+      <label className="date">
         Gas Price:
         <input type="number" name="gas_price" value={form.gas_price} onChange={handleChange} required />
       </label>
-      <button type="submit">Add Gas Entry</button>
+      <button className="date" type="submit">Add Gas Entry</button>
     </form>
     </div>
   );

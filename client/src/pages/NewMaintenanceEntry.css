@@ -3,13 +3,18 @@
     width:100%;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 2%;
 }
 
 .newMaintenanceEntry>h2 {
     font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 2%;
+}
+
+.newMaintenanceEntry>button {
+    font-size:1.5rem;
+    background-color:#7C7C7C ;
 }
 
 .vehicle-info {
@@ -31,32 +36,61 @@
 
 }
 
-.long-label>label{
-    display: flex;
+.maintenance_form {
+    display:flex
+
+}
+.long-label {
+    display:flex;
     flex-direction: column;
-    font-size:1.5rem;
-    font-weight: 600;
-    width: 100%;
-    margin: 3% 0;
+    
 }
 
-.long-label>label>input {
-    display: flex;
-    width: 100%;
-    margin: 3% 0;
-    text-decoration: none;
-    font-size:1.5rem;
+label#maintenance_title {
+    font-size:2rem;
+    font-weight:600;
+}
+
+input#maintenance_title {
+    width:100%;
+    border: 2px solid #000000;
     border-radius: 5px;
-    border: 3px solid #000000;
+    font-size:1.5rem;
+    padding:1%
+}
+
+label#maintenance_description {
+    font-size:2rem;
+    font-weight:600;
+}
+
+input#maintenance_description {
+    width:300px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    font-size:1.5rem;
+    padding:3%;
+}
+
+label#parts_needed {
+    font-size:2rem;
+    font-weight:600;
+}
+
+input#parts_needed {
+    width:100%;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    font-size:1.5rem;
+    padding:3%
 }
 
 .short-label {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     padding:1%;
     margin: 1% 0;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -79,7 +113,7 @@
     text-decoration: none;
     font-size:1.5rem;
     border-radius: 5px;
-    border: 3px solid #000000;
+    border: 2px solid #000000;
 }
 
 .short-label>label>input[type=checkbox] {
@@ -89,10 +123,27 @@
     text-decoration: none;
     font-size:1.5rem;
     border-radius: 5px;
-    border: 3px solid #000000;
+    border: 2px solid #000000;
 }
 .vehicle-info>form>label>input:focus {
     outline: none;
     border-color: #007bff;
 }
 
+#root > div.container > div > div.vehicle-info > form > button
+ {
+    font-size:1.5rem;
+    background-color:#7C7C7C;
+    width:40%;
+    align-self: center;
+ }
+
+ li.records {
+    font-size: 2rem;
+    font-weight: 600;
+ }
+
+ .existing-maintenance>ul button {
+    font-size:1.5rem;
+    background-color: #7C7C7C;
+ }

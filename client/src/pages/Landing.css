@@ -1,11 +1,11 @@
 .landing-body {
     width: 100vh;
-      background-color: #899878;
+      background-color: #90C2E7;
 }
 
 .landing {
     display: flex;
-      background-color: #899878;
+      background-color: #90C2E7;
     flex-direction: column;
     justify-content: center;
     text-align: center;
@@ -20,6 +20,7 @@
 
 .container>h1 {
     color: black;
+    font-size: 3rem;
     font-weight: 600;
     margin: 2% auto 2% auto;
 }
@@ -27,6 +28,7 @@
 .container>h3 {
     color: black;
     font-weight: 600;
+    font-size: 2rem;
     margin: 4% auto 4% auto;
 }
 
@@ -34,18 +36,19 @@
 #root>div.container>div>div>button:nth-child(5) {
     border: solid 2px #000000;
     border-radius: 10px;
+    background-color: #7C7C7C;
     padding: 2%;
     font-size: 2.5em;
     margin: 0% 5% 5% 5%;
-
 }
 
-#root>div.container>div>div>button:nth-child(4) {
+#root > div.container > div > div > button:nth-child(6) {
     border: solid 2px #000000;
     border-radius: 10px;
+    background-color: #7C7C7C;
     padding: 2%;
     font-size: 2.5em;
-    margin: 0% 5% 1% 5%;
+    margin: 0% 5% 5% 5%;
 }
 
 .welcome>h1 {
@@ -119,7 +122,7 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: 15616d;
+    background-color: #7C7C7C;
 }
 
 .links h3,

@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 1%
 }
 
 .display-records>p {
@@ -26,22 +26,25 @@
 }
 
 .display-records th, .display-records td {
-  border: 1px solid #000;
-  padding: 10px;
+  border: 1px solid #000000;
+  padding: 2%;
   text-align: center;
 }
 
 .display-records th {
-  background-color: #f2f2f2;
+  background-color: #DE9151;
   font-weight: bold;
 }
 
 .display-records tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #90C2E7;
 }
 
+.display-records tr:nth-child(odd) {
+  background-color: #f7b32b;
+}
 .display-records tr:hover {
-  background-color: #f1f1f1;
+  background-color: #a31621;
 }
 
 
