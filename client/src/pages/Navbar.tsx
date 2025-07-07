@@ -41,7 +41,6 @@ const CustomNavbar = () => {
               <a href="#"><Link to="/Landing">Home</Link></a>
               <a href="#"><Link to="/DisplayVehicles">Your Vehicles</Link></a>
               <a href="#"><Link to="/NewVehicles">Enter a New Vehicle</Link></a>
-              <a href="#"><Link to="/DisplayComments">Comment Space</Link></a>
               <a href="#"><button onClick={handleLogout}>Logout</button></a>
               </div>
               </li>

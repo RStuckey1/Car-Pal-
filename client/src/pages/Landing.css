@@ -1,11 +1,11 @@
 .landing-body {
     width: 100vh;
-      background-color: #90C2E7;
+      background-color: #007EA7;
 }
 
 .landing {
     display: flex;
-      background-color: #90C2E7;
+      background-color: #007EA7;
     flex-direction: column;
     justify-content: center;
     text-align: center;

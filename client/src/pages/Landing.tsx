@@ -30,7 +30,6 @@ const Landing = () => {
             <div className="links">
               <h3><Link to="/DisplayVehicles">Your Vehicles</Link></h3>
               <h3><Link to="/NewVehicles">Enter a New Vehicle</Link></h3>
-              <h3><Link to="/DisplayComments">Comment Space</Link></h3>
             </div>
           </>
         )}

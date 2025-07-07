@@ -8,8 +8,6 @@ import ErrorPage from "./pages/ErrorPage";
 import Landing from "./pages/Landing";
 import NewVehicles from "./pages/NewVehicles";
 import Signup from "./pages/Signup";
-import NewComments from "./pages/NewComments";
-import DisplayComments from "./pages/DisplayComments.tsx";
 import DisplayVehicles from "./pages/DisplayVehicles";
 import NewGasEntry from "./pages/NewGasEntry.tsx";
 import DisplayRecords from "./pages/DisplayRecords.tsx";
@@ -54,14 +52,6 @@ const router = createBrowserRouter([
         element: <Signup />
       },
       {
-        path: '/newComments',
-        element: <NewComments />
-      },
-      {
-        path: '/DisplayComments',
-        element: <DisplayComments />
-      },
-       {
         path: '/DisplayRecords/:vehicleId',
         element: <DisplayRecords />
       },
