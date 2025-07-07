@@ -121,7 +121,7 @@ const NewVehicles = () => {
           onChange={handleChange}
         />
 
-        <button type="submit">Submit Vehicle</button>
+        <button className="newVehicleButton" type="submit">Submit Vehicle</button>
       </form>
     </div>
   );
