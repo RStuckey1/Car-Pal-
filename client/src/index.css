@@ -8,30 +8,31 @@
     text-align: center;
     float: top;
     display: flex;
+    color:#fcf7f8;
     flex-direction: column;
-    background-color: #7C7C7C;
+    background-color: #1D3461;
     align-items: center;
     justify-content: center;
-    border: 3px solid black;
+    border: 3px solid #fcf7f8;
     border-radius: 10px;
 }
 
 h1 {
-    color: #000000;
+   
     font-family: 'Courier New', Courier, monospace;
     font-size: 4rem;
     font-weight: 600;
 }
 
 h2 {
-    color: #000000;
+   
     font-family: 'Courier New', Courier, monospace;
     font-size: 4rem;
     font-weight: 600;
 }
 
 h3 {
-    color: #000000;
+   
     font-family: 'Courier New', Courier, monospace;
     font-size: 3rem;
     font-weight: 600;
@@ -54,7 +55,7 @@ li {
 
 
 .form-container {
-    color: #000000;
+    color: #fcf7f8;
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -63,14 +64,14 @@ li {
 }
 
 .form-container>h2 {
-    color: #000000;
+    color: #fcf7f8;
     font-size: 3rem;
     font-weight: 600;
 }
 
 
 .form-group>label {
-    color: #000000;
+    color: #fcf7f8;
     font-size: 3rem;
     font-weight: 700;
     margin: 2% 0 2% 0;
@@ -89,8 +90,9 @@ li {
 
 .form-group {
     width: 100%;
-    color: #000000;
-    border: 2px solid #001524;
+    color: #fcf7f8;
+    border: 2px solid #fcf7f8;
+    background-color: #1D3461;
     border-radius: 10px;
     padding: 3%;
     margin: 5% 5% 5% 5%;
@@ -98,7 +100,7 @@ li {
 
 
 .form-container1>h2 {
-    color: #000000;
+    color: #fcf7f8;
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
@@ -114,9 +116,9 @@ li {
 }
 
 button.user-login {
-    color: #000000;
-    border: solid 2px #000000;
-    background-color: #7C7C7C;
+    color: #fcf7f8;
+    border: solid 2px #fcf7f8;
+    background-color: #1D3461;
     border-radius: 10px;
     padding: 2%;
     font-size: 2em;
@@ -126,9 +128,9 @@ button.user-login {
 }
 
 button.new-login {
-    color: #000000;
-    border: solid 2px #000000;
-    background-color: #7C7C7C;
+    color: #fcf7f8;
+    border: solid 2px #fcf7f8;
+    background-color: #1D3461;
     border-radius: 10px;
     padding: 2%;
     font-size: 2em;
@@ -142,7 +144,7 @@ button.new-login {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 600;
-    color: #000000;
+    color: #fcf7f8;
     margin: 2% 0 2% 0;
 }
 

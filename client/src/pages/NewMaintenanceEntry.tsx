@@ -55,6 +55,7 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     VehicleId,
   });
   const [maintenanceRecords, setMaintenanceRecords] = useState<MaintenanceRecord[]>([]);
+  const [editingId, setEditingId] = useState<number | null>(null);
 
   // Fetch user's vehicles only if not provided
   useEffect(() => {
@@ -86,12 +87,27 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
       ...form,
       mileage_due: Number(form.mileage_due),
     };
-    await createVehicleMaintenance(maintenanceData);
-    // Refresh maintenance records after adding
+    if (editingId) {
+      await updateVehicleMaintenance(editingId, maintenanceData);
+    } else {
+      await createVehicleMaintenance(maintenanceData);
+    }
+    // Refresh maintenance records after adding/updating
     if (VehicleId) {
       retrieveMaintenanceByVehicle(VehicleId).then(setMaintenanceRecords);
     }
-    // Optionally clear form
+    // Optionally clear form and editing state
+    setForm({
+      mileage_due: 0,
+      maintenance_title: '',
+      maintenance_description: '',
+      parts_needed: '',
+      cost: 0,
+      time_spent: 0,
+      completed: false,
+      VehicleId,
+    });
+    setEditingId(null);
   };
 
   const handleDelete = async (id: number) => {
@@ -202,7 +218,9 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
           </label>
           </div>
           </div>
-          <button type="submit">Add Maintenance Entry</button>
+          <button type="submit">
+  {editingId ? "Update Maintenance Entry" : "Add Maintenance Entry"}
+</button>
         </form>
       </div>
 
@@ -228,7 +246,23 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
                     <strong>{record.maintenance_title}</strong> - {record.maintenance_description} Parts:{record.parts_needed} Cost:{record.cost} Time:{record.time_spent}  (Due: {record.mileage_due} miles)
                     {record.completed && <span style={{ color: 'green', marginLeft: 8 }}>(Completed)</span>}
                   </li>
-                  <button onClick={() => navigate('/EditMaintenance', { state: { record } })} disabled={record.completed}>Edit</button>
+                  <button
+  onClick={() => {
+    setEditingId(record.id);
+    setForm({
+      mileage_due: record.mileage_due,
+      maintenance_title: record.maintenance_title,
+      maintenance_description: record.maintenance_description,
+      parts_needed: record.parts_needed,
+      cost: record.cost,
+      time_spent: record.time_spent,
+      completed: !!record.completed,
+      VehicleId: record.VehicleId,
+    });
+  }}
+>
+  Edit
+</button>
                   <button onClick={() => handleDelete(record.id)} disabled={record.completed}>Delete</button>
                   {!record.completed && (
                     <button onClick={() => handleMarkComplete(record.id)}>Mark Complete</button>

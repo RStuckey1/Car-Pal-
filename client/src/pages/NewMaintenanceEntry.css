@@ -1,20 +1,24 @@
 .newMaintenanceEntry {
     display: flex;
-    width:100%;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     padding: 2%;
 }
 
 .newMaintenanceEntry>h2 {
+     color: #fcf7f8;
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 2%;
 }
 
 .newMaintenanceEntry>button {
-    font-size:1.5rem;
-    background-color:#7C7C7C ;
+    font-size: 1.5rem;
+    background-color: #1D3461;
+    color: #fcf7f8;
+    border: 1px solid #fcf7f8;
+    border-radius: 5px;
 }
 
 .vehicle-info {
@@ -33,117 +37,133 @@
     column-count: 2;
     width: 100%;
     gap: 10px;
+     color: #fcf7f8;
 
 }
 
 .maintenance_form {
-    display:flex
-
+    display: flex
 }
+
 .long-label {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    
+
 }
 
 label#maintenance_title {
-    font-size:2rem;
-    font-weight:600;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 input#maintenance_title {
-    width:100%;
-    border: 2px solid #000000;
+    width: 100%;
+    border: 2px solid #1D3461;
+     color: #1D3461;
     border-radius: 5px;
-    font-size:1.5rem;
-    padding:1%
+    font-size: 1.5rem;
+    padding: 1%
 }
 
 label#maintenance_description {
-    font-size:2rem;
-    font-weight:600;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 input#maintenance_description {
-    width:300px;
-    border: 2px solid #000000;
+    width: 300px;
+    border: 2px solid #1D3461;
+    color: #1D3461;
     border-radius: 5px;
-    font-size:1.5rem;
-    padding:3%;
+    font-size: 1.5rem;
+    padding: 3%;
 }
 
 label#parts_needed {
-    font-size:2rem;
-    font-weight:600;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 input#parts_needed {
-    width:100%;
+    width: 100%;
     border: 2px solid #000000;
     border-radius: 5px;
-    font-size:1.5rem;
-    padding:3%
+    font-size: 1.5rem;
+    padding: 3%
 }
 
 .short-label {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding:1%;
+    padding: 1%;
     margin: 1% 0;
     align-items: center;
 }
 
 .short-label>label {
     display: row;
-    font-size:1.5rem;
+    font-size: 1.5rem;
     font-weight: 600;
     width: 30%;
     margin: 1% 0;
     padding: 1%;
     text-align: left;
     text-decoration: none;
-    
+
 }
 
 .short-label>label>input[type=number] {
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     width: 40%;
     text-decoration: none;
-    font-size:1.5rem;
+    font-size: 1.5rem;
     border-radius: 5px;
     border: 2px solid #000000;
 }
 
 .short-label>label>input[type=checkbox] {
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     width: 40%;
     text-decoration: none;
-    font-size:1.5rem;
+    font-size: 1.5rem;
     border-radius: 5px;
     border: 2px solid #000000;
 }
+
 .vehicle-info>form>label>input:focus {
     outline: none;
     border-color: #007bff;
 }
 
-#root > div.container > div > div.vehicle-info > form > button
- {
-    font-size:1.5rem;
-    background-color:#7C7C7C;
-    width:40%;
+#root>div.container>div>div.vehicle-info>form>button {
+    font-size: 1.5rem;
+    background-color: #1D3461;
+    color: #fcf7f8;
+    border: 1px solid #fcf7f8;
+    border-radius: 5px;
+    width: 40%;
     align-self: center;
- }
+}
 
- li.records {
+li.records {
+    color: #fcf7f8;
     font-size: 2rem;
     font-weight: 600;
- }
+}
 
- .existing-maintenance>ul button {
-    font-size:1.5rem;
-    background-color: #7C7C7C;
- }
+.existing-maintenance>ul button {
+    font-size: 1.5rem;
+    background-color: #1D3461;
+    color: #fcf7f8;
+}
+
+.existing-maintenance> h3 {
+    color: #fcf7f8;
+}
+
+.existing-maintenance> p {
+    color: #fcf7f8;
+}

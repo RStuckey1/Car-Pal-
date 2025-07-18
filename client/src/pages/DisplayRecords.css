@@ -7,7 +7,7 @@
 }
 
 .display-records>p {
-  color: #000000;
+  color: #fcf7f8;
   font-size: 2.5rem;
   font-weight: 600;
   text-align: center;
@@ -15,6 +15,7 @@
 }
 
 .display-records h2 {
+  color: #fcf7f8;
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 20px;
@@ -37,11 +38,13 @@
 }
 
 .display-records tr:nth-child(even) {
-  background-color: #90C2E7;
+   background-color: #1D3461;
+   color: #fcf7f8;
 }
 
 .display-records tr:nth-child(odd) {
-  background-color: #f7b32b;
+  background-color: #fcf7f8;
+  color:#1D3461;
 }
 .display-records tr:hover {
   background-color: #a31621;
