@@ -19,21 +19,21 @@
 
 h1 {
    
-    font-family: 'Courier New', Courier, monospace;
+   font-family:"Trade Winds";;
     font-size: 4rem;
     font-weight: 600;
 }
 
 h2 {
    
-    font-family: 'Courier New', Courier, monospace;
+    font-family:"Trade Winds";
     font-size: 4rem;
     font-weight: 600;
 }
 
 h3 {
    
-    font-family: 'Courier New', Courier, monospace;
+   font-family:"Trade Winds";
     font-size: 3rem;
     font-weight: 600;
 
@@ -41,14 +41,14 @@ h3 {
 
 p {
     color: #000000;
-    font-family: 'Courier New', Courier, monospace;
+   font-family:"Trade Winds";
     font-size: 2rem;
     font-weight: 500;
 }
 
 li {
     color: #000000;
-    font-family: 'Courier New', Courier, monospace;
+  font-family:"Trade Winds";
     font-size: 2rem;
     font-weight: 500;
 }

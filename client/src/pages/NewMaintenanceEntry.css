@@ -167,3 +167,62 @@ li.records {
 .existing-maintenance> p {
     color: #fcf7f8;
 }
+
+.existing-maintenance {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.existing-maintenance table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fcf7f8;
+  color: #1D3461;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.existing-maintenance thead {
+  background-color: #1D3461;
+  color: #fcf7f8;
+}
+
+.existing-maintenance th,
+.existing-maintenance td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.existing-maintenance th {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.existing-maintenance td {
+  font-size: 1rem;
+}
+
+.existing-maintenance tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.existing-maintenance button {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  margin: 2px;
+  background-color: #1D3461;
+  color: #fcf7f8;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.existing-maintenance button:hover:not(:disabled) {
+  background-color: #2a4d7f;
+}
+
+.existing-maintenance button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

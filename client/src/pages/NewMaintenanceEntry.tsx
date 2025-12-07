@@ -225,58 +225,86 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
       </div>
 
       <div className="existing-maintenance">
-        <h3>Existing Maintenance Records</h3>
-        {maintenanceRecords.length === 0 ? (
-          <p>No maintenance records found for this vehicle.</p>
-        ) : (
-          <ul>
-            {maintenanceRecords.map(record => (
-              <div
-                key={record.id}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  opacity: record.completed ? 0.5 : 1,
-                  textDecoration: record.completed ? 'line-through' : 'none',
-                }}
-              >
-                <ul className="records">
-                  <li className="records" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                    <strong>{record.maintenance_title}</strong> - {record.maintenance_description} Parts:{record.parts_needed} Cost:{record.cost} Time:{record.time_spent}  (Due: {record.mileage_due} miles)
-                    {record.completed && <span style={{ color: 'green', marginLeft: 8 }}>(Completed)</span>}
-                  </li>
-                  <button
-  onClick={() => {
-    setEditingId(record.id);
-    setForm({
-      mileage_due: record.mileage_due,
-      maintenance_title: record.maintenance_title,
-      maintenance_description: record.maintenance_description,
-      parts_needed: record.parts_needed,
-      cost: record.cost,
-      time_spent: record.time_spent,
-      completed: !!record.completed,
-      VehicleId: record.VehicleId,
-    });
-  }}
->
-  Edit
-</button>
-                  <button onClick={() => handleDelete(record.id)} disabled={record.completed}>Delete</button>
-                  {!record.completed && (
-                    <button onClick={() => handleMarkComplete(record.id)}>Mark Complete</button>
-                  )}
-                  {record.completed && (
-                    <button onClick={() => handleMarkIncomplete(record.id)}>Mark Incomplete</button>
-                  )}
-                </ul>
+  <h3>Existing Maintenance Records</h3>
+  {maintenanceRecords.length === 0 ? (
+    <p>No maintenance records found for this vehicle.</p>
+  ) : (
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Parts Needed</th>
+          <th>Cost</th>
+          <th>Time (hrs)</th>
+          <th>Mileage Due</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {maintenanceRecords.map(record => (
+          <tr
+            key={record.id}
+            style={{
+              opacity: record.completed ? 0.5 : 1,
+              textDecoration: record.completed ? 'line-through' : 'none',
+            }}
+          >
+            <td><strong>{record.maintenance_title}</strong></td>
+            <td>{record.maintenance_description}</td>
+            <td>{record.parts_needed}</td>
+            <td>${record.cost}</td>
+            <td>{record.time_spent}</td>
+            <td>{record.mileage_due} miles</td>
+            <td>
+              {record.completed ? (
+                <span style={{ color: 'green' }}>Completed</span>
+              ) : (
+                <span style={{ color: 'orange' }}>Pending</span>
+              )}
+            </td>
+            <td>
+              <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => {
+                    setEditingId(record.id);
+                    setForm({
+                      mileage_due: record.mileage_due,
+                      maintenance_title: record.maintenance_title,
+                      maintenance_description: record.maintenance_description,
+                      parts_needed: record.parts_needed,
+                      cost: record.cost,
+                      time_spent: record.time_spent,
+                      completed: !!record.completed,
+                      VehicleId: record.VehicleId,
+                    });
+                  }}
+                  disabled={record.completed}
+                >
+                  Edit
+                </button>
+                <button onClick={() => handleDelete(record.id)} disabled={record.completed}>
+                  Delete
+                </button>
+                {!record.completed && (
+                  <button onClick={() => handleMarkComplete(record.id)}>
+                    Complete
+                  </button>
+                )}
+                {record.completed && (
+                  <button onClick={() => handleMarkIncomplete(record.id)}>
+                    Undo
+                  </button>
+                )}
               </div>
-              
-            ))}
-          </ul>
-        )}
-      </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )}
+</div>
     </div>
   );
 };
