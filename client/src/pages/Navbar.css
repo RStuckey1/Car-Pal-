@@ -5,59 +5,83 @@
 
 
 .navbar-logo {
-  background-color: #1D3461
+  background-color: #1D3461;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  flex-wrap: nowrap;
+  font-size: 1.5rem;
 }
 
 .navbar-logo>img {
-  display:flex;
-  float:left;
-  margin:1% 2%;
+  flex-shrink: 0;
 }
 
 .navbar-logo>ul {
-  width:60%;
-  display:flex;
+  display: flex;
   flex-direction: row;
   list-style: none;
   justify-content: left;
-  overflow: hidden;
+  overflow: visible;
   color: #fcf7f8;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
 }
 
 .navbar-logo>li {
   color: #fcf7f8;
-  font-size:1rem;
-  
+  font-size: 1rem;
+  white-space: nowrap;
 }
 
 .navbar-logo>h1 {
   font-family: "Trade Winds", system-ui;
-  font-size: 3rem;
+  font-size: 1.5rem;
   color: #fcf7f8;
-
+  margin: 0;
+  white-space: nowrap;
 }
 
 #root > div.App > nav > div > ul > li > a {
-  font-size: 2rem;
-  margin:10%;
-  padding:5%;
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
   justify-content: center;
   text-align: center;
   color: #fcf7f8;
+  white-space: nowrap;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  border-radius: 10px;
 }
 
-li a:hover,
-.dropdown:hover .dropbtn {
+#root > div.App > nav > div > ul > li > a:hover {
   background-color: #1D3461;
   border: 2px solid #fcf7f8;
   border-radius: 10px;
-
+  box-sizing: border-box;
 }
 
 li.dropdown {
   display: inline-block;
   color: #fcf7f8;
-  font-family: "Trade Winds"
+  font-family: "Trade Winds";
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+
+}
+
+.dropbtn {
+  border: 2px solid white;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .dropdown-content {
@@ -65,22 +89,24 @@ li.dropdown {
   position: absolute;
   background-color: #1D3461;
   color: #fcf7f8;
-  width: 350px;
-  height:400px;
+  width: auto;
+  height:auto;
+  border: 2px solid white;
   border-radius: 10px;
   z-index: 1;
 }
 .dropdown-content a {
   color: #fcf7f8;
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
   font-family:"Trade Winds";
+  border: 2px solid transparent;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .dropdown-content a:visited {
   color: #fcf7f8;
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
@@ -88,7 +114,10 @@ li.dropdown {
 .dropdown-content a:hover {
   background-color: #fcf7f8;
   color:#000000;
-  padding: 12px 16px;
+  border: 2px solid white;
+  border-radius: 10px;
+  box-sizing: border-box;
+  
 }
 
 .dropdown:hover .dropdown-content {
@@ -101,6 +130,7 @@ li.dropdown {
 div > ul > li > div > a:nth-child(4) > button {
   background-color: #1D3461;
   border: 1px solid #fcf7f8;
+  border-radius: 10px;
   justify-content: center;
   margin: 0% auto 0% auto;
   color: #fcf7f8;
@@ -108,4 +138,12 @@ div > ul > li > div > a:nth-child(4) > button {
   display: block;
   font-family: "Trade Winds";
   font-size: 1.5rem;
+}
+
+ul.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
 }

@@ -20,8 +20,7 @@
 
 .container>h1 {
     color: #fcf7f8;
-    
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
     margin: 2% auto 2% auto;
 }
@@ -29,7 +28,7 @@
 .container>h3 {
     color: #fcf7f8;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 4% auto 4% auto;
 }
 
@@ -121,7 +120,7 @@ a:hover {
 .links>h3 {
     position: relative;
     text-align: center;
-    font-size: 3em;
+    font-size: 2em;
     margin: 3% auto 1% auto;
     color: #15616d;
     font-weight: 600;

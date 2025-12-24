@@ -1,6 +1,6 @@
 import { useAuth } from '../context/AuthContext';
 import auth from "../utils/auth";
-import carpic from "../assets/supercar.png"
+import carpic from "../assets/car1.png"
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Link } from 'react-router-dom';
 import "../index.css";
@@ -28,7 +28,7 @@ const CustomNavbar = () => {
         {!isLoggedIn ? (
           <div className="navbar-logo">
             <img src={carpic} alt="carlogopicture"></img>
-            <ul>
+            <ul className="logo">
               <li><Link to="/Landing">Car-Pal</Link></li>
               <li><Link to="/login">Login</Link></li>
               <li><Link to="/signup">Signup</Link></li>
