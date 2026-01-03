@@ -114,7 +114,12 @@ div>ul.vehicle-list>li {
 }
 
 .vehicle-summary {
-    width:500px;
+    width:100%;
     background-color: #1D3461;
     color: #fcf7f8;
+    border: 3px solid #fcf7f8;   
+}
+
+.vehicle-summary:hover {
+    background-color:#de9151;
 }

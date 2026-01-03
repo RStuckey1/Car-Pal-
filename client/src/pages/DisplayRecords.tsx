@@ -47,7 +47,7 @@ const DisplayRecords: React.FC = () => {
       <h2>
         Gas Entries for {make && model ? `${make} ${model}` : 'Vehicle'}
       </h2>
-      <button onClick={() => navigate(-1)} style={{ marginBottom: '1em' }}>
+      <button className="backbutton" onClick={() => navigate(-1)} style={{ marginBottom: '1em' }}>
         Back
       </button>
       {gasEntries.length === 0 ? (
@@ -75,7 +75,7 @@ const DisplayRecords: React.FC = () => {
                 <td>{entry.mpg}</td>
                 <td>{entry.gas_price}</td>
                 <td>
-                  <button onClick={() => handleDelete(entry.id)}>
+                  <button className="backbutton" onClick={() => handleDelete(entry.id)}>
                     Delete it
                   </button>
                 </td>

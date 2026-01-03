@@ -25,6 +25,13 @@
     margin: 2% auto 2% auto;
 }
 
+.container>h2 {
+    color: #fcf7f8;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 2% auto 2% auto;
+}
+
 .container>h3 {
     color: #fcf7f8;
     font-weight: 600;
@@ -32,7 +39,9 @@
     margin: 4% auto 4% auto;
 }
 
-
+#root > div.container > div > div > div {
+    justify-content: center;
+}
 #root>div.container>div>div>button:nth-child(5) {
     border: solid 2px #fcf7f8;
     border-radius: 10px;
@@ -137,4 +146,20 @@ a:hover {
 .links h3:hover,
 .links h3 a:hover {
     transform: scale(1.2);
+}
+
+.login-button{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color:#fcf7f8;
+    font-family: 'Trade Winds';
+    background-color: #1D3461;
+    border: 2px solid #fcf7f8;
+    margin: 0 auto 0 auto;
+}
+
+.login-button:hover {
+    background-color: #de9151;
 }

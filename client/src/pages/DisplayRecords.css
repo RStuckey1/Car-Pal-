@@ -21,9 +21,18 @@
   margin-bottom: 20px;
 }
 
+.backbutton {
+  background-color: #1D3461;
+  color:#fcf7f8
+}
+
+.backbutton:hover {
+  background-color: #DE9151;
+}
 .display-records table {
   width: 100%;
   border-collapse: collapse;
+  font-family:'Trade Winds';
 }
 
 .display-records th, .display-records td {

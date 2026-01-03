@@ -5,19 +5,76 @@ button.backtovehicles {
     justify-content: center;
 }
 
+button.backtovehicles:hover {
+    background-color:#de9151 ;
+}
+
+
 .container-newVehicle>h2 {
     color:#fcf7f8
 }
 
-.form-newVehicle {
+.container-newVehicle {
+    display: flex;
+    width: 80%;
+    margin: 5% auto 5% auto;
+    padding: 5%;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.container-newVehicle>h2 {
+    color: #fcf7f8;
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 2% 0 2% 0;
+}
+
+.newVehicleButton {
+    background-color: #1D3461;
+    color:#fcf7f8;
+    border: 3px solid #fcf7f8;
+    border-radius: 10px;
+    padding: 2%;
+    font-family: 'Trade Winds';
+    font-size: 1.5em;
+    font-weight: 600;
+    align-items: center;
+    margin: 15% auto 5% auto;
+    display: flex;
+
+}
+.form-newVehicle {
+    width: 80%;
+    display: table-column;
+    flex-direction: column;
+    margin: 5% auto 5% auto;
+    padding: 5%;
+    align-items: center;
+    justify-content: center;
 }
 
 .form-newVehicle>label {
-    color:#fcf7f8;
+    display: flex;
+    color: #fcf7f8;
+    font-family:'Trade Winds';
+    font-size: 1.5em;
+    font-weight: 700;
+    justify-content: center;
+    margin: 2% auto 2% auto;
 }
 
+
 .form-newVehicle>input {
-    width:500px;
-    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-family:'Trade Winds';
+    border-radius: 5px;
+    margin: 5% auto 2% auto;
+    width: 500px;
+    height: 40%;
+    text-align: center;
 }

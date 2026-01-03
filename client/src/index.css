@@ -66,6 +66,7 @@ li {
     color: #fcf7f8;
     flex-direction: column;
     display: flex;
+    margin:1% auto 1% auto;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -73,25 +74,32 @@ li {
 
 .form-container>h2 {
     color: #fcf7f8;
-    font-size: 3rem;
+    margin: 2% 0 2% 0;
+    font-size: rem;
     font-weight: 600;
+    align-items: center;
 }
 
 
 .form-group>label {
     color: #fcf7f8;
-    font-size: 3rem;
+    font-family: 'Trade Winds';
+    font-size: 1.5rem;
     font-weight: 700;
     margin: 2% 0 2% 0;
+    text-align: center;
 }
 
 .form-input {
     display: flex;
     justify-content: center;
+    font-family: 'Trade Winds';
+    text-align: center;
     margin: 2%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-radius: 5px;
     padding: 5px;
+    
 }
 
 
@@ -112,7 +120,7 @@ li {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
-    margin: 4% 10% 4% 10%;
+    margin: 10% 10% 4% 10%;
 }
 
 .form-group {
@@ -129,22 +137,32 @@ button.user-login {
     background-color: #1D3461;
     border-radius: 10px;
     padding: 2%;
+    font-family: 'Trade Winds';
     font-size: 2em;
     align-items: center;
     margin: 1% auto 5% auto;
     display: flex;
 }
 
+button.user-login:hover {
+    background-color: #de9151 ;
+}
+
 button.new-login {
     color: #fcf7f8;
     border: solid 2px #fcf7f8;
     background-color: #1D3461;
+    font-family: 'Trade Winds';
     border-radius: 10px;
     padding: 2%;
     font-size: 2em;
     align-items: center;
     margin: 1% auto 5% auto;
     display: flex;
+}
+
+button.new-login:hover {
+    background-color: #de9151;
 }
 
 
@@ -157,75 +175,5 @@ button.new-login {
 }
 
 
-.container-newVehicle {
-    display: flex;
-    width: 80%;
-    margin: 5% auto 5% auto;
-    padding: 5%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.container-newVehicle>h2 {
-    color: #000000;
-    font-size: 3rem;
-    font-weight: 600;
-    margin: 2% 0 2% 0;
-}
-
-.container-newVehicle>button {
-    color: #000000;
-    border: solid 2px #000000;
-    border-radius: 10px;
-    padding: 2%;
-    font-size: 1.5em;
-    font-weight: 600;
-    align-items: center;
-    margin: 1% auto 5% auto;
-    display: flex;
-}
-
-.newVehicleButton {
-color: #000000;
-    border: solid 2px #000000;
-    border-radius: 10px;
-    padding: 2%;
-    font-size: 1.5em;
-    font-weight: 600;
-    align-items: center;
-    margin: 15% auto 5% auto;
-    display: flex;
-
-}
-.form-newVehicle {
-    width: 40%;
-    display: table-column;
-    flex-direction: column;
-    margin: 5% auto 5% auto;
-    padding: 5%;
-    align-items: center;
-    justify-content: center;
-}
-
-.form-newVehicle>label {
-    display: flex;
-    color: #000000;
-    font-size: 1.5em;
-    font-weight: 700;
-    justify-content: center;
-    margin: 2% auto 2% auto;
-}
 
 
-.form-newVehicle>input {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    border-radius: 5px;
-    margin: 5% auto 2% auto;
-    width: 500px;
-    height: 40%;
-    text-align: center;
-}

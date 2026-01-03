@@ -92,7 +92,7 @@ const DisplayVehicles: React.FC = () => {
       {vehicles.length > 0 ? (
         <ul className="vehicle-list">
           {vehicles.map((vehicle) => (
-            <li key={vehicle.id}>
+            <li className="vehicleList" key={vehicle.id}>
               <div className="vehicle-summary" onClick={() => handleExpand(vehicle.id)} style={{cursor: 'pointer'}}>
                 {vehicle.year} {vehicle.make} {vehicle.model}
               </div>

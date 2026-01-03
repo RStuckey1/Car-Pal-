@@ -161,7 +161,7 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
           ? `${selectedVehicle.year} ${selectedVehicle.make} ${selectedVehicle.model}`
           : 'Vehicle'}
       </h2>
-      <button onClick={() => navigate('/DisplayVehicles')}>
+      <button className="backbutton" onClick={() => navigate('/DisplayVehicles')}>
         Back to Vehicles
       </button>
       <div className="vehicle-info">

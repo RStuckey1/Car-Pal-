@@ -1,8 +1,11 @@
 .newMaintenanceEntry {
     display: flex;
     width: 100%;
+    margin: 2% auto 2% auto;
     flex-direction: column;
     align-items: center;
+    border: 3px solid #fcf7f8;
+    font-family:'Trade Winds';
     padding: 2%;
 }
 
