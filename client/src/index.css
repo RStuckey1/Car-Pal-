@@ -1,9 +1,13 @@
-:root {
+#root {
     background-color: #007EA7;
     box-sizing: border-box;
 
 }
 
+html {
+    background-color: #007EA7;
+    box-sizing: border-box;
+}
 .App {
     text-align: center;
     float: top;
@@ -15,6 +19,10 @@
     justify-content: center;
     border: 3px solid #fcf7f8;
     border-radius: 10px;
+}
+
+#root > div.container {
+    background-color: #007EA7;
 }
 
 h1 {
@@ -213,10 +221,11 @@ color: #000000;
 .form-newVehicle>input {
     display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
     border-radius: 5px;
     margin: 5% auto 2% auto;
-    width: 100%;
+    width: 500px;
     height: 40%;
     text-align: center;
 }

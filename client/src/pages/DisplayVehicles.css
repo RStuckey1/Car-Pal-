@@ -11,7 +11,7 @@
 .display-vehicles>p {
     color: #000000;
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 500;
     margin: 2% auto 2% auto;
 }
 
@@ -49,9 +49,17 @@ div>ul.vehicle-list {
 
 }
 
+#root > div.container > div > button {
+    border: 5px solid white;
+    width: 500px;
+    font-family: "Trade Winds";
+    font-weight: 600;
+    font-size:2rem;
+    
+}
 div>ul.vehicle-list>li {
     color: #000000;
-    border: 1px solid #fcf7f8;
+    border: 5px solid #fcf7f8;
     border-radius: 5px;
     font-weight: 550;
     margin: 4% auto 0% auto;
@@ -106,6 +114,7 @@ div>ul.vehicle-list>li {
 }
 
 .vehicle-summary {
+    width:500px;
     background-color: #1D3461;
     color: #fcf7f8;
 }

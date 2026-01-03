@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createVehicle as createVehicleAPI } from '../api/VehicleAPI';
 import { VehicleData } from '../interfaces/VehicleData';
 import { useAuth } from '../context/AuthContext';
+import "./NewVehicles.css"
 
 const NewVehicles = () => {
   const { User: loggedInUser, loading } = useAuth(); // Include loading state from AuthContext
@@ -56,7 +57,7 @@ const NewVehicles = () => {
   return (
     <div className="container-newVehicle">
       <h2>Enter New Vehicle</h2>
-      <button onClick={() => navigate('/DisplayVehicles')}>Back to Vehicles</button>
+      <button className='backtovehicles' onClick={() => navigate('/DisplayVehicles')}>Back to Vehicles</button>
       <form className="form-newVehicle" onSubmit={handleSubmit}>
         <label htmlFor="vin">VIN</label>
         <input

@@ -1,0 +1,23 @@
+button.backtovehicles {
+    background-color:#1D3461;
+    color:#fcf7f8;
+    text-align: center;
+    justify-content: center;
+}
+
+.container-newVehicle>h2 {
+    color:#fcf7f8
+}
+
+.form-newVehicle {
+    align-items: center;
+}
+
+.form-newVehicle>label {
+    color:#fcf7f8;
+}
+
+.form-newVehicle>input {
+    width:500px;
+    justify-self: center;
+}
