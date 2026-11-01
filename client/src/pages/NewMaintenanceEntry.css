@@ -45,7 +45,10 @@
 }
 
 .maintenance_form {
-    display: flex
+    display: flex;
+    border: 3px solid white;
+    padding:3%;
+    margin:1%;
 }
 
 .long-label {
@@ -141,11 +144,11 @@ input#parts_needed {
     border-color: #007bff;
 }
 
-#root>div.container>div>div.vehicle-info>form>button {
+.add-maintenance-button {
     font-size: 1.5rem;
     background-color: #1D3461;
     color: #fcf7f8;
-    border: 1px solid #fcf7f8;
+    border: 4px solid #fcf7f8;
     border-radius: 5px;
     width: 40%;
     align-self: center;

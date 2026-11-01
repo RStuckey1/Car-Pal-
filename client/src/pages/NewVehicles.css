@@ -47,7 +47,7 @@ button.backtovehicles:hover {
 }
 .form-newVehicle {
     width: 80%;
-    display: table-column;
+    display: flex;
     flex-direction: column;
     margin: 5% auto 5% auto;
     padding: 5%;
@@ -66,7 +66,8 @@ button.backtovehicles:hover {
 }
 
 
-.form-newVehicle>input {
+.form-newVehicle input,
+.form-newVehicle select {
     display: flex;
     justify-content: center;
     align-items: center;

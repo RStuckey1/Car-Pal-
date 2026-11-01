@@ -17,6 +17,7 @@ type GasData = {
 const DisplayRecords: React.FC = () => {
   const { vehicleId } = useParams<{ vehicleId: string }>();
   const [gasEntries, setGasEntries] = useState<GasData[]>([]);
+  const [loadError, setLoadError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,9 +30,20 @@ const DisplayRecords: React.FC = () => {
   }
 
   useEffect(() => {
-    if (vehicleId) {
-      retrieveGasByVehicle(Number(vehicleId)).then(setGasEntries);
-    }
+    if (!vehicleId) return;
+
+    const loadGasEntries = async () => {
+      try {
+        setLoadError('');
+        const entries = await retrieveGasByVehicle(Number(vehicleId));
+        setGasEntries(entries);
+      } catch (error) {
+        console.error('Error loading gas records:', error);
+        setLoadError('Unable to load gas entries. Please try again.');
+      }
+    };
+
+    loadGasEntries();
   }, [vehicleId]);
 
   // Add delete handler
@@ -50,7 +62,9 @@ const DisplayRecords: React.FC = () => {
       <button className="backbutton" onClick={() => navigate(-1)} style={{ marginBottom: '1em' }}>
         Back
       </button>
-      {gasEntries.length === 0 ? (
+      {loadError ? (
+        <p>{loadError}</p>
+      ) : gasEntries.length === 0 ? (
         <p>No gas entries found for this vehicle.</p>
       ) : (
         <table>

@@ -35,10 +35,14 @@ const retrieveGasByVehicle = async (vehicleId: number) => {
       }
     });
     if (!response.ok) throw new Error('Bad request');
-    return await response.json();
+    const data = await response.json();
+    if (!Array.isArray(data)) {
+      throw new Error('Invalid gas records response');
+    }
+    return data;
   } catch (err) {
     console.error('Error fetching gas by vehicle:', err);
-    return [];
+    throw err;
   }
 };
 
@@ -82,7 +86,7 @@ const createGas = async (body: GasData) => {
     }
 
     )
-    const data = response.json();
+    const data = await response.json();
 
     if (!response.ok) {
       throw new Error('invalid API response, check network tab!');

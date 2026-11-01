@@ -180,131 +180,136 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
             </label>
           )}
           <div className="maintenance_form">
-          <div className="long-label">
-          <label className="maintenance_title" id="maintenance_title">
-            Maintenance Title:
-          </label>
-          <input type="text" id="maintenance_title" name="maintenance_title" value={form.maintenance_title} onChange={handleChange} required />
-         
-          <label className="maintenance_description" id="maintenance_description">
-            Maintenance Description:
-          </label>
-            <input type="text" id="maintenance_description" name="maintenance_description" value={form.maintenance_description} onChange={handleChange} required />
-          <label className="parts_needed" id="parts_needed">
-            Parts Needed:
-          </label>
-            <input type="text" id="parts_needed" name="parts_needed" value={form.parts_needed} onChange={handleChange} required />
+            <div className="long-label">
+              <label className="maintenance_title" id="maintenance_title">
+                Maintenance Title:
+              </label>
+              <input type="text" id="maintenance_title" name="maintenance_title" value={form.maintenance_title} onChange={handleChange} required />
+
+              <label className="maintenance_description" id="maintenance_description">
+                Maintenance Description:
+              </label>
+              <input type="text" id="maintenance_description" name="maintenance_description" value={form.maintenance_description} onChange={handleChange} required />
+              <label className="parts_needed" id="parts_needed">
+                Parts Needed:
+              </label>
+              <input type="text" id="parts_needed" name="parts_needed" value={form.parts_needed} onChange={handleChange} required />
+            </div>
+            <div className="short-label">
+              <label>
+                Cost($):
+                <input type="number" name="cost" value={form.cost} onChange={handleChange} required />
+              </label>
+              <label>Mileage Due:
+                <input type="number" name="mileage_due" value={form.mileage_due} onChange={handleChange} required />
+              </label>
+              <label>
+                Time (in hours):
+                <input type="number" name="time_spent" value={form.time_spent} onChange={handleChange} required />
+              </label>
+              <label>
+                Completed:
+                <input
+                  type="checkbox"
+                  name="completed"
+                  checked={form.completed}
+                  onChange={(e) => setForm({ ...form, completed: e.target.checked })}
+                />
+              </label>
+              <button className="add-maintenance-button" type="submit">
+                {editingId ? "Update Maintenance Entry" : "Add Maintenance Entry"}
+              </button>
+            </div>
           </div>
-          <div className="short-label">
-          <label>
-            Cost($):
-            <input type="number" name="cost" value={form.cost} onChange={handleChange} required />
-          </label>
-          <label>Mileage Due:
-            <input type="number" name="mileage_due" value={form.mileage_due} onChange={handleChange} required />
-          </label>
-          <label>
-            Time (in hours):
-            <input type="number" name="time_spent" value={form.time_spent} onChange={handleChange} required />
-          </label>
-          <label>
-            Completed:
-            <input
-              type="checkbox"
-              name="completed"
-              checked={form.completed}
-              onChange={(e) => setForm({ ...form, completed: e.target.checked })}
-            />
-          </label>
-          </div>
-          </div>
-          <button type="submit">
-  {editingId ? "Update Maintenance Entry" : "Add Maintenance Entry"}
-</button>
+
         </form>
       </div>
 
       <div className="existing-maintenance">
-  <h3>Existing Maintenance Records</h3>
-  {maintenanceRecords.length === 0 ? (
-    <p>No maintenance records found for this vehicle.</p>
-  ) : (
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Parts Needed</th>
-          <th>Cost</th>
-          <th>Time (hrs)</th>
-          <th>Mileage Due</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {maintenanceRecords.map(record => (
-          <tr
-            key={record.id}
-            style={{
-              opacity: record.completed ? 0.5 : 1,
-              textDecoration: record.completed ? 'line-through' : 'none',
-            }}
-          >
-            <td><strong>{record.maintenance_title}</strong></td>
-            <td>{record.maintenance_description}</td>
-            <td>{record.parts_needed}</td>
-            <td>${record.cost}</td>
-            <td>{record.time_spent}</td>
-            <td>{record.mileage_due} miles</td>
-            <td>
-              {record.completed ? (
-                <span style={{ color: 'green' }}>Completed</span>
-              ) : (
-                <span style={{ color: 'orange' }}>Pending</span>
-              )}
-            </td>
-            <td>
-              <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-                <button
-                  onClick={() => {
-                    setEditingId(record.id);
-                    setForm({
-                      mileage_due: record.mileage_due,
-                      maintenance_title: record.maintenance_title,
-                      maintenance_description: record.maintenance_description,
-                      parts_needed: record.parts_needed,
-                      cost: record.cost,
-                      time_spent: record.time_spent,
-                      completed: !!record.completed,
-                      VehicleId: record.VehicleId,
-                    });
+        <h3>Existing Maintenance Records</h3>
+        {maintenanceRecords.length === 0 ? (
+          <p>No maintenance records found for this vehicle.</p>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Parts Needed</th>
+                <th>Cost</th>
+                <th>Time (hrs)</th>
+                <th>Mileage Due</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {maintenanceRecords.map(record => (
+                <tr
+                  key={record.id}
+                  style={{
+                    opacity: record.completed ? 0.5 : 1,
+                    textDecoration: record.completed ? 'line-through' : 'none',
                   }}
-                  disabled={record.completed}
                 >
-                  Edit
-                </button>
-                <button onClick={() => handleDelete(record.id)} disabled={record.completed}>
-                  Delete
-                </button>
-                {!record.completed && (
-                  <button onClick={() => handleMarkComplete(record.id)}>
-                    Complete
-                  </button>
-                )}
-                {record.completed && (
-                  <button onClick={() => handleMarkIncomplete(record.id)}>
-                    Undo
-                  </button>
-                )}
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )}
-</div>
+                  <td><strong>{record.maintenance_title}</strong></td>
+                  <td>{record.maintenance_description}</td>
+                  <td>{record.parts_needed}</td>
+                  <td>${record.cost}</td>
+                  <td>{record.time_spent}</td>
+                  <td>{record.mileage_due} miles</td>
+                  <td>
+                    {record.completed ? (
+                      <span style={{ color: 'green' }}>Completed</span>
+                    ) : (
+                      <span style={{ color: 'orange' }}>Pending</span>
+                    )}
+                  </td>
+                  <td>
+                    <div style={{
+                      display: 'flex',
+                      gap: '4px',
+                      flexWrap: 'wrap'
+                    }}>
+                      <button
+                        onClick={() => {
+                          setEditingId(record.id);
+                          setForm({
+                            mileage_due: record.mileage_due,
+                            maintenance_title: record.maintenance_title,
+                            maintenance_description: record.maintenance_description,
+                            parts_needed: record.parts_needed,
+                            cost: record.cost,
+                            time_spent: record.time_spent,
+                            completed: !!record.completed,
+                            VehicleId: record.VehicleId,
+                          });
+                        }}
+                        disabled={record.completed}
+                      >
+                        Edit
+                      </button>
+                      <button onClick={() => handleDelete(record.id)} disabled={record.completed}>
+                        Delete
+                      </button>
+                      {!record.completed && (
+                        <button onClick={() => handleMarkComplete(record.id)}>
+                          Complete
+                        </button>
+                      )}
+                      {record.completed && (
+                        <button onClick={() => handleMarkIncomplete(record.id)}>
+                          Undo
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 };

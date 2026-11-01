@@ -44,7 +44,7 @@ const NewVehicles = () => {
     }
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     if (name === 'vin') {
       setVinLookupError('');
@@ -53,6 +53,12 @@ const NewVehicles = () => {
       ...prev,
       [name]: name === 'year' || name === 'miles' || name === 'price' ? Number(value) : value,
     }));
+  };
+
+  const handleNumericFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    if ((e.currentTarget.name === 'year' || e.currentTarget.name === 'miles' || e.currentTarget.name === 'price') && e.currentTarget.value === '0') {
+      e.currentTarget.select();
+    }
   };
 
   const handleVinLookup = async () => {
@@ -135,6 +141,7 @@ const NewVehicles = () => {
             name="year"
             value={newVehicles.year}
             onChange={handleChange}
+            onFocus={handleNumericFocus}
           />
         </div>
         <div className="label">
@@ -145,17 +152,32 @@ const NewVehicles = () => {
             name="miles"
             value={newVehicles.miles}
             onChange={handleChange}
+            onFocus={handleNumericFocus}
           />
         </div>
         <div className="label">
           <label htmlFor="color">Color</label>
-          <input
-            type="text"
+          <select
             id="color"
             name="color"
             value={newVehicles.color}
             onChange={handleChange}
-          />
+          >
+            <option value="">Select a color</option>
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+            <option value="Gray">Gray</option>
+            <option value="Silver">Silver</option>
+            <option value="Blue">Blue</option>
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Brown">Brown</option>
+            <option value="Beige">Beige</option>
+            <option value="Gold">Gold</option>
+            <option value="Orange">Orange</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Purple">Purple</option>
+          </select>
         </div>
         <div className="label">
           <label htmlFor="price">Price</label>
@@ -165,6 +187,7 @@ const NewVehicles = () => {
             name="price"
             value={newVehicles.price}
             onChange={handleChange}
+            onFocus={handleNumericFocus}
           />
         </div>
         <button className="newVehicleButton" type="submit">Submit Vehicle</button>

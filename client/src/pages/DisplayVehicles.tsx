@@ -96,44 +96,42 @@ const DisplayVehicles: React.FC = () => {
               <div className="vehicle-summary" onClick={() => handleExpand(vehicle.id)} style={{cursor: 'pointer'}}>
                 {vehicle.year} {vehicle.make} {vehicle.model}
               </div>
-              {expandedId === vehicle.id && (
-                            <>
-                              <div className="vehicle-details">
-                                  <p>Color: {vehicle.color}</p>
-                                  <p>Initial Miles: {vehicle.miles}</p>
-                                  <p>Price: ${vehicle.price}</p>         
-                                  {vehicle.User && <p>Owner: {vehicle.User.username}</p>}
-                                  <p>
-                                    Latest Odometer:{" "}
-                                    {latestMiles[vehicle.id] !== undefined && latestMiles[vehicle.id] !== null
-                                      ? latestMiles[vehicle.id]
-                                      : "No gas entries yet"}
-                                  </p>
-                                  <button onClick={() => handleDelete(vehicle.id)}>Delete</button>
-                                  <button
-                                    onClick={() =>
-                                      navigate(`/DisplayRecords/${vehicle.id}`, {
-                                        state: { make: vehicle.make, model: vehicle.model }
-                                      })
-                                    }                                   
-                                  >
-                                    View Gas Records
-                                  </button>
-                                   <button
-                                    onClick={() =>
-                                      navigate(`/NewMaintenance`, {
-                                        state: { VehicleId: vehicle.id }
-                                      })
-                                    }
-                                  >
-                                    New Maintenance
-                                  </button>
-                              </div>    
-                              <div className="newestGas">
-                                    <NewGasEntry VehicleId={vehicle.id} />
-                              </div>
-                            </>
-                            )}
+              <div className={`vehicle-info-card${expandedId === vehicle.id ? ' is-expanded' : ''}`}>
+                <div className="vehicle-details">
+                    <p>Color: {vehicle.color}</p>
+                    <p>Initial Miles: {vehicle.miles}</p>
+                    <p>Price: ${vehicle.price}</p>
+                    {vehicle.User && <p>Owner: {vehicle.User.username}</p>}
+                    <p>
+                      Latest Odometer:{' '}
+                      {latestMiles[vehicle.id] !== undefined && latestMiles[vehicle.id] !== null
+                        ? latestMiles[vehicle.id]
+                        : 'No gas entries yet'}
+                    </p>
+                    <button onClick={() => handleDelete(vehicle.id)}>Delete</button>
+                    <button
+                      onClick={() =>
+                        navigate(`/DisplayRecords/${vehicle.id}`, {
+                          state: { make: vehicle.make, model: vehicle.model }
+                        })
+                      }
+                    >
+                      View Gas Records
+                    </button>
+                    <button
+                      onClick={() =>
+                        navigate(`/NewMaintenance`, {
+                          state: { VehicleId: vehicle.id }
+                        })
+                      }
+                    >
+                      New Maintenance
+                    </button>
+                </div>
+                <div className="newestGas">
+                  <NewGasEntry VehicleId={vehicle.id} />
+                </div>
+              </div>
             </li>
           ))}
         </ul>

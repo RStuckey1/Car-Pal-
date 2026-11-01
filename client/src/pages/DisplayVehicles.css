@@ -30,6 +30,10 @@
 
 }
 
+.display-vehicles>button:hover {
+    background-color: #de9151;
+}
+
 .display-vehicles h1 {
     color: #fcf7f8;
     font-size: 2.5rem;
@@ -58,6 +62,7 @@ div>ul.vehicle-list {
     
 }
 div>ul.vehicle-list>li {
+    overflow: hidden;
     color: #000000;
     border: 5px solid #fcf7f8;
     border-radius: 5px;
@@ -66,7 +71,19 @@ div>ul.vehicle-list>li {
     ;
 }
 
+.vehicle-info-card {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+}
 
+.vehicle-info-card.is-expanded {
+    max-height: 1200px;
+    opacity: 1;
+    pointer-events: auto;
+}
 
 .vehicle-details {
     display: flex;
@@ -114,7 +131,8 @@ div>ul.vehicle-list>li {
 }
 
 .vehicle-summary {
-    width:100%;
+    width: 100%;
+    box-sizing: border-box;
     background-color: #1D3461;
     color: #fcf7f8;
     border: 3px solid #fcf7f8;   
