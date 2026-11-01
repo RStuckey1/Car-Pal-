@@ -1,48 +1,46 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+interface VinDecodeResult {
+  make: string;
+  model: string;
+  year: number | null;
+}
 
-const Carinfo = () => {
-  interface Car {
-    make: string;
-    model: string;
-    year: number;
+interface VinApiResult {
+  Variable: string;
+  Value: string | null;
+}
+
+interface VinApiResponse {
+  Results: VinApiResult[];
+}
+
+const decodeVin = async (vin: string): Promise<VinDecodeResult> => {
+  const normalizedVin = vin.trim().toUpperCase();
+
+  if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(normalizedVin)) {
+    throw new Error('Enter a valid 17-character VIN.');
   }
- 
-const apiKey = 'g5cv45t3z_dvjx3rpqu_jj7v19fdj';
-const vin = 'WBAFR7C57CC811956';
-  const [car, setCar] = useState<Car | null>(null);
 
-  useEffect(() => {
-    const fetchCarInfo = async () => {
-      try {
-        const { data } = await axios.get('https://api.carsxe.com/specs', {
-          params: {
-            key: apiKey,
-            vin: vin
-          }
-        });
-        setCar(data);
-        console.log(data); // Use the data variable
-      } catch (e) {
-        console.error(e);
-      }
-    };
-
-    fetchCarInfo();
-  }, []);
-
-  return (
-    <div>
-      {car ? (
-        <div>
-          <h1>{car.make} {car.model}</h1>
-          <p>Year: {car.year}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+  const response = await fetch(
+    `https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/${encodeURIComponent(normalizedVin)}?format=json`,
   );
+
+  if (!response.ok) {
+    throw new Error(`VIN lookup failed (${response.status}).`);
+  }
+
+  const data = (await response.json()) as VinApiResponse;
+  const getValue = (variable: string) =>
+    data.Results.find((result) => result.Variable === variable)?.Value?.trim() ?? '';
+  const make = getValue('Make');
+  const model = getValue('Model');
+  const yearValue = getValue('Model Year');
+  const year = yearValue && /^\d{4}$/.test(yearValue) ? Number(yearValue) : null;
+
+  if (!make || !model) {
+    throw new Error('The VIN lookup did not return a make and model.');
+  }
+
+  return { make, model, year };
 };
 
-export default Carinfo;
+export default decodeVin;

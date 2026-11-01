@@ -78,3 +78,38 @@ button.backtovehicles:hover {
     height: 40%;
     text-align: center;
 }
+
+.label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid #fcf7f8;
+    color: #fcf7f8;
+    font-family:'Trade Winds';
+    font-size: 1.5em;
+    font-weight: 700;
+    justify-content: center;
+    margin: 2% auto 2% auto;
+    padding: 3%;
+}
+
+.lookupVinButton {
+    background-color: #de9151;
+    color: #1D3461;
+    border: 0;
+    border-radius: 5px;
+    padding: 0.6em 1em;
+    margin-top: 1em;
+    font-weight: 600;
+}
+
+.lookupVinButton:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.vinLookupError {
+    color: #ffb3b3;
+    font-size: 0.8em;
+    text-align: center;
+}
