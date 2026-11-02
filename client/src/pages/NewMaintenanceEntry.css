@@ -10,7 +10,7 @@
 }
 
 .newMaintenanceEntry>h2 {
-     color: #fcf7f8;
+     color: #00171f;
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 2%;
@@ -40,7 +40,7 @@
     column-count: 2;
     width: 100%;
     gap: 10px;
-     color: #fcf7f8;
+     color: #00171f;
 
 }
 
@@ -167,11 +167,11 @@ li.records {
 }
 
 .existing-maintenance> h3 {
-    color: #fcf7f8;
+    color: #00171f;
 }
 
 .existing-maintenance> p {
-    color: #fcf7f8;
+    color: #00171f;
 }
 
 .existing-maintenance {

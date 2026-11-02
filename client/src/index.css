@@ -1,18 +1,18 @@
 #root {
-    background-color: #007EA7;
+    background-color: #bce3ff;
     box-sizing: border-box;
 
 }
 
 html {
-    background-color: #007EA7;
+    background-color: #bce3ff;
     box-sizing: border-box;
 }
 .App {
     text-align: center;
     float: top;
     display: flex;
-    color:#fcf7f8;
+    color:#00171f;
     flex-direction: column;
     background-color: #1D3461;
     align-items: center;
@@ -22,7 +22,7 @@ html {
 }
 
 #root > div.container {
-    background-color: #007EA7;
+    background-color: #bce3ff;
 }
 
 h1 {
@@ -73,7 +73,7 @@ li {
 }
 
 .form-container>h2 {
-    color: #fcf7f8;
+    color: #00171f;
     margin: 2% 0 2% 0;
     font-size: rem;
     font-weight: 600;
@@ -170,7 +170,7 @@ button.new-login:hover {
     text-align: center;
     font-size: 1rem;
     font-weight: 400;
-    color: #fcf7f8;
+    color: #00171f;
     margin: 2% 0 2% 0;
 }
 

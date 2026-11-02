@@ -11,7 +11,7 @@ button.backtovehicles:hover {
 
 
 .container-newVehicle>h2 {
-    color:#fcf7f8
+    color:#00171f;
 }
 
 .container-newVehicle {
@@ -25,7 +25,7 @@ button.backtovehicles:hover {
 }
 
 .container-newVehicle>h2 {
-    color: #fcf7f8;
+    color: #00171f;
     font-size: 3rem;
     font-weight: 600;
     margin: 2% 0 2% 0;
@@ -57,7 +57,7 @@ button.backtovehicles:hover {
 
 .form-newVehicle>label {
     display: flex;
-    color: #fcf7f8;
+    color: #00171f;
     font-family:'Trade Winds';
     font-size: 1.5em;
     font-weight: 700;
@@ -85,7 +85,7 @@ button.backtovehicles:hover {
     flex-direction: column;
     align-items: center;
     border: 3px solid #fcf7f8;
-    color: #fcf7f8;
+    color: #00171f;
     font-family:'Trade Winds';
     font-size: 1.5em;
     font-weight: 700;

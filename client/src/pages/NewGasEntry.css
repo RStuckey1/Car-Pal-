@@ -12,7 +12,7 @@
   font-weight: 600;
   margin: 0;
   padding: 0;
-  color: #fcf7f8;
+  color: #00171f;
 }
 
 .new-gas-entry>form {
@@ -25,7 +25,7 @@
 .new-gas-entry>form>label {
   margin: 1%;
   font-size: 1.5rem;
-  color: #fcf7f8;
+  color: #00171f;
   
 }
 

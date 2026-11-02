@@ -35,7 +35,7 @@
 }
 
 .display-vehicles h1 {
-    color: #fcf7f8;
+    color: #00171f;
     font-size: 2.5rem;
     font-weight: 800;
     margin: 2% 4% 2% 4%;
@@ -100,7 +100,7 @@ div>ul.vehicle-list>li {
     margin: 1%;
     font-size: 1.75rem;
     font-weight: 600;
-    color: #fcf7f8;
+    color: #00171f;
     margin: 0;
     padding: 0;
 
