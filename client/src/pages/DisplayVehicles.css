@@ -1,4 +1,5 @@
 .display-vehicles {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     display: flex;
@@ -43,7 +44,9 @@
 
 
 div>ul.vehicle-list {
-
+    box-sizing: border-box;
+    display: flex;
+    width: min(100%, 70rem);
     list-style-type: none;
     flex-direction: column;
     align-items: center;
@@ -62,13 +65,14 @@ div>ul.vehicle-list {
     
 }
 div>ul.vehicle-list>li {
+    box-sizing: border-box;
+    width: 100%;
     overflow: hidden;
     color: #000000;
     border: 5px solid #fcf7f8;
     border-radius: 5px;
     font-weight: 550;
     margin: 4% auto 0% auto;
-    ;
 }
 
 .vehicle-info-card {
@@ -90,7 +94,6 @@ div>ul.vehicle-list>li {
     flex-direction: column;
     font-weight: 600;
     margin: 2%;
-    float: left;
     align-items: center;
     justify-content: center;
 
@@ -140,4 +143,62 @@ div>ul.vehicle-list>li {
 
 .vehicle-summary:hover {
     background-color:#de9151;
+}
+
+@media (max-width: 600px) {
+    .display-vehicles {
+        padding: 0 0.75rem;
+    }
+
+    .display-vehicles h1 {
+        font-size: 1.75rem;
+        text-align: center;
+    }
+
+    .display-vehicles>button,
+    #root > div.container > div > button {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 22rem;
+        font-size: 1rem;
+    }
+
+    div>ul.vehicle-list {
+        width: 100%;
+        margin: 0;
+    }
+
+    div>ul.vehicle-list>li {
+        margin-top: 1rem;
+    }
+
+    .vehicle-info-card.is-expanded {
+        max-height: 2000px;
+    }
+
+    .vehicle-details {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 1rem 0;
+        padding: 0 0.5rem;
+    }
+
+    .vehicle-details>p {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .vehicle-details>button {
+        width: 100%;
+        max-width: 18rem;
+        margin: 0.35rem 0;
+        font-size: 1rem;
+    }
+
+    .newestGas {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding: 1rem 0.5rem;
+    }
 }

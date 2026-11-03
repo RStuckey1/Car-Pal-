@@ -76,6 +76,12 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
     }));
   };
 
+  const handleNumberFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (e.currentTarget.value === '0') {
+      e.currentTarget.value = '';
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const mpgRaw = (form.current_miles - form.starting_miles) / form.gallons_gas;
@@ -139,15 +145,15 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
       </label>
       <label className="date">
         Current Miles:
-        <input type="number" name="current_miles" value={form.current_miles} onChange={handleChange} required />
+        <input type="number" name="current_miles" value={form.current_miles} onChange={handleChange} onFocus={handleNumberFocus} required />
       </label>
       <label className="date">
         Gallons Gas:
-        <input type="number" name="gallons_gas" value={form.gallons_gas} onChange={handleChange} required />
+        <input type="number" name="gallons_gas" value={form.gallons_gas} onChange={handleChange} onFocus={handleNumberFocus} required />
       </label>
       <label className="date">
         Gas Price:
-        <input type="number" name="gas_price" value={form.gas_price} onChange={handleChange} required />
+        <input type="number" name="gas_price" value={form.gas_price} onChange={handleChange} onFocus={handleNumberFocus} required />
       </label>
       <button className="date" type="submit">Add Gas Entry</button>
     </form>

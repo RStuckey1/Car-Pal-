@@ -81,6 +81,12 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     }));
   };
 
+  const handleNumberFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (e.currentTarget.value === '0') {
+      e.currentTarget.value = '';
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const maintenanceData = {
@@ -198,14 +204,14 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
             <div className="short-label">
               <label>
                 Cost($):
-                <input type="number" name="cost" value={form.cost} onChange={handleChange} required />
+                <input type="number" name="cost" value={form.cost} onChange={handleChange} onFocus={handleNumberFocus} required />
               </label>
               <label>Mileage Due:
-                <input type="number" name="mileage_due" value={form.mileage_due} onChange={handleChange} required />
+                <input type="number" name="mileage_due" value={form.mileage_due} onChange={handleChange} onFocus={handleNumberFocus} required />
               </label>
               <label>
                 Time (in hours):
-                <input type="number" name="time_spent" value={form.time_spent} onChange={handleChange} required />
+                <input type="number" name="time_spent" value={form.time_spent} onChange={handleChange} onFocus={handleNumberFocus} required />
               </label>
               <label>
                 Completed:

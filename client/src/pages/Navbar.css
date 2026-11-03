@@ -147,3 +147,63 @@ ul.logo {
   gap: 0.5rem;
   margin: 0;
 }
+
+@media (max-width: 600px) {
+  #root > div.App > nav {
+    width: 100%;
+  }
+
+  .navbar-logo {
+    box-sizing: border-box;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .navbar-logo > img {
+    max-width: 4rem;
+    height: auto;
+  }
+
+  .navbar-logo > h1 {
+    max-width: 100%;
+    font-size: 1.15rem;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .navbar-logo > ul,
+  ul.logo {
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  #root > div.App > nav > div > ul > li > a {
+    font-size: 0.95rem;
+    padding: 0.45rem 0.65rem;
+  }
+
+  li.dropdown {
+    position: relative;
+    font-size: 1rem;
+  }
+
+  .dropdown-content {
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 13rem;
+    max-width: calc(100vw - 1.5rem);
+  }
+
+  .dropdown-content a,
+  div > ul > li > div > a:nth-child(4) > button {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}

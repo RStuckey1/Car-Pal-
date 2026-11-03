@@ -68,6 +68,7 @@ input#maintenance_title {
      color: #1D3461;
     border-radius: 5px;
     font-size: 1.5rem;
+    text-align: center;
     padding: 1%
 }
 
@@ -82,6 +83,7 @@ input#maintenance_description {
     color: #1D3461;
     border-radius: 5px;
     font-size: 1.5rem;
+    text-align: center;
     padding: 3%;
 }
 
@@ -95,6 +97,7 @@ input#parts_needed {
     border: 2px solid #000000;
     border-radius: 5px;
     font-size: 1.5rem;
+    text-align: center;
     padding: 3%
 }
 
@@ -125,6 +128,7 @@ input#parts_needed {
     width: 40%;
     text-decoration: none;
     font-size: 1.5rem;
+    text-align: center;
     border-radius: 5px;
     border: 2px solid #000000;
 }
@@ -177,6 +181,120 @@ li.records {
 .existing-maintenance {
   width: 100%;
   margin-top: 2rem;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+@media (max-width: 600px) {
+    .container {
+        box-sizing: border-box;
+        width: 100%;
+        align-items: center;
+    }
+
+    .newMaintenanceEntry {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        align-self: stretch;
+        margin: 0;
+        padding: 1rem 0.75rem;
+    }
+
+    .newMaintenanceEntry>h2 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .vehicle-info,
+    .vehicle-info>form {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: none;
+        align-self: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .maintenance_form {
+        box-sizing: border-box;
+        width: 100%;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 0.75rem;
+    }
+
+    .long-label,
+    .short-label {
+        box-sizing: border-box;
+        width: 100%;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .long-label label,
+    .short-label>label {
+        box-sizing: border-box;
+        width: 100%;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .long-label input,
+    input#maintenance_description {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        align-self: center;
+        font-size: 1rem;
+    }
+
+    .short-label>label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .short-label>label>input[type=number] {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .short-label>label>input[type=checkbox] {
+        width: auto;
+    }
+
+    .add-maintenance-button {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .existing-maintenance {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .existing-maintenance table {
+        min-width: 42rem;
+    }
+
+    .existing-maintenance th,
+    .existing-maintenance td {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .existing-maintenance th {
+        font-size: 0.9rem;
+    }
 }
 
 .existing-maintenance table {
