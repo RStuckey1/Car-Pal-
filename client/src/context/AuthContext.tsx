@@ -11,6 +11,7 @@ interface AuthContextType {
   setIsLoggedIn: (value: boolean) => void;
   checkLogin: () => void;
   User?: User; // Add the User object
+  updateUser: (user: User) => void;
   loading: boolean;
 }
 
@@ -42,7 +43,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, checkLogin, User, loading }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, checkLogin, User, updateUser: setUser, loading }}>
       {children}
     </AuthContext.Provider>
   );

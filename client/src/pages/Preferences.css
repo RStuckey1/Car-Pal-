@@ -1,0 +1,89 @@
+.preferences-page {
+  box-sizing: border-box;
+  width: min(100% - 2rem, 38rem);
+  margin: 2rem auto;
+  padding: 1.5rem;
+  color: #00171f;
+  background-color: #fcf7f8;
+  border: 2px solid #1d3461;
+  border-radius: 10px;
+}
+
+.preferences-page h2 {
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.preferences-page h3 {
+  margin: 1.5rem 0 0;
+}
+
+.preferences-intro,
+.preferences-form > p {
+  margin: 0 0 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.preferences-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.preferences-form label {
+  font-weight: 600;
+}
+
+.preferences-form input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.5rem;
+  border: 1px solid #1d3461;
+  border-radius: 5px;
+  font: inherit;
+}
+
+.preferences-form button {
+  align-self: flex-start;
+  margin-top: 0.75rem;
+  padding: 0.65rem 1rem;
+  color: #fcf7f8;
+  background-color: #1d3461;
+  border: 2px solid #1d3461;
+  border-radius: 8px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.preferences-form button:hover:not(:disabled) {
+  background-color: #de9151;
+}
+
+.preferences-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.preferences-message,
+.preferences-status {
+  margin: 0.5rem 0 0;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.preferences-error {
+  color: #a00000;
+}
+
+.preferences-success {
+  color: #176b32;
+}
+
+@media (max-width: 600px) {
+  .preferences-page {
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+}

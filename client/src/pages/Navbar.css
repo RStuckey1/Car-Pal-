@@ -13,6 +13,8 @@
   padding: 0.5rem 1rem;
   flex-wrap: nowrap;
   font-size: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .navbar-logo>img {
@@ -44,6 +46,21 @@
   color: #fcf7f8;
   margin: 0;
   white-space: nowrap;
+}
+
+.navbar-preferences {
+  margin-left: auto;
+  padding: 0.5rem;
+  color: #fcf7f8;
+  font-size: 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 10px;
+}
+
+.navbar-preferences:hover,
+.navbar-preferences:focus-visible {
+  color: #fcf7f8;
+  border-color: #fcf7f8;
 }
 
 #root > div.App > nav > div > ul > li > a {
@@ -182,6 +199,10 @@ ul.logo {
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.35rem;
+  }
+
+  .navbar-preferences {
+    margin-left: 0;
   }
 
   #root > div.App > nav > div > ul > li > a {

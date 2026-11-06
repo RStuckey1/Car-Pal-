@@ -3,6 +3,8 @@ import auth from "../utils/auth";
 import carpic from "../assets/car1.png"
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 import "../index.css";
 import "./Navbar.css";
 
@@ -49,6 +51,9 @@ const CustomNavbar = () => {
               </div>
               </li>
             </ul>
+            <Link to="/Preferences" className="navbar-preferences" aria-label="Preferences" title="Preferences">
+              <FontAwesomeIcon icon={faGear} />
+            </Link>
           </div>
         )}
       </nav>

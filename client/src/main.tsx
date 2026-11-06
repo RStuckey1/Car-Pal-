@@ -12,6 +12,7 @@ import DisplayVehicles from "./pages/DisplayVehicles";
 import NewGasEntry from "./pages/NewGasEntry.tsx";
 import DisplayRecords from "./pages/DisplayRecords.tsx";
 import NewMaintenance from "./pages/NewMaintenanceEntry.tsx";
+import Preferences from "./pages/Preferences";
 import { AuthProvider } from "./context/AuthContext";
 import './index.css'
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: '/DisplayVehicles',
         element: <DisplayVehicles />
+      },
+      {
+        path: '/Preferences',
+        element: <Preferences />
       }
     ]
   }
