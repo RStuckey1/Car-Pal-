@@ -26,7 +26,7 @@
 
 .backbutton {
   background-color: #1D3461;
-  color:#fcf7f8
+  color:#fcf7f8;
 }
 
 .backbutton:hover {
@@ -35,7 +35,8 @@
 .display-records table {
   width: 100%;
   border-collapse: collapse;
-  font-family:'Trade Winds';
+  font-family:"Mukta Makar", sans-serif;
+
 }
 
 .display-records th, .display-records td {
@@ -47,6 +48,7 @@
 .display-records th {
   background-color: #DE9151;
   font-weight: bold;
+
 }
 
 .display-records tr:nth-child(even) {

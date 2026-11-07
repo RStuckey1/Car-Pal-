@@ -52,7 +52,7 @@ const CustomNavbar = () => {
               </li>
             </ul>
             <Link to="/Preferences" className="navbar-preferences" aria-label="Preferences" title="Preferences">
-              <FontAwesomeIcon icon={faGear} />
+           <FontAwesomeIcon icon={faGear} style={{color: "rgb(255, 0, 0)",}} />
             </Link>
           </div>
         )}

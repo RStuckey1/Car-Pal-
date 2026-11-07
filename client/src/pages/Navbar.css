@@ -41,7 +41,7 @@
 }
 
 .navbar-logo>h1 {
-  font-family: "Trade Winds", system-ui;
+  font-family:"Mukta Makar", sans-serif;
   font-size: 1.5rem;
   color: #fcf7f8;
   margin: 0;
@@ -87,7 +87,7 @@
 li.dropdown {
   display: inline-block;
   color: #fcf7f8;
-  font-family: "Trade Winds";
+  font-family:"Mukta Makar", sans-serif;
   border: 2px solid transparent;
   border-radius: 10px;
   box-sizing: border-box;
@@ -116,7 +116,7 @@ li.dropdown {
   color: #fcf7f8;
   text-decoration: none;
   display: block;
-  font-family:"Trade Winds";
+  font-family:"Mukta Makar", sans-serif;
   border: 2px solid transparent;
   border-radius: 10px;
   box-sizing: border-box;
@@ -153,7 +153,7 @@ div > ul > li > div > a:nth-child(4) > button {
   color: #fcf7f8;
   text-decoration: none;
   display: block;
-  font-family: "Trade Winds";
+  font-family:"Mukta Makar", sans-serif;
   font-size: 1.5rem;
 }
 

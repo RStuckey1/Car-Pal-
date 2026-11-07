@@ -37,7 +37,7 @@ button.backtovehicles:hover {
     border: 3px solid #fcf7f8;
     border-radius: 10px;
     padding: 2%;
-    font-family: 'Trade Winds';
+    font-family:"Mukta Makar", sans-serif;
     font-size: 1.5em;
     font-weight: 600;
     align-items: center;
@@ -58,7 +58,7 @@ button.backtovehicles:hover {
 .form-newVehicle>label {
     display: flex;
     color: #00171f;
-    font-family:'Trade Winds';
+    font-family:"Mukta Makar", sans-serif;
     font-size: 1.5em;
     font-weight: 700;
     justify-content: center;
@@ -72,7 +72,7 @@ button.backtovehicles:hover {
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    font-family:'Trade Winds';
+    font-family:"Mukta Makar", sans-serif;
     border-radius: 5px;
     margin: 5% auto 2% auto;
     width: 500px;
@@ -86,7 +86,7 @@ button.backtovehicles:hover {
     align-items: center;
     border: 3px solid #fcf7f8;
     color: #00171f;
-    font-family:'Trade Winds';
+    font-family:"Mukta Makar", sans-serif;
     font-size: 1.5em;
     font-weight: 700;
     justify-content: center;
