@@ -11,7 +11,13 @@ export const getCurrentUser = async (req: Request, res: Response) => {
     }
 
     return res.json({
-      user: { id: user.id, username: user.username, email: user.email },
+      user: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        email: user.email,
+      },
     });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unable to load user";
@@ -25,7 +31,9 @@ export const updateCurrentUser = async (req: Request, res: Response) => {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
-  const { username, email, currentPassword, password } = req.body as {
+  const { firstName, lastName, username, email, currentPassword, password } = req.body as {
+    firstName?: unknown;
+    lastName?: unknown;
     username?: unknown;
     email?: unknown;
     currentPassword?: unknown;
@@ -36,6 +44,20 @@ export const updateCurrentUser = async (req: Request, res: Response) => {
     const user = await User.findByPk(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
+    }
+
+    if (firstName !== undefined) {
+      if (typeof firstName !== "string" || !firstName.trim()) {
+        return res.status(400).json({ message: "First name cannot be empty" });
+      }
+      user.firstName = firstName.trim();
+    }
+
+    if (lastName !== undefined) {
+      if (typeof lastName !== "string" || !lastName.trim()) {
+        return res.status(400).json({ message: "Last name cannot be empty" });
+      }
+      user.lastName = lastName.trim();
     }
 
     if (username !== undefined) {
@@ -85,13 +107,24 @@ export const updateCurrentUser = async (req: Request, res: Response) => {
     await user.save();
     const secretKey = process.env.JWT_SECRET_KEY || "";
     const token = jwt.sign(
-      { id: user.id, username: user.username },
+      {
+        id: user.id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
       secretKey,
       { expiresIn: "1d" },
     );
 
     return res.json({
-      user: { id: user.id, username: user.username, email: user.email },
+      user: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        email: user.email,
+      },
       token,
     });
   } catch (error: unknown) {
@@ -149,12 +182,25 @@ export const getUserByVin = async (req: Request, res: Response) => {
 
 
 export const createUser = async (req: Request, res: Response) => {
-  const { username, email, password } = req.body;
+  const { firstName, lastName, username, email, password } = req.body;
   try {
-    const newUser = await User.create({ username, email, password });
-    res.status(201).json(newUser);
+    if (
+      typeof firstName !== "string" || !firstName.trim() ||
+      typeof lastName !== "string" || !lastName.trim()
+    ) {
+      return res.status(400).json({ message: "First and last name are required" });
+    }
+
+    const newUser = await User.create({
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      username,
+      email,
+      password,
+    });
+    return res.status(201).json(newUser);
   } catch (error: any) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 

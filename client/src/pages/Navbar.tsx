@@ -27,7 +27,9 @@ const CustomNavbar = () => {
       <div className="nav-actions">
         {isLoggedIn ? (
           <>
-            <span className="nav-greeting">Hi, {User?.username || 'there'}</span>
+            <span className="nav-greeting">
+              Hi, {[User?.firstName, User?.lastName].filter(Boolean).join(' ') || User?.username || 'there'}
+            </span>
             <Link className="nav-link" to="/DisplayVehicles">Vehicles</Link>
             <Link className="nav-link" to="/NewVehicles">Add vehicle</Link>
             <Link className="nav-link" to="/Preferences">Settings</Link>

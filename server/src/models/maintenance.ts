@@ -55,7 +55,7 @@ export function MaintenanceFactory(sequelize: Sequelize): typeof Maintenance {
         allowNull: false,
       },
       parts_needed: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       cost: {

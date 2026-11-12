@@ -8,6 +8,8 @@ import './Preferences.css';
 const Preferences = () => {
   const { isLoggedIn, loading: authLoading, updateUser } = useAuth();
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -26,6 +28,8 @@ const Preferences = () => {
 
     getCurrentUser()
       .then((user) => {
+        setFirstName(user.firstName);
+        setLastName(user.lastName);
         setUsername(user.username);
         setEmail(user.email);
       })
@@ -52,14 +56,23 @@ const Preferences = () => {
     setSaving(true);
     try {
       const profile = await updateCurrentUser({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
         username: username.trim(),
         email: email.trim(),
         ...(password ? { currentPassword, password } : {}),
       });
-      updateUser({ id: profile.user.id, username: profile.user.username });
+      updateUser({
+        id: profile.user.id,
+        username: profile.user.username,
+        firstName: profile.user.firstName,
+        lastName: profile.user.lastName,
+      });
       if (profile.token) {
         auth.login(profile.token);
       }
+      setFirstName(profile.user.firstName);
+      setLastName(profile.user.lastName);
       setUsername(profile.user.username);
       setEmail(profile.user.email);
       setCurrentPassword('');
@@ -81,6 +94,26 @@ const Preferences = () => {
       <h2>Account Preferences</h2>
       <p className="preferences-intro">Update your account information.</p>
       <form className="preferences-form" onSubmit={handleSubmit}>
+        <label htmlFor="preferences-first-name">First name</label>
+        <input
+          id="preferences-first-name"
+          type="text"
+          autoComplete="given-name"
+          value={firstName}
+          onChange={(event) => setFirstName(event.target.value)}
+          required
+        />
+
+        <label htmlFor="preferences-last-name">Last name</label>
+        <input
+          id="preferences-last-name"
+          type="text"
+          autoComplete="family-name"
+          value={lastName}
+          onChange={(event) => setLastName(event.target.value)}
+          required
+        />
+
         <label htmlFor="preferences-username">Username</label>
         <input
           id="preferences-username"

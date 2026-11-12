@@ -4,7 +4,7 @@ interface MaintenanceData {
     mileage_due: number;
     maintenance_title: string;
     maintenance_description: string;
-    parts_needed: string;
+    parts_needed: string[];
     cost: number;
     time_spent: number;
     completed?: boolean; // optional field to indicate if maintenance is completed

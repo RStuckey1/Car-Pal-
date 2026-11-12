@@ -23,7 +23,7 @@ const loginauth = async (userInfo: UserLogin) => {
   }
 };
 
-const signUp = async (newUser: UserLogin) => {
+const signUp = async (newUser: UserLogin): Promise<{ token: string }> => {
   try {
     const response = await fetch('/auth/signup', {
       method: 'POST',
@@ -36,12 +36,13 @@ const signUp = async (newUser: UserLogin) => {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error('Could not create user, check network tab!');
+      throw new Error(data.message || 'Could not create user.');
     }
 
     return data;
   } catch (err) {
-    console.log('Error from sign up: ', err);
+    console.error('Error from sign up: ', err);
+    throw err;
   }
 }
 

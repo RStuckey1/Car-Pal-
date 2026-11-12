@@ -4,6 +4,8 @@ import auth from '../utils/auth';
 interface User {
   id: number;
   username: string;
+  firstName: string;
+  lastName: string;
 }
 
 interface AuthContextType {
@@ -30,6 +32,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser({
         id: decoded.id ?? -1,
         username: decoded.username || 'Unknown',
+        firstName: decoded.firstName || '',
+        lastName: decoded.lastName || '',
       });
     } else {
       setIsLoggedIn(false);

@@ -18,7 +18,7 @@ type MaintenanceForm = {
   mileage_due: number;
   maintenance_title: string;
   maintenance_description: string;
-  parts_needed: string;
+  parts_needed: string[];
   cost: number;
   time_spent: number;
   completed: boolean; // <-- Add this line
@@ -30,7 +30,7 @@ type MaintenanceRecord = {
   mileage_due: number;
   maintenance_title: string;
   maintenance_description: string;
-  parts_needed: string;
+  parts_needed: string[];
   cost: number;
   time_spent: number;
   VehicleId: number;
@@ -48,7 +48,7 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     mileage_due: 0,
     maintenance_title: '',
     maintenance_description: '',
-    parts_needed: '',
+    parts_needed: [''],
     cost: 0,
     time_spent: 0,
     completed: false, // <-- Add this line
@@ -81,6 +81,24 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
     }));
   };
 
+  const handlePartChange = (index: number, value: string) => {
+    setForm(f => ({
+      ...f,
+      parts_needed: f.parts_needed.map((part, partIndex) => partIndex === index ? value : part),
+    }));
+  };
+
+  const addPart = () => {
+    setForm(f => ({ ...f, parts_needed: [...f.parts_needed, ''] }));
+  };
+
+  const removePart = (index: number) => {
+    setForm(f => ({
+      ...f,
+      parts_needed: f.parts_needed.filter((_, partIndex) => partIndex !== index),
+    }));
+  };
+
   const handleNumberFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     if (e.currentTarget.value === '0') {
       e.currentTarget.value = '';
@@ -107,7 +125,7 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
       mileage_due: 0,
       maintenance_title: '',
       maintenance_description: '',
-      parts_needed: '',
+      parts_needed: [''],
       cost: 0,
       time_spent: 0,
       completed: false,
@@ -196,10 +214,32 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
                 Maintenance Description:
               </label>
               <input type="text" id="maintenance_description" name="maintenance_description" value={form.maintenance_description} onChange={handleChange} required />
-              <label className="parts_needed" id="parts_needed">
+              <label className="parts_needed">
                 Parts Needed:
               </label>
-              <input type="text" id="parts_needed" name="parts_needed" value={form.parts_needed} onChange={handleChange} required />
+              {form.parts_needed.map((part, index) => (
+                <div className="parts-needed-item" key={index}>
+                  <input
+                    type="text"
+                    id={`parts-needed-${index}`}
+                    aria-label={`Part ${index + 1}`}
+                    value={part}
+                    onChange={event => handlePartChange(index, event.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    aria-label={`Remove part ${index + 1}`}
+                    onClick={() => removePart(index)}
+                    disabled={form.parts_needed.length === 1}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button className="add-part-button" type="button" onClick={addPart}>
+                Add part
+              </button>
             </div>
             <div className="short-label">
               <label>
@@ -260,7 +300,11 @@ const NewMaintenanceEntry = ({ VehicleId: propVehicleId }: { VehicleId?: number 
                 >
                   <td><strong>{record.maintenance_title}</strong></td>
                   <td>{record.maintenance_description}</td>
-                  <td>{record.parts_needed}</td>
+                  <td>
+                    <ul className="parts-list">
+                      {record.parts_needed.map((part, index) => <li key={`${part}-${index}`}>{part}</li>)}
+                    </ul>
+                  </td>
                   <td>${record.cost}</td>
                   <td>{record.time_spent}</td>
                   <td>{record.mileage_due} miles</td>

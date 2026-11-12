@@ -4,11 +4,15 @@ export interface UserProfile {
   id: number;
   username: string;
   email: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface UserProfileUpdate {
   username: string;
   email: string;
+  firstName: string;
+  lastName: string;
   currentPassword?: string;
   password?: string;
 }

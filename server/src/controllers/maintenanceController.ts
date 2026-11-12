@@ -1,6 +1,38 @@
 import { Request, Response } from "express";
 import { Maintenance } from '../models/maintenance.js';
 
+const serializePartsNeeded = (value: unknown): string => {
+  if (!Array.isArray(value) || !value.every((part) => typeof part === "string")) {
+    throw new Error("Parts needed must be a list of parts");
+  }
+
+  const parts = value.map((part: string) => part.trim()).filter(Boolean);
+  if (parts.length === 0) {
+    throw new Error("Add at least one part");
+  }
+
+  return JSON.stringify(parts);
+};
+
+const deserializePartsNeeded = (value: unknown): string[] => {
+  if (typeof value !== "string" || value.length === 0) {
+    return [];
+  }
+
+  try {
+    const parsed: unknown = JSON.parse(value);
+    if (Array.isArray(parsed) && parsed.every((part) => typeof part === "string")) {
+      return parsed;
+    }
+  } catch (error) {
+    if (!(error instanceof SyntaxError)) {
+      throw error;
+    }
+  }
+
+  return [value];
+};
+
 declare global {
   namespace Express {
     interface Request {
@@ -12,13 +44,13 @@ declare global {
 
 
 export const createVehicleMaintenance = async (req: Request, res: Response) => {
-  const { mileage_due, maintenance_title, maintenance_description, parts_needed, cost, time_spent, completed, VehicleId } = req.body;
+  const { mileage_due, maintenance_title, maintenance_description, cost, time_spent, completed, VehicleId } = req.body;
   try {
     const newMaintenance = await Maintenance.create({
         mileage_due,
         maintenance_title,
         maintenance_description,
-        parts_needed,
+        parts_needed: serializePartsNeeded(req.body.parts_needed),
         cost,
         time_spent,
         completed,
@@ -36,8 +68,13 @@ export const updateVehicleMaintenance = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
+    const updates = { ...req.body };
+    if (Object.prototype.hasOwnProperty.call(updates, "parts_needed")) {
+      updates.parts_needed = serializePartsNeeded(updates.parts_needed);
+    }
+
     const updatedVehicleMaintenance = await Maintenance.update(
-      req.body,
+      updates,
       { where: { id } }
     );
     if (updatedVehicleMaintenance[0] > 0) {
@@ -68,7 +105,10 @@ export const getMaintenanceByVehicle = async (req: Request, res: Response) => {
   try {
     const { VehicleId } = req.params;
     const entries = await Maintenance.findAll({ where: { VehicleId } });
-    res.json(entries);
+    res.json(entries.map((entry) => ({
+      ...entry.toJSON(),
+      parts_needed: deserializePartsNeeded(entry.parts_needed),
+    })));
   } catch (error) {
     res.status(400).json({ error: 'Bad request' });
   }
