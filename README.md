@@ -18,13 +18,19 @@ Clone the repository:git@github.com:DC-DavidChamberlain/Project-2.git
 ```
 npm i 
 ```
-3. 
+3. Configure the server's PostgreSQL connection. Copy `server/.env.EXAMPLE` to
+   `server/.env`, then set `DB_USER` and `DB_PASSWORD` to a PostgreSQL role and
+   its password. The default database name is `car_db`; create that database
+   first, or set `DB_URL` to your PostgreSQL connection URL instead. Keep
+   `server/.env` private and do not commit it.
+4.
 ```
 npm run build
 ```
-4.
-'''
+5.
+```
 npm run start:dev
+```
 
 ## Features
 *screenshots 
@@ -33,4 +39,3 @@ npm run start:dev
 - [thunyP](https://github.com/thunyP)
 - [DC-DavidChamberlain](https://github.com/DC-DavidChamberlain)
 - [RStuckey1](https://github.com/RStuckey1)
-

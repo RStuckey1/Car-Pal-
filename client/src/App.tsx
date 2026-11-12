@@ -5,17 +5,15 @@ import './index.css';
 
 function App() {
   return (
-    <>
+    <div className="app-shell">
       <div className="App">
         <NavBar />
-        </div>
-        <div className="container">
-          <Outlet />
-        </div>
-
-        <Footer />
-      
-    </>
+      </div>
+      <main className="app-content">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

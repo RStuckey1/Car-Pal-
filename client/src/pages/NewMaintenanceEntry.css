@@ -1,356 +1,206 @@
 .newMaintenanceEntry {
-    display: flex;
-    width: 100%;
-    margin: 2% auto 2% auto;
-    flex-direction: column;
-    align-items: center;
-    border: 3px solid #fcf7f8;
-    font-family:"Mukta Makar", sans-serif;
-    padding: 2%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(27, 47, 82, 0.04);
 }
 
-.newMaintenanceEntry>h2 {
-     color: #00171f;
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 2%;
+.newMaintenanceEntry > h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
 }
 
-.newMaintenanceEntry>button {
-    font-size: 1.5rem;
-    background-color: #1D3461;
-    color: #fcf7f8;
-    border: 1px solid #fcf7f8;
-    border-radius: 5px;
+.newMaintenanceEntry > .backbutton {
+  align-self: flex-start;
 }
 
-.vehicle-info {
-    display: flex;
-    flex-direction: column;
-    columns: 2;
-    gap: 10px;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 20px;
+.vehicle-info,
+.vehicle-info > form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.vehicle-info>form {
-    display: flex;
-    flex-direction: column;
-    column-count: 2;
-    width: 100%;
-    gap: 10px;
-     color: #00171f;
-
+.vehicle-info > form > label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--ink);
+  font-weight: 650;
 }
 
 .maintenance_form {
-    display: flex;
-    border: 3px solid white;
-    padding:3%;
-    margin:1%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8faff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
 }
 
-.long-label {
-    display: flex;
-    flex-direction: column;
-
-}
-
-label#maintenance_title {
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-input#maintenance_title {
-    width: 100%;
-    border: 2px solid #1D3461;
-     color: #1D3461;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 1%
-}
-
-label#maintenance_description {
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-input#maintenance_description {
-    width: 300px;
-    border: 2px solid #1D3461;
-    color: #1D3461;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 3%;
-}
-
-label#parts_needed {
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-input#parts_needed {
-    width: 100%;
-    border: 2px solid #000000;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 3%
-}
-
+.long-label,
 .short-label {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 1%;
-    margin: 1% 0;
-    align-items: center;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
 }
 
-.short-label>label {
-    display: row;
-    font-size: 1.5rem;
-    font-weight: 600;
-    width: 30%;
-    margin: 1% 0;
-    padding: 1%;
-    text-align: left;
-    text-decoration: none;
-
+.long-label label,
+.short-label > label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.15rem 0;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-align: left;
 }
 
-.short-label>label>input[type=number] {
-    display: flex;
-    flex-wrap: wrap;
-    width: 40%;
-    text-decoration: none;
-    font-size: 1.5rem;
-    text-align: center;
-    border-radius: 5px;
-    border: 2px solid #000000;
+.long-label input,
+input#maintenance_description,
+.short-label > label > input[type="number"] {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.65rem 0.75rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #cbd6e5;
+  border-radius: 9px;
+  font-size: 1rem;
+  text-align: left;
 }
 
-.short-label>label>input[type=checkbox] {
-    display: flex;
-    flex-wrap: wrap;
-    width: 40%;
-    text-decoration: none;
-    font-size: 1.5rem;
-    border-radius: 5px;
-    border: 2px solid #000000;
+.short-label > label:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
 }
 
-.vehicle-info>form>label>input:focus {
-    outline: none;
-    border-color: #007bff;
+.short-label > label > input[type="checkbox"] {
+  width: 22px;
+  min-height: 22px;
+  height: 22px;
+  accent-color: var(--brand);
 }
 
 .add-maintenance-button {
-    font-size: 1.5rem;
-    background-color: #1D3461;
-    color: #fcf7f8;
-    border: 4px solid #fcf7f8;
-    border-radius: 5px;
-    width: 40%;
-    align-self: center;
+  min-height: 48px;
+  margin-top: 0.4rem;
+  padding: 0.65rem 0.9rem;
+  color: #fff;
+  background: var(--brand);
+  border: 0;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
-li.records {
-    color: #fcf7f8;
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-.existing-maintenance>ul button {
-    font-size: 1.5rem;
-    background-color: #1D3461;
-    color: #fcf7f8;
-}
-
-.existing-maintenance> h3 {
-    color: #00171f;
-    text-align: center;
-    font-size: 2rem;
-}
-
-.existing-maintenance> p {
-    color: #00171f;
-    text-align: center;
-    font-weight: 500;
+.add-maintenance-button:hover,
+.existing-maintenance button:hover:not(:disabled) {
+  background: var(--brand-dark);
 }
 
 .existing-maintenance {
   width: 100%;
-  margin-top: 2rem;
   min-width: 0;
+  margin-top: 0.5rem;
   overflow-x: auto;
 }
 
-@media (max-width: 600px) {
-    .container {
-        box-sizing: border-box;
-        width: 100%;
-        align-items: center;
-    }
+.existing-maintenance > h3 {
+  margin-bottom: 0.85rem;
+  text-align: left;
+}
 
-    .newMaintenanceEntry {
-        box-sizing: border-box;
-        width: 100%;
-        max-width: 100%;
-        align-self: stretch;
-        margin: 0;
-        padding: 1rem 0.75rem;
-    }
-
-    .newMaintenanceEntry>h2 {
-        font-size: 1.4rem;
-        text-align: center;
-    }
-
-    .vehicle-info,
-    .vehicle-info>form {
-        box-sizing: border-box;
-        width: 100%;
-        max-width: none;
-        align-self: center;
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .maintenance_form {
-        box-sizing: border-box;
-        width: 100%;
-        align-items: center;
-        margin-left: auto;
-        margin-right: auto;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem 0.75rem;
-    }
-
-    .long-label,
-    .short-label {
-        box-sizing: border-box;
-        width: 100%;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-    }
-
-    .long-label label,
-    .short-label>label {
-        box-sizing: border-box;
-        width: 100%;
-        font-size: 1.1rem;
-        text-align: center;
-    }
-
-    .long-label input,
-    input#maintenance_description {
-        box-sizing: border-box;
-        width: 100%;
-        max-width: 100%;
-        align-self: center;
-        font-size: 1rem;
-    }
-
-    .short-label>label {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-    }
-
-    .short-label>label>input[type=number] {
-        width: 100%;
-        font-size: 1rem;
-    }
-
-    .short-label>label>input[type=checkbox] {
-        width: auto;
-    }
-
-    .add-maintenance-button {
-        width: 100%;
-        font-size: 1rem;
-    }
-
-    .existing-maintenance {
-        box-sizing: border-box;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto;
-    }
-
-    .existing-maintenance table {
-        min-width: 42rem;
-    }
-
-    .existing-maintenance th,
-    .existing-maintenance td {
-        padding: 0.5rem;
-        font-size: 0.85rem;
-    }
-
-    .existing-maintenance th {
-        font-size: 0.9rem;
-    }
+.existing-maintenance > p {
+  padding: 1rem;
+  background: #f8faff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
 }
 
 .existing-maintenance table {
   width: 100%;
-  border-collapse: collapse;
-  background-color: #fcf7f8;
-  color: #1D3461;
-  border-radius: 5px;
+  min-width: 680px;
   overflow: hidden;
-}
-
-.existing-maintenance thead {
-  background-color: #1D3461;
-  color: #fcf7f8;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
 }
 
 .existing-maintenance th,
 .existing-maintenance td {
-  padding: 12px;
+  padding: 0.75rem;
+  border-bottom: 1px solid #e8edf4;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
 }
 
 .existing-maintenance th {
-  font-weight: 600;
-  font-size: 1.2rem;
+  color: #53647f;
+  background: #f5f8fc;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .existing-maintenance td {
-  font-size: 1rem;
+  color: var(--ink);
+  font-size: 0.84rem;
 }
 
-.existing-maintenance tbody tr:hover {
-  background-color: #f5f5f5;
+.existing-maintenance tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 .existing-maintenance button {
-  font-size: 0.9rem;
-  padding: 6px 12px;
-  margin: 2px;
-  background-color: #1D3461;
-  color: #fcf7f8;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.existing-maintenance button:hover:not(:disabled) {
-  background-color: #2a4d7f;
+  min-height: 36px;
+  padding: 0.4rem 0.6rem;
+  color: #fff;
+  background: var(--brand);
+  border: 0;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  font-weight: 650;
 }
 
 .existing-maintenance button:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .newMaintenanceEntry {
+    padding: 1rem 0.8rem;
+  }
+
+  .newMaintenanceEntry > h2 {
+    text-align: center;
+  }
+
+  .newMaintenanceEntry > .backbutton {
+    align-self: stretch;
+  }
+
+  .maintenance_form {
+    grid-template-columns: 1fr;
+    padding: 0.75rem;
+  }
+
+  .existing-maintenance table {
+    min-width: 620px;
+  }
 }

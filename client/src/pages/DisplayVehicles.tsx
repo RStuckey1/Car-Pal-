@@ -85,7 +85,7 @@ const DisplayVehicles: React.FC = () => {
   return (
     <div className="display-vehicles">
       <h1>Your Vehicles</h1>
-      <button className="addVehicle" onClick={() => navigate('/NewVehicles')} style={{marginBottom: '1em'}}>
+      <button className="addVehicle" onClick={() => navigate('/NewVehicles')}>
         Add New Vehicle
       </button>
       
@@ -93,10 +93,20 @@ const DisplayVehicles: React.FC = () => {
         <ul className="vehicle-list">
           {vehicles.map((vehicle) => (
             <li className="vehicleList" key={vehicle.id}>
-              <div className="vehicle-summary" onClick={() => handleExpand(vehicle.id)} style={{cursor: 'pointer'}}>
-                {vehicle.year} {vehicle.make} {vehicle.model}
-              </div>
-              <div className={`vehicle-info-card${expandedId === vehicle.id ? ' is-expanded' : ''}`}>
+              <button
+                type="button"
+                className="vehicle-summary"
+                onClick={() => handleExpand(vehicle.id)}
+                aria-expanded={expandedId === vehicle.id}
+                aria-controls={`vehicle-details-${vehicle.id}`}
+              >
+                <span>{vehicle.year} {vehicle.make} {vehicle.model}</span>
+                <span className="vehicle-toggle" aria-hidden="true">{expandedId === vehicle.id ? '−' : '+'}</span>
+              </button>
+              <div
+                id={`vehicle-details-${vehicle.id}`}
+                className={`vehicle-info-card${expandedId === vehicle.id ? ' is-expanded' : ''}`}
+              >
                 <div className="vehicle-details">
                     <p>Color: {vehicle.color}</p>
                     <p>Initial Miles: {vehicle.miles}</p>

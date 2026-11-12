@@ -124,39 +124,40 @@ const NewGasEntry = ({ VehicleId }: { VehicleId?: number }) => {
 
   return (
     <div className="new-gas-entry">
-      <p>Enter Gas Data</p>
-    <form onSubmit={handleSubmit}>
-      {!VehicleId && (
-        <label>
-          Vehicle:
-          <select name="vehicleId" value={form.VehicleId} onChange={handleChange} required>
-            <option value="">Select Vehicle</option>
-            {vehicles.map(v => (
-              <option key={v.id} value={v.id}>
-                {v.make} {v.model} ({v.year})
-              </option>
-            ))}
-          </select>
+      <h2>Log a fill-up</h2>
+      <p className="entry-hint">A quick fuel stop is all it takes to keep your records up to date.</p>
+      <form onSubmit={handleSubmit}>
+        {!VehicleId && (
+          <label>
+            Vehicle
+            <select name="VehicleId" value={form.VehicleId} onChange={handleChange} required>
+              <option value="">Select vehicle</option>
+              {vehicles.map(v => (
+                <option key={v.id} value={v.id}>
+                  {v.make} {v.model} ({v.year})
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        <label className="date">
+          Date
+          <input type="date" name="date" value={form.date} onChange={handleChange} required />
         </label>
-      )}
-      <label className="date">
-        Date:
-        <input type="date" name="date" value={form.date} onChange={handleChange} required />
-      </label>
-      <label className="date">
-        Current Miles:
-        <input type="number" name="current_miles" value={form.current_miles} onChange={handleChange} onFocus={handleNumberFocus} required />
-      </label>
-      <label className="date">
-        Gallons Gas:
-        <input type="number" name="gallons_gas" value={form.gallons_gas} onChange={handleChange} onFocus={handleNumberFocus} required />
-      </label>
-      <label className="date">
-        Gas Price:
-        <input type="number" name="gas_price" value={form.gas_price} onChange={handleChange} onFocus={handleNumberFocus} required />
-      </label>
-      <button className="date" type="submit">Add Gas Entry</button>
-    </form>
+        <label className="date">
+          Odometer (miles)
+          <input type="number" name="current_miles" min="0" inputMode="numeric" value={form.current_miles} onChange={handleChange} onFocus={handleNumberFocus} required />
+        </label>
+        <label className="date">
+          Fuel added (gallons)
+          <input type="number" name="gallons_gas" min="0.01" step="0.01" inputMode="decimal" value={form.gallons_gas} onChange={handleChange} onFocus={handleNumberFocus} required />
+        </label>
+        <label className="date">
+          Total fuel cost ($)
+          <input type="number" name="gas_price" min="0" step="0.01" inputMode="decimal" value={form.gas_price} onChange={handleChange} onFocus={handleNumberFocus} required />
+        </label>
+        <button className="date" type="submit">Save fuel entry</button>
+      </form>
     </div>
   );
 };

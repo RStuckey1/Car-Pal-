@@ -1,116 +1,137 @@
-button.backtovehicles {
-    background-color:#1D3461;
-    color:#fcf7f8;
-    text-align: center;
-    justify-content: center;
-}
-
-button.backtovehicles:hover {
-    background-color:#de9151 ;
-}
-
-
-.container-newVehicle>h2 {
-    color:#00171f;
-}
-
 .container-newVehicle {
-    display: flex;
-    width: 80%;
-    margin: 5% auto 5% auto;
-    padding: 5%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: min(100%, 760px);
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
 }
 
-.container-newVehicle>h2 {
-    color: #00171f;
-    font-size: 3rem;
-    font-weight: 600;
-    margin: 2% 0 2% 0;
+.container-newVehicle > h2 {
+  margin: 0 0 1rem;
+  text-align: center;
 }
 
-.newVehicleButton {
-    background-color: #1D3461;
-    color:#fcf7f8;
-    border: 3px solid #fcf7f8;
-    border-radius: 10px;
-    padding: 2%;
-    font-family:"Mukta Makar", sans-serif;
-    font-size: 1.5em;
-    font-weight: 600;
-    align-items: center;
-    margin: 15% auto 5% auto;
-    display: flex;
-
+button.backtovehicles,
+.backbutton {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.9rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 0.9rem;
+  font-weight: 650;
 }
+
+button.backtovehicles:hover,
+.backbutton:hover {
+  color: var(--brand);
+  background: #f7f9fd;
+  border-color: #bdcbe0;
+}
+
 .form-newVehicle {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    margin: 5% auto 5% auto;
-    padding: 5%;
-    align-items: center;
-    justify-content: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.25rem auto 0;
+  padding: 0;
 }
 
-.form-newVehicle>label {
-    display: flex;
-    color: #00171f;
-    font-family:"Mukta Makar", sans-serif;
-    font-size: 1.5em;
-    font-weight: 700;
-    justify-content: center;
-    margin: 2% auto 2% auto;
+.form-newVehicle .label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  color: var(--ink);
+  border: 0;
+  font-size: 0.9rem;
+  font-weight: 650;
 }
 
+.form-newVehicle .label:first-child {
+  grid-column: 1 / -1;
+}
 
 .form-newVehicle input,
 .form-newVehicle select {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-family:"Mukta Makar", sans-serif;
-    border-radius: 5px;
-    margin: 5% auto 2% auto;
-    width: 500px;
-    height: 40%;
-    text-align: center;
+  width: 100%;
+  min-height: 48px;
+  margin: 0;
+  padding: 0.65rem 0.8rem;
+  color: var(--ink);
+  background: #fbfcfe;
+  border: 1px solid #cbd6e5;
+  border-radius: 9px;
+  font-size: 1rem;
+  text-align: left;
 }
 
-.label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 3px solid #fcf7f8;
-    color: #00171f;
-    font-family:"Mukta Makar", sans-serif;
-    font-size: 1.5em;
-    font-weight: 700;
-    justify-content: center;
-    margin: 2% auto 2% auto;
-    padding: 3%;
+.lookupVinButton,
+.newVehicleButton {
+  min-height: 48px;
+  padding: 0.65rem 1rem;
+  color: #fff;
+  background: var(--brand);
+  border: 0;
+  border-radius: 9px;
+  font-size: 0.93rem;
+  font-weight: 700;
 }
 
 .lookupVinButton {
-    background-color: #de9151;
-    color: #1D3461;
-    border: 0;
-    border-radius: 5px;
-    padding: 0.6em 1em;
-    margin-top: 1em;
-    font-weight: 600;
+  align-self: flex-start;
+  margin-top: 0.2rem;
+}
+
+.lookupVinButton:hover,
+.newVehicleButton:hover {
+  background: var(--brand-dark);
+}
+
+.newVehicleButton {
+  grid-column: 1 / -1;
+  justify-self: stretch;
+  margin: 0.35rem 0 0;
 }
 
 .lookupVinButton:disabled {
-    cursor: wait;
-    opacity: 0.7;
+  cursor: wait;
 }
 
 .vinLookupError {
-    color: #ffb3b3;
-    font-size: 0.8em;
-    text-align: center;
+  margin: 0.2rem 0 0;
+  color: #b42318;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+@media (max-width: 520px) {
+  .container-newVehicle {
+    padding: 1.2rem 1rem;
+    border-radius: 16px;
+  }
+
+  .form-newVehicle {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .form-newVehicle .label:first-child,
+  .newVehicleButton {
+    grid-column: auto;
+  }
+
+  .lookupVinButton {
+    width: 100%;
+  }
 }

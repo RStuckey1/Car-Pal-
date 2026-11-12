@@ -1,64 +1,66 @@
 .preferences-page {
   box-sizing: border-box;
-  width: min(100% - 2rem, 38rem);
-  margin: 2rem auto;
-  padding: 1.5rem;
-  color: #00171f;
-  background-color: #fcf7f8;
-  border: 2px solid #1d3461;
-  border-radius: 10px;
+  width: min(100%, 38rem);
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  color: var(--ink);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
 }
 
 .preferences-page h2 {
-  margin: 0 0 0.5rem;
-  text-align: center;
+  margin: 0 0 0.4rem;
 }
 
 .preferences-page h3 {
-  margin: 1.5rem 0 0;
+  margin: 1.25rem 0 0;
 }
 
 .preferences-intro,
 .preferences-form > p {
-  margin: 0 0 1rem;
-  font-family: inherit;
+  margin: 0 0 0.75rem;
   font-size: 1rem;
 }
 
 .preferences-form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .preferences-form label {
+  margin-top: 0.4rem;
   font-weight: 600;
 }
 
 .preferences-form input {
   box-sizing: border-box;
   width: 100%;
-  min-height: 2.5rem;
-  padding: 0.5rem;
-  border: 1px solid #1d3461;
-  border-radius: 5px;
+  min-height: 48px;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #cbd6e5;
+  border-radius: 10px;
   font: inherit;
 }
 
 .preferences-form button {
-  align-self: flex-start;
+  align-self: stretch;
   margin-top: 0.75rem;
-  padding: 0.65rem 1rem;
-  color: #fcf7f8;
-  background-color: #1d3461;
-  border: 2px solid #1d3461;
-  border-radius: 8px;
+  min-height: 48px;
+  padding: 0.7rem 1rem;
+  color: #fff;
+  background-color: var(--brand);
+  border: 1px solid var(--brand);
+  border-radius: 10px;
   font: inherit;
+  font-weight: 650;
   cursor: pointer;
 }
 
 .preferences-form button:hover:not(:disabled) {
-  background-color: #de9151;
+  background-color: var(--brand-dark);
 }
 
 .preferences-form button:disabled {
@@ -69,7 +71,6 @@
 .preferences-message,
 .preferences-status {
   margin: 0.5rem 0 0;
-  font-family: inherit;
   font-size: 1rem;
 }
 
@@ -79,11 +80,4 @@
 
 .preferences-success {
   color: #176b32;
-}
-
-@media (max-width: 600px) {
-  .preferences-page {
-    margin: 1rem auto;
-    padding: 1rem;
-  }
 }

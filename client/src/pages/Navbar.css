@@ -1,230 +1,127 @@
-#root > div.App > nav{
-  width:100%;
-  height:auto;
-}
-
-
-.navbar-logo {
-  background-color: #1D3461;
+.site-nav {
   display: flex;
-  flex-direction: row;
+  width: min(100% - 3rem, 1200px);
+  min-height: 76px;
   align-items: center;
-  gap: 1rem;
-  padding: 0.5rem 1rem;
-  flex-wrap: nowrap;
-  font-size: 1.5rem;
-  width: 100%;
-  box-sizing: border-box;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 0 auto;
 }
 
-.navbar-logo>img {
-  flex-shrink: 0;
-}
-
-.navbar-logo>ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  justify-content: left;
-  overflow: visible;
-  color: #fcf7f8;
-  margin: 0;
-  padding: 0;
-  flex-wrap: nowrap;
-  gap: 0.5rem;
-}
-
-.navbar-logo>li {
-  color: #fcf7f8;
-  font-size: 1rem;
-  white-space: nowrap;
-}
-
-.navbar-logo>h1 {
-  font-family:"Mukta Makar", sans-serif;
-  font-size: 1.5rem;
-  color: #fcf7f8;
-  margin: 0;
-  white-space: nowrap;
-}
-
-.navbar-preferences {
-  margin-left: auto;
-  padding: 0.5rem;
-  color: #fcf7f8;
-  font-size: 1.5rem;
-  border: 2px solid transparent;
-  border-radius: 10px;
-}
-
-.navbar-preferences:hover,
-.navbar-preferences:focus-visible {
-  color: #fcf7f8;
-  border-color: #fcf7f8;
-}
-
-#root > div.App > nav > div > ul > li > a {
-  font-size: 1.2rem;
-  margin: 0;
-  padding: 0.5rem 1rem;
-  justify-content: center;
-  text-align: center;
-  color: #fcf7f8;
-  white-space: nowrap;
-  display: inline-block;
-  box-sizing: border-box;
-  border: 2px solid transparent;
-  border-radius: 10px;
-}
-
-#root > div.App > nav > div > ul > li > a:hover {
-  background-color: #1D3461;
-  border: 2px solid #fcf7f8;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-
-li.dropdown {
-  display: inline-block;
-  color: #fcf7f8;
-  font-family:"Mukta Makar", sans-serif;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  box-sizing: border-box;
-  font-size: 1.5rem;
-
-}
-
-.dropbtn {
-  border: 2px solid white;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #1D3461;
-  color: #fcf7f8;
-  width: auto;
-  height:auto;
-  border: 2px solid white;
-  border-radius: 10px;
-  z-index: 1;
-}
-.dropdown-content a {
-  color: #fcf7f8;
-  text-decoration: none;
-  display: block;
-  font-family:"Mukta Makar", sans-serif;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-
-.dropdown-content a:visited {
-  color: #fcf7f8;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #fcf7f8;
-  color:#000000;
-  border: 2px solid white;
-  border-radius: 10px;
-  box-sizing: border-box;
-  
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-  color: #fcf7f8;
-
-}
-
-
-div > ul > li > div > a:nth-child(4) > button {
-  background-color: #1D3461;
-  border: 1px solid #fcf7f8;
-  border-radius: 10px;
-  justify-content: center;
-  margin: 0% auto 0% auto;
-  color: #fcf7f8;
-  text-decoration: none;
-  display: block;
-  font-family:"Mukta Makar", sans-serif;
-  font-size: 1.5rem;
-}
-
-ul.logo {
-  display: flex;
-  flex-direction: row;
+.brand {
+  display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0;
+  gap: 0.7rem;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 750;
+  letter-spacing: -0.04em;
 }
 
-@media (max-width: 600px) {
-  #root > div.App > nav {
-    width: 100%;
-  }
+.brand:hover {
+  color: #fff;
+}
 
-  .navbar-logo {
-    box-sizing: border-box;
+.brand img {
+  display: block;
+  width: 48px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
+
+.nav-greeting {
+  margin-right: 0.5rem;
+  color: #aab8cf;
+  font-size: 0.9rem;
+}
+
+.nav-link,
+.nav-signup,
+.nav-logout {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.85rem;
+  color: #e7edf7;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-logout:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.nav-signup {
+  margin-left: 0.2rem;
+  color: #fff;
+  background: var(--brand);
+}
+
+.nav-signup:hover {
+  color: #fff;
+  background: #3a6cec;
+}
+
+.nav-logout {
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .site-nav {
     width: 100%;
+    min-height: auto;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    font-size: 1rem;
+    justify-content: space-between;
+    gap: 0.25rem 0.75rem;
+    padding: 0.65rem 1rem 0.75rem;
   }
 
-  .navbar-logo > img {
-    max-width: 4rem;
-    height: auto;
-  }
-
-  .navbar-logo > h1 {
-    max-width: 100%;
+  .brand {
     font-size: 1.15rem;
-    text-align: center;
-    white-space: normal;
   }
 
-  .navbar-logo > ul,
-  ul.logo {
-    box-sizing: border-box;
+  .brand img {
+    width: 42px;
+    height: 32px;
+  }
+
+  .nav-actions {
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.35rem;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
 
-  .navbar-preferences {
-    margin-left: 0;
+  .nav-actions::-webkit-scrollbar {
+    display: none;
   }
 
-  #root > div.App > nav > div > ul > li > a {
-    font-size: 0.95rem;
-    padding: 0.45rem 0.65rem;
+  .nav-greeting {
+    display: none;
   }
 
-  li.dropdown {
-    position: relative;
-    font-size: 1rem;
-  }
-
-  .dropdown-content {
-    left: 50%;
-    transform: translateX(-50%);
-    min-width: 13rem;
-    max-width: calc(100vw - 1.5rem);
-  }
-
-  .dropdown-content a,
-  div > ul > li > div > a:nth-child(4) > button {
-    font-size: 1rem;
-    padding: 0.5rem;
+  .nav-link,
+  .nav-signup,
+  .nav-logout {
+    min-height: 42px;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.85rem;
   }
 }
